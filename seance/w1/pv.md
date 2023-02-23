@@ -1,4 +1,4 @@
-# TM sound source localization and distance estimation in open environment with neural network and simulation :
+# TM Denis Rosset 22.02.23 :
 
 ## Notes/questions en prévision de la séance du 22.02.2023
 - Cahier des charges ?
@@ -13,20 +13,22 @@ itérations suivantes -> améliorer les étapes petit à petit
 - Projet de "radar à bruit" avec Marc-Antoine?
 - Experts?
 
-# Notes / à faire
-## cahier des charges
+# Résumé/PV de la séance 
+Personnes présentes : Michael Mäder, Beat Wolf, Denis Rosset
+## Notes / à faire
+### Cahier des charges
 - Réaliser un cahier des charges
 - Réaliser un planning avec des milestones
 
-## Administratif
+### Administratif
 - Séance toutes les semaines (bloc) qu'on peut laisser tomber si on a pas besoin de la séance (14h-15h) -> faire l'invitation (Michael la fait)
 - Trouver un expert (plutôt vers la fin du projet)
 - Séance flexible (à distance si besoin)
 - Attention avec la charge de travail avec secV2Icomm (à voir avec Gaby si besoin de plus de temps)
 
-## Conception de la thèse
-- faire des scénarios de tests virtuels + réels
-- établir une baseline (par ex. un capteur de sirène) pour comparer les résultats
+### Conception de la thèse
+- Faire des scénarios de tests virtuels + réels
+- Établir une baseline (par ex. un capteur de sirène) pour comparer les résultats
 - Description du use case et contraster avec ce qui existe déjà (système de siemens, etc) 
 - Se rendre compte du réalisme du projet simulé par rapport à la réalité
 - Une grosse partie du projet est la génération des données et savoir/comprendre sont les données
