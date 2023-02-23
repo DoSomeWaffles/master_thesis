@@ -1,5 +1,5 @@
 # TM sound source localization and distance estimation in open environment with neural network and simulation :
-## Questions posés par Denis
+## Questions posés
 - Cahier des charges
 - Gestion de projet: agile le projet fera plusieurs itérations (1. proof of concept, 2. microphones statiques, 3. microphones mobiles, etc)
 - Première itération: aller au plus vite vers un concept fonctionnel en faisant des choix arbitraires:
@@ -12,7 +12,7 @@ itérations suivantes: améliorer les étapes petit à petit
 - Projet de "radar à bruit" avec Marc-Antoine?
 - Experts?
 
-# Notes
+# Notes / à faire
 ## cahier des charges
 - Réaliser un cahier des charges
 - Réaliser un planning avec des milestones
