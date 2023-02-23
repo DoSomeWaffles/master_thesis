@@ -1,14 +1,15 @@
 # TM sound source localization and distance estimation in open environment with neural network and simulation :
-## Questions posés
-- Cahier des charges
-- Gestion de projet: agile le projet fera plusieurs itérations (1. proof of concept, 2. microphones statiques, 3. microphones mobiles, etc)
-- Première itération: aller au plus vite vers un concept fonctionnel en faisant des choix arbitraires:
-itérations suivantes: améliorer les étapes petit à petit
+
+## Notes/questions en prévision de la séance du 22.02.2023
+- Cahier des charges ?
+- Gestion de projet: agile -> le projet fera plusieurs itérations (1. proof of concept, 2. microphones statiques, 3. microphones mobiles, etc. ou autre)
+- Idée de première itération: aller au plus vite vers un concept fonctionnel en faisant des choix arbitraires puis
+itérations suivantes -> améliorer les étapes petit à petit
 - Analyse du state of the art pour trouver la meilleure manière de générer les datas, meilleur modèle
-- Trouver quelles données donner comme input et output au modèle 
+- Trouver quelles types de données utiliser comme input et output au modèle ?
 - Hardware à disposition (gpu, etc?)    
 - Modèle global/spécifique (à quel point il faut généraliser (modèle de base puis transfer learning?)
-- Test hardware (analyse du hardware disponible
+- Test hardware (analyse du hardware disponible pour les microphones array)
 - Projet de "radar à bruit" avec Marc-Antoine?
 - Experts?
 
@@ -23,15 +24,15 @@ itérations suivantes: améliorer les étapes petit à petit
 - Séance flexible (à distance si besoin)
 - Attention avec la charge de travail avec secV2Icomm (à voir avec Gaby si besoin de plus de temps)
 
-## Concept de la thèse
+## Conception de la thèse
 - faire des scénarios de tests virtuels + réels
 - établir une baseline (par ex. un capteur de sirène) pour comparer les résultats
-- Description du use case et contraster avec ce qui existe déjà, 
-- Voir le réalisme du projet
-- grosse partie du projet est la génération des données et savoir quelles sont les données
-- Demander le plus vite possible pour mettre un/des micros à des endroits clés
+- Description du use case et contraster avec ce qui existe déjà (système de siemens, etc) 
+- Se rendre compte du réalisme du projet simulé par rapport à la réalité
+- Une grosse partie du projet est la génération des données et savoir/comprendre sont les données
+- Demander le plus vite possible pour mettre un/des micros à des endroits clés (hôpital, école, etc)
 - Pas attendre trop longtemps avant de commander du matériel (micros, etc)
-- Penser à l'environnement de test dans la vraie vie
-- pour le bake sur Azure demander à Quentin (Vaucher?)
-- Inviter Marc-Antoine pour parler de son projet de radar à bruit
+- Penser à définir l'environnement de test dans la vraie vie
+- Pour le bake du modèle 3D sur Azure demander à L'école pour du crédit (Quentin (Vaucher?))
+- Inviter Marc-Antoine pour parler de son projet de radar à bruit et voir s'il peut être un usecase sur le quel se baser pour réaliser la thèse
 
