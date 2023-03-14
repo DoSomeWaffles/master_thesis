@@ -38,4 +38,4 @@ MonoBehaviour:
   MaterialsListElements:
   - m_name: New Material
     m_absorptivity: 0.1
-    m_materialCode: 32
+    m_materialCode: 37
