@@ -9,7 +9,10 @@ public class OutputAudioRecorder : MonoBehaviour
     public const string FILE_EXTENSION = ".wav";
     public const string DEFAULT_FILENAME = "record";
 
-    public bool IsRecording { get { return recOutput; } }
+    public bool IsRecording
+    {
+        get { return recOutput; }
+    }
 
     private int bufferSize;
     private int numBuffers;
@@ -26,7 +29,8 @@ public class OutputAudioRecorder : MonoBehaviour
     public int currentSlot;
     public String folder;
     public String csv_filename = "dataset.csv";
-    public float simulation_speed=1f;
+    public float simulation_speed = 1f;
+
     // target to follow to add its position to the dataset
     public GameObject target_followed;
     public AudioSource source;
@@ -36,7 +40,6 @@ public class OutputAudioRecorder : MonoBehaviour
     void Awake()
     {
         outputRate = AudioSettings.outputSampleRate;
-
     }
 
     void Start()
@@ -44,7 +47,11 @@ public class OutputAudioRecorder : MonoBehaviour
         AudioSettings.GetDSPBufferSize(out bufferSize, out numBuffers);
         finished_recording = true;
         target_z_position = target_followed.transform.position.z;
-
+        string folderName = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+        string pathString = Path.Combine(Application.dataPath, folder, folderName);
+        Directory.CreateDirectory(pathString);
+        folder = pathString;
+        Debug.Log("Folder created at: " + pathString);
     }
 
     void Update()
@@ -52,7 +59,7 @@ public class OutputAudioRecorder : MonoBehaviour
         Time.timeScale = simulation_speed;
         source.pitch = simulation_speed;
         // start recording on r key pressed
-        
+
         if (!recOutput && finished_recording)
         {
             finished_recording = false;
@@ -62,7 +69,8 @@ public class OutputAudioRecorder : MonoBehaviour
         }
 
         // stop recording after 1 second
-        if (recOutput && Time.time - timer > 1/simulation_speed) {
+        if (recOutput && Time.time - timer > 1 / simulation_speed)
+        {
             target_z_position = target_followed.transform.position.z;
             // AppendCSV();
             StopRecording();
@@ -73,8 +81,14 @@ public class OutputAudioRecorder : MonoBehaviour
     void AppendCSV()
     {
         // append line to csv file
-        string text = fileName + ","+(target_followed.transform.position.z>this.transform.position.z) + "," + simulation_speed + "\n";
-        File.AppendAllText(Application.dataPath + "/" + folder + "/" + csv_filename, text);
+        string text =
+            fileName
+            + ","
+            + (target_followed.transform.position.z > this.transform.position.z)
+            + ","
+            + simulation_speed
+            + "\n";
+        File.AppendAllText(folder + "/" + csv_filename, text);
     }
 
     public void StartRecording(string recordFileName)
@@ -96,23 +110,33 @@ public class OutputAudioRecorder : MonoBehaviour
     {
         recOutput = false;
         WriteHeader();
-        Debug.Log("Recording stopped, file saved at: " + Application.dataPath + "/" + folder + "/" + fileName);
+        Debug.Log("Recording stopped, file saved at: " + folder + "/" + fileName);
     }
-
 
     private void StartWriting(String name)
     {
         String side = "";
-        if (target_followed.transform.position.z>this.transform.position.z) {
+        if (target_followed.transform.position.z > this.transform.position.z)
+        {
             side = "/fromright";
-        } else {
-            side = "/fromleft";
-        } if (target_z_position<target_followed.transform.position.z) {
-            side += "toleft";
-        } else {
-            side += "toright";
         }
-        fileStream = new FileStream(Application.dataPath + "/" + folder + side + "/" + name, FileMode.Create);
+        else
+        {
+            side = "/fromleft";
+        }
+        if(!Directory.Exists(folder + side))
+            Directory.CreateDirectory(folder + side);
+        // create the folders if they don't exist
+
+        /* if (target_z_position < target_followed.transform.position.z)
+        {
+            side += "toleft";
+        }
+        else
+        {
+            side += "toright";
+        } */
+        fileStream = new FileStream(folder + side + "/" + name, FileMode.Create);
 
         var emptyByte = new byte();
         for (int i = 0; i < headerSize; i++) //preparing the header
@@ -131,7 +155,6 @@ public class OutputAudioRecorder : MonoBehaviour
 
     private void ConvertAndWrite(float[] dataSource)
     {
-
         var intData = new Int16[dataSource.Length];
         //converting in 2 steps : float[] to Int16[], //then Int16[] to Byte[]
 
@@ -153,13 +176,10 @@ public class OutputAudioRecorder : MonoBehaviour
 
         tempDataSource = new float[dataSource.Length];
         tempDataSource = dataSource;
-
-
     }
 
     private void WriteHeader()
     {
-
         fileStream.Seek(0, SeekOrigin.Begin);
 
         var riff = System.Text.Encoding.UTF8.GetBytes("RIFF");
@@ -208,6 +228,5 @@ public class OutputAudioRecorder : MonoBehaviour
         fileStream.Write(subChunk2, 0, 4);
 
         fileStream.Close();
-
     }
 }
