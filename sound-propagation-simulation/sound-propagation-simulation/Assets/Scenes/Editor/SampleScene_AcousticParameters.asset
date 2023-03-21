@@ -16,7 +16,7 @@ MonoBehaviour:
   MeshUnitAdjustment: 1
   SceneScale: 1
   SpeedOfSound: -1
-  SimulationMaxFrequency: 500
+  SimulationMaxFrequency: 250
   ReceiverSampleSpacing: 1.5
   ProbeHorizontalSpacingMin: 0.5
   ProbeHorizontalSpacingMax: 3.5
@@ -29,7 +29,7 @@ MonoBehaviour:
   - Standard_F16s_v2
   - Standard_H8
   - Standard_H16
-  SelectedVMType: 1
+  SelectedVMType: 0
   NodeCount: 5
   UseLowPriorityNodes: 0
   AcousticsDataFolder: Assets\AcousticsData
@@ -38,4 +38,4 @@ MonoBehaviour:
   MaterialsListElements:
   - m_name: New Material
     m_absorptivity: 0.1
-    m_materialCode: 37
+    m_materialCode: 2
