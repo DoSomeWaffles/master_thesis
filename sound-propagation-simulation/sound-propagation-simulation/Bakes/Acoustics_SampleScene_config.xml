@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SimulationConfig xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Triton">
-	<IterationId>eb5cab82-b4e2-4304-96e5-6d55440b4c78</IterationId>
+	<IterationId>ce02b8c8-f423-43c6-962e-1479bb03861f</IterationId>
 	<BaselineAceFileName></BaselineAceFileName>
 	<DisablePml>false</DisablePml>
 	<ForceSimDuration>-1</ForceSimDuration>
@@ -72,289 +72,614 @@
 		</d2p1:KeyValueOflongfloat>
 	</MaterialCodeToPressureReflDict>
 	<MaterialFileName></MaterialFileName>
-	<MaxFrequency>500</MaxFrequency>
+	<MaxFrequency>250</MaxFrequency>
 	<MeshFileName></MeshFileName>
-	<NumProbes>55</NumProbes>
+	<NumProbes>120</NumProbes>
 	<OutputFilePrefix>Acoustics_SampleScene</OutputFilePrefix>
 	<ProbeGridSpacingHorizontalMax>3.5</ProbeGridSpacingHorizontalMax>
 	<ProbeGridSpacingHorizontalMin>0.5</ProbeGridSpacingHorizontalMin>
 	<ProbeGridSpacingVertical>1</ProbeGridSpacingVertical>
 	<ProbeList size="dynamic">
 		<value0>
-			<i>4</i>
-			<j>6</j>
-			<k>5</k>
+			<i>3</i>
+			<j>3</j>
+			<k>2</k>
 		</value0>
 		<value1>
-			<i>8</i>
-			<j>0</j>
-			<k>5</k>
+			<i>3</i>
+			<j>10</j>
+			<k>2</k>
 		</value1>
 		<value2>
-			<i>10</i>
-			<j>10</j>
-			<k>5</k>
+			<i>3</i>
+			<j>17</j>
+			<k>2</k>
 		</value2>
 		<value3>
-			<i>12</i>
-			<j>4</j>
-			<k>5</k>
+			<i>3</i>
+			<j>24</j>
+			<k>2</k>
 		</value3>
 		<value4>
-			<i>4</i>
-			<j>20</j>
-			<k>5</k>
+			<i>3</i>
+			<j>31</j>
+			<k>2</k>
 		</value4>
 		<value5>
-			<i>12</i>
-			<j>20</j>
-			<k>5</k>
+			<i>3</i>
+			<j>38</j>
+			<k>2</k>
 		</value5>
 		<value6>
-			<i>4</i>
-			<j>34</j>
-			<k>5</k>
+			<i>3</i>
+			<j>45</j>
+			<k>2</k>
 		</value6>
 		<value7>
-			<i>12</i>
-			<j>36</j>
-			<k>5</k>
+			<i>3</i>
+			<j>52</j>
+			<k>2</k>
 		</value7>
 		<value8>
-			<i>4</i>
-			<j>48</j>
-			<k>5</k>
+			<i>3</i>
+			<j>59</j>
+			<k>2</k>
 		</value8>
 		<value9>
-			<i>12</i>
-			<j>50</j>
-			<k>5</k>
+			<i>3</i>
+			<j>66</j>
+			<k>2</k>
 		</value9>
 		<value10>
-			<i>22</i>
-			<j>22</j>
-			<k>5</k>
+			<i>3</i>
+			<j>73</j>
+			<k>2</k>
 		</value10>
 		<value11>
-			<i>14</i>
-			<j>30</j>
-			<k>5</k>
+			<i>3</i>
+			<j>80</j>
+			<k>2</k>
 		</value11>
 		<value12>
-			<i>20</i>
-			<j>34</j>
-			<k>5</k>
+			<i>3</i>
+			<j>87</j>
+			<k>2</k>
 		</value12>
 		<value13>
-			<i>14</i>
-			<j>44</j>
-			<k>5</k>
+			<i>3</i>
+			<j>94</j>
+			<k>2</k>
 		</value13>
 		<value14>
-			<i>20</i>
-			<j>48</j>
-			<k>5</k>
+			<i>3</i>
+			<j>101</j>
+			<k>2</k>
 		</value14>
 		<value15>
-			<i>14</i>
-			<j>56</j>
-			<k>5</k>
+			<i>10</i>
+			<j>3</j>
+			<k>2</k>
 		</value15>
 		<value16>
-			<i>16</i>
-			<j>58</j>
-			<k>5</k>
+			<i>10</i>
+			<j>10</j>
+			<k>2</k>
 		</value16>
 		<value17>
-			<i>34</i>
-			<j>6</j>
-			<k>5</k>
+			<i>10</i>
+			<j>17</j>
+			<k>2</k>
 		</value17>
 		<value18>
-			<i>34</i>
-			<j>20</j>
-			<k>5</k>
+			<i>10</i>
+			<j>24</j>
+			<k>2</k>
 		</value18>
 		<value19>
-			<i>34</i>
-			<j>34</j>
-			<k>5</k>
+			<i>10</i>
+			<j>31</j>
+			<k>2</k>
 		</value19>
 		<value20>
-			<i>34</i>
-			<j>48</j>
-			<k>5</k>
+			<i>10</i>
+			<j>38</j>
+			<k>2</k>
 		</value20>
 		<value21>
-			<i>48</i>
-			<j>6</j>
-			<k>5</k>
+			<i>10</i>
+			<j>45</j>
+			<k>2</k>
 		</value21>
 		<value22>
-			<i>48</i>
-			<j>20</j>
-			<k>5</k>
+			<i>10</i>
+			<j>52</j>
+			<k>2</k>
 		</value22>
 		<value23>
-			<i>48</i>
-			<j>34</j>
-			<k>5</k>
+			<i>10</i>
+			<j>59</j>
+			<k>2</k>
 		</value23>
 		<value24>
-			<i>48</i>
-			<j>48</j>
-			<k>5</k>
+			<i>10</i>
+			<j>66</j>
+			<k>2</k>
 		</value24>
 		<value25>
-			<i>4</i>
-			<j>6</j>
-			<k>9</k>
+			<i>10</i>
+			<j>73</j>
+			<k>2</k>
 		</value25>
 		<value26>
-			<i>8</i>
-			<j>0</j>
-			<k>9</k>
+			<i>10</i>
+			<j>80</j>
+			<k>2</k>
 		</value26>
 		<value27>
 			<i>10</i>
-			<j>10</j>
-			<k>9</k>
+			<j>87</j>
+			<k>2</k>
 		</value27>
 		<value28>
-			<i>12</i>
-			<j>4</j>
-			<k>9</k>
+			<i>10</i>
+			<j>94</j>
+			<k>2</k>
 		</value28>
 		<value29>
-			<i>4</i>
-			<j>20</j>
-			<k>9</k>
+			<i>10</i>
+			<j>101</j>
+			<k>2</k>
 		</value29>
 		<value30>
-			<i>12</i>
-			<j>20</j>
-			<k>9</k>
+			<i>17</i>
+			<j>3</j>
+			<k>2</k>
 		</value30>
 		<value31>
-			<i>4</i>
-			<j>34</j>
-			<k>9</k>
+			<i>17</i>
+			<j>10</j>
+			<k>2</k>
 		</value31>
 		<value32>
-			<i>12</i>
-			<j>36</j>
-			<k>9</k>
+			<i>17</i>
+			<j>17</j>
+			<k>2</k>
 		</value32>
 		<value33>
-			<i>4</i>
-			<j>48</j>
-			<k>9</k>
+			<i>17</i>
+			<j>24</j>
+			<k>2</k>
 		</value33>
 		<value34>
-			<i>12</i>
-			<j>50</j>
-			<k>9</k>
+			<i>17</i>
+			<j>31</j>
+			<k>2</k>
 		</value34>
 		<value35>
-			<i>22</i>
-			<j>22</j>
-			<k>9</k>
+			<i>17</i>
+			<j>38</j>
+			<k>2</k>
 		</value35>
 		<value36>
-			<i>14</i>
-			<j>30</j>
-			<k>9</k>
+			<i>17</i>
+			<j>45</j>
+			<k>2</k>
 		</value36>
 		<value37>
-			<i>20</i>
-			<j>34</j>
-			<k>9</k>
+			<i>17</i>
+			<j>52</j>
+			<k>2</k>
 		</value37>
 		<value38>
-			<i>14</i>
-			<j>44</j>
-			<k>9</k>
+			<i>17</i>
+			<j>59</j>
+			<k>2</k>
 		</value38>
 		<value39>
-			<i>20</i>
-			<j>48</j>
-			<k>9</k>
+			<i>17</i>
+			<j>66</j>
+			<k>2</k>
 		</value39>
 		<value40>
-			<i>14</i>
-			<j>56</j>
-			<k>9</k>
+			<i>17</i>
+			<j>73</j>
+			<k>2</k>
 		</value40>
 		<value41>
-			<i>16</i>
-			<j>58</j>
-			<k>9</k>
+			<i>17</i>
+			<j>80</j>
+			<k>2</k>
 		</value41>
 		<value42>
-			<i>34</i>
-			<j>6</j>
-			<k>9</k>
+			<i>17</i>
+			<j>87</j>
+			<k>2</k>
 		</value42>
 		<value43>
-			<i>34</i>
-			<j>20</j>
-			<k>9</k>
+			<i>17</i>
+			<j>94</j>
+			<k>2</k>
 		</value43>
 		<value44>
-			<i>34</i>
-			<j>34</j>
-			<k>9</k>
+			<i>17</i>
+			<j>101</j>
+			<k>2</k>
 		</value44>
 		<value45>
-			<i>34</i>
-			<j>48</j>
-			<k>9</k>
+			<i>24</i>
+			<j>3</j>
+			<k>2</k>
 		</value45>
 		<value46>
-			<i>48</i>
-			<j>6</j>
-			<k>9</k>
+			<i>24</i>
+			<j>10</j>
+			<k>2</k>
 		</value46>
 		<value47>
-			<i>48</i>
-			<j>20</j>
-			<k>9</k>
+			<i>24</i>
+			<j>17</j>
+			<k>2</k>
 		</value47>
 		<value48>
-			<i>48</i>
-			<j>34</j>
-			<k>9</k>
+			<i>24</i>
+			<j>24</j>
+			<k>2</k>
 		</value48>
 		<value49>
-			<i>48</i>
-			<j>48</j>
-			<k>9</k>
+			<i>24</i>
+			<j>31</j>
+			<k>2</k>
 		</value49>
 		<value50>
-			<i>10</i>
-			<j>4</j>
-			<k>29</k>
+			<i>24</i>
+			<j>38</j>
+			<k>2</k>
 		</value50>
 		<value51>
-			<i>10</i>
-			<j>4</j>
-			<k>33</k>
+			<i>24</i>
+			<j>45</j>
+			<k>2</k>
 		</value51>
 		<value52>
-			<i>14</i>
-			<j>20</j>
-			<k>33</k>
+			<i>24</i>
+			<j>52</j>
+			<k>2</k>
 		</value52>
 		<value53>
-			<i>14</i>
-			<j>34</j>
-			<k>33</k>
+			<i>24</i>
+			<j>59</j>
+			<k>2</k>
 		</value53>
 		<value54>
-			<i>14</i>
-			<j>48</j>
-			<k>33</k>
+			<i>24</i>
+			<j>66</j>
+			<k>2</k>
 		</value54>
+		<value55>
+			<i>24</i>
+			<j>73</j>
+			<k>2</k>
+		</value55>
+		<value56>
+			<i>24</i>
+			<j>80</j>
+			<k>2</k>
+		</value56>
+		<value57>
+			<i>24</i>
+			<j>87</j>
+			<k>2</k>
+		</value57>
+		<value58>
+			<i>24</i>
+			<j>94</j>
+			<k>2</k>
+		</value58>
+		<value59>
+			<i>24</i>
+			<j>101</j>
+			<k>2</k>
+		</value59>
+		<value60>
+			<i>3</i>
+			<j>3</j>
+			<k>4</k>
+		</value60>
+		<value61>
+			<i>3</i>
+			<j>10</j>
+			<k>4</k>
+		</value61>
+		<value62>
+			<i>3</i>
+			<j>17</j>
+			<k>4</k>
+		</value62>
+		<value63>
+			<i>3</i>
+			<j>24</j>
+			<k>4</k>
+		</value63>
+		<value64>
+			<i>3</i>
+			<j>31</j>
+			<k>4</k>
+		</value64>
+		<value65>
+			<i>3</i>
+			<j>38</j>
+			<k>4</k>
+		</value65>
+		<value66>
+			<i>3</i>
+			<j>45</j>
+			<k>4</k>
+		</value66>
+		<value67>
+			<i>3</i>
+			<j>52</j>
+			<k>4</k>
+		</value67>
+		<value68>
+			<i>3</i>
+			<j>59</j>
+			<k>4</k>
+		</value68>
+		<value69>
+			<i>3</i>
+			<j>66</j>
+			<k>4</k>
+		</value69>
+		<value70>
+			<i>3</i>
+			<j>73</j>
+			<k>4</k>
+		</value70>
+		<value71>
+			<i>3</i>
+			<j>80</j>
+			<k>4</k>
+		</value71>
+		<value72>
+			<i>3</i>
+			<j>87</j>
+			<k>4</k>
+		</value72>
+		<value73>
+			<i>3</i>
+			<j>94</j>
+			<k>4</k>
+		</value73>
+		<value74>
+			<i>3</i>
+			<j>101</j>
+			<k>4</k>
+		</value74>
+		<value75>
+			<i>10</i>
+			<j>3</j>
+			<k>4</k>
+		</value75>
+		<value76>
+			<i>10</i>
+			<j>10</j>
+			<k>4</k>
+		</value76>
+		<value77>
+			<i>10</i>
+			<j>17</j>
+			<k>4</k>
+		</value77>
+		<value78>
+			<i>10</i>
+			<j>24</j>
+			<k>4</k>
+		</value78>
+		<value79>
+			<i>10</i>
+			<j>31</j>
+			<k>4</k>
+		</value79>
+		<value80>
+			<i>10</i>
+			<j>38</j>
+			<k>4</k>
+		</value80>
+		<value81>
+			<i>10</i>
+			<j>45</j>
+			<k>4</k>
+		</value81>
+		<value82>
+			<i>10</i>
+			<j>52</j>
+			<k>4</k>
+		</value82>
+		<value83>
+			<i>10</i>
+			<j>59</j>
+			<k>4</k>
+		</value83>
+		<value84>
+			<i>10</i>
+			<j>66</j>
+			<k>4</k>
+		</value84>
+		<value85>
+			<i>10</i>
+			<j>73</j>
+			<k>4</k>
+		</value85>
+		<value86>
+			<i>10</i>
+			<j>80</j>
+			<k>4</k>
+		</value86>
+		<value87>
+			<i>10</i>
+			<j>87</j>
+			<k>4</k>
+		</value87>
+		<value88>
+			<i>10</i>
+			<j>94</j>
+			<k>4</k>
+		</value88>
+		<value89>
+			<i>10</i>
+			<j>101</j>
+			<k>4</k>
+		</value89>
+		<value90>
+			<i>17</i>
+			<j>3</j>
+			<k>4</k>
+		</value90>
+		<value91>
+			<i>17</i>
+			<j>10</j>
+			<k>4</k>
+		</value91>
+		<value92>
+			<i>17</i>
+			<j>17</j>
+			<k>4</k>
+		</value92>
+		<value93>
+			<i>17</i>
+			<j>24</j>
+			<k>4</k>
+		</value93>
+		<value94>
+			<i>17</i>
+			<j>31</j>
+			<k>4</k>
+		</value94>
+		<value95>
+			<i>17</i>
+			<j>38</j>
+			<k>4</k>
+		</value95>
+		<value96>
+			<i>17</i>
+			<j>45</j>
+			<k>4</k>
+		</value96>
+		<value97>
+			<i>17</i>
+			<j>52</j>
+			<k>4</k>
+		</value97>
+		<value98>
+			<i>17</i>
+			<j>59</j>
+			<k>4</k>
+		</value98>
+		<value99>
+			<i>17</i>
+			<j>66</j>
+			<k>4</k>
+		</value99>
+		<value100>
+			<i>17</i>
+			<j>73</j>
+			<k>4</k>
+		</value100>
+		<value101>
+			<i>17</i>
+			<j>80</j>
+			<k>4</k>
+		</value101>
+		<value102>
+			<i>17</i>
+			<j>87</j>
+			<k>4</k>
+		</value102>
+		<value103>
+			<i>17</i>
+			<j>94</j>
+			<k>4</k>
+		</value103>
+		<value104>
+			<i>17</i>
+			<j>101</j>
+			<k>4</k>
+		</value104>
+		<value105>
+			<i>24</i>
+			<j>3</j>
+			<k>4</k>
+		</value105>
+		<value106>
+			<i>24</i>
+			<j>10</j>
+			<k>4</k>
+		</value106>
+		<value107>
+			<i>24</i>
+			<j>17</j>
+			<k>4</k>
+		</value107>
+		<value108>
+			<i>24</i>
+			<j>24</j>
+			<k>4</k>
+		</value108>
+		<value109>
+			<i>24</i>
+			<j>31</j>
+			<k>4</k>
+		</value109>
+		<value110>
+			<i>24</i>
+			<j>38</j>
+			<k>4</k>
+		</value110>
+		<value111>
+			<i>24</i>
+			<j>45</j>
+			<k>4</k>
+		</value111>
+		<value112>
+			<i>24</i>
+			<j>52</j>
+			<k>4</k>
+		</value112>
+		<value113>
+			<i>24</i>
+			<j>59</j>
+			<k>4</k>
+		</value113>
+		<value114>
+			<i>24</i>
+			<j>66</j>
+			<k>4</k>
+		</value114>
+		<value115>
+			<i>24</i>
+			<j>73</j>
+			<k>4</k>
+		</value115>
+		<value116>
+			<i>24</i>
+			<j>80</j>
+			<k>4</k>
+		</value116>
+		<value117>
+			<i>24</i>
+			<j>87</j>
+			<k>4</k>
+		</value117>
+		<value118>
+			<i>24</i>
+			<j>94</j>
+			<k>4</k>
+		</value118>
+		<value119>
+			<i>24</i>
+			<j>101</j>
+			<k>4</k>
+		</value119>
 	</ProbeList>
 	<ProbeMinHeightAboveGround>0.75</ProbeMinHeightAboveGround>
 	<ProbeMaxHeightAboveGround>1.75</ProbeMaxHeightAboveGround>
@@ -388,32 +713,32 @@
 		<Bounding_Box>
 			<MaxCorner>
 				<X>5.2844362258911133</X>
-				<Y>10.624355316162109</Y>
-				<Z>3.7700004577636719</Z>
+				<Y>29.739356994628906</Y>
+				<Z>-2.1771340370178223</Z>
 			</MaxCorner>
 			<MinCorner>
 				<X>-9.7155637741088867</X>
-				<Y>-4.4200000762939453</Y>
+				<Y>-23.490642547607422</Y>
 				<Z>-3.1771340370178223</Z>
 			</MinCorner>
 		</Bounding_Box>
-		<Cell_Size>0.25499999523162842</Cell_Size>
+		<Cell_Size>0.50999999046325684</Cell_Size>
 		<Input_Geometry>Unknown</Input_Geometry>
 		<Voxelization_Bounding_Box>
 			<MaxCorner>
 				<X>5.2844362258911133</X>
-				<Y>10.624355316162109</Y>
-				<Z>5.7750005722045898</Z>
+				<Y>29.739356994628906</Y>
+				<Z>0.08286595344543457</Z>
 			</MaxCorner>
 			<MinCorner>
 				<X>-9.7155637741088867</X>
-				<Y>-4.4200000762939453</Y>
+				<Y>-23.490642547607422</Y>
 				<Z>-3.1771340370178223</Z>
 			</MinCorner>
 		</Voxelization_Bounding_Box>
-		<X_Resolution>60</X_Resolution>
-		<Y_Resolution>60</Y_Resolution>
-		<Z_Resolution>37</Z_Resolution>
+		<X_Resolution>31</X_Resolution>
+		<Y_Resolution>106</Y_Resolution>
+		<Z_Resolution>8</Z_Resolution>
 	</VoxelData>
 	<PreappliedTransform>
 		<value0>
