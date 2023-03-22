@@ -61,7 +61,7 @@ public class Move : MonoBehaviour
             rec_position_number++;
             sync_sound.Play();
             // play audio based on the distance between the listener and the source
-            delay = Vector3.Distance(audio_listener.transform.position, transform.position) / 343;
+            float delay = Vector3.Distance(audio_listener.transform.position, transform.position) / 343;
             // make the delay a bit random
             delay += Random.Range(-0.1f, 0.1f);
             audio_source.PlayDelayed(delay);
