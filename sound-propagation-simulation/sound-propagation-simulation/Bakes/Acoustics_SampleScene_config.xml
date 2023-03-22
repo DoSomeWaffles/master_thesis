@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SimulationConfig xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Triton">
-	<IterationId>ce02b8c8-f423-43c6-962e-1479bb03861f</IterationId>
+	<IterationId>3d12983d-911a-4894-bdd4-d0cd9c6ebff1</IterationId>
 	<BaselineAceFileName></BaselineAceFileName>
 	<DisablePml>false</DisablePml>
 	<ForceSimDuration>-1</ForceSimDuration>
@@ -74,7 +74,11 @@
 	<MaterialFileName></MaterialFileName>
 	<MaxFrequency>250</MaxFrequency>
 	<MeshFileName></MeshFileName>
+<<<<<<< HEAD
 	<NumProbes>120</NumProbes>
+=======
+	<NumProbes>60</NumProbes>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 	<OutputFilePrefix>Acoustics_SampleScene</OutputFilePrefix>
 	<ProbeGridSpacingHorizontalMax>3.5</ProbeGridSpacingHorizontalMax>
 	<ProbeGridSpacingHorizontalMin>0.5</ProbeGridSpacingHorizontalMin>
@@ -131,6 +135,7 @@
 			<k>2</k>
 		</value9>
 		<value10>
+<<<<<<< HEAD
 			<i>3</i>
 			<j>73</j>
 			<k>2</k>
@@ -153,30 +158,71 @@
 		<value14>
 			<i>3</i>
 			<j>101</j>
+=======
+			<i>10</i>
+			<j>3</j>
+			<k>2</k>
+		</value10>
+		<value11>
+			<i>10</i>
+			<j>10</j>
+			<k>2</k>
+		</value11>
+		<value12>
+			<i>10</i>
+			<j>17</j>
+			<k>2</k>
+		</value12>
+		<value13>
+			<i>10</i>
+			<j>24</j>
+			<k>2</k>
+		</value13>
+		<value14>
+			<i>10</i>
+			<j>31</j>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 			<k>2</k>
 		</value14>
 		<value15>
 			<i>10</i>
+<<<<<<< HEAD
 			<j>3</j>
+=======
+			<j>38</j>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 			<k>2</k>
 		</value15>
 		<value16>
 			<i>10</i>
+<<<<<<< HEAD
 			<j>10</j>
+=======
+			<j>45</j>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 			<k>2</k>
 		</value16>
 		<value17>
 			<i>10</i>
+<<<<<<< HEAD
 			<j>17</j>
+=======
+			<j>52</j>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 			<k>2</k>
 		</value17>
 		<value18>
 			<i>10</i>
+<<<<<<< HEAD
 			<j>24</j>
+=======
+			<j>59</j>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 			<k>2</k>
 		</value18>
 		<value19>
 			<i>10</i>
+<<<<<<< HEAD
 			<j>31</j>
 			<k>2</k>
 		</value19>
@@ -680,6 +726,211 @@
 			<j>101</j>
 			<k>4</k>
 		</value119>
+=======
+			<j>66</j>
+			<k>2</k>
+		</value19>
+		<value20>
+			<i>17</i>
+			<j>3</j>
+			<k>2</k>
+		</value20>
+		<value21>
+			<i>17</i>
+			<j>10</j>
+			<k>2</k>
+		</value21>
+		<value22>
+			<i>17</i>
+			<j>17</j>
+			<k>2</k>
+		</value22>
+		<value23>
+			<i>17</i>
+			<j>24</j>
+			<k>2</k>
+		</value23>
+		<value24>
+			<i>17</i>
+			<j>31</j>
+			<k>2</k>
+		</value24>
+		<value25>
+			<i>17</i>
+			<j>38</j>
+			<k>2</k>
+		</value25>
+		<value26>
+			<i>17</i>
+			<j>45</j>
+			<k>2</k>
+		</value26>
+		<value27>
+			<i>17</i>
+			<j>52</j>
+			<k>2</k>
+		</value27>
+		<value28>
+			<i>17</i>
+			<j>59</j>
+			<k>2</k>
+		</value28>
+		<value29>
+			<i>17</i>
+			<j>66</j>
+			<k>2</k>
+		</value29>
+		<value30>
+			<i>3</i>
+			<j>3</j>
+			<k>4</k>
+		</value30>
+		<value31>
+			<i>3</i>
+			<j>10</j>
+			<k>4</k>
+		</value31>
+		<value32>
+			<i>3</i>
+			<j>17</j>
+			<k>4</k>
+		</value32>
+		<value33>
+			<i>3</i>
+			<j>24</j>
+			<k>4</k>
+		</value33>
+		<value34>
+			<i>3</i>
+			<j>31</j>
+			<k>4</k>
+		</value34>
+		<value35>
+			<i>3</i>
+			<j>38</j>
+			<k>4</k>
+		</value35>
+		<value36>
+			<i>3</i>
+			<j>45</j>
+			<k>4</k>
+		</value36>
+		<value37>
+			<i>3</i>
+			<j>52</j>
+			<k>4</k>
+		</value37>
+		<value38>
+			<i>3</i>
+			<j>59</j>
+			<k>4</k>
+		</value38>
+		<value39>
+			<i>3</i>
+			<j>66</j>
+			<k>4</k>
+		</value39>
+		<value40>
+			<i>10</i>
+			<j>3</j>
+			<k>4</k>
+		</value40>
+		<value41>
+			<i>10</i>
+			<j>10</j>
+			<k>4</k>
+		</value41>
+		<value42>
+			<i>10</i>
+			<j>17</j>
+			<k>4</k>
+		</value42>
+		<value43>
+			<i>10</i>
+			<j>24</j>
+			<k>4</k>
+		</value43>
+		<value44>
+			<i>10</i>
+			<j>31</j>
+			<k>4</k>
+		</value44>
+		<value45>
+			<i>10</i>
+			<j>38</j>
+			<k>4</k>
+		</value45>
+		<value46>
+			<i>10</i>
+			<j>45</j>
+			<k>4</k>
+		</value46>
+		<value47>
+			<i>10</i>
+			<j>52</j>
+			<k>4</k>
+		</value47>
+		<value48>
+			<i>10</i>
+			<j>59</j>
+			<k>4</k>
+		</value48>
+		<value49>
+			<i>10</i>
+			<j>66</j>
+			<k>4</k>
+		</value49>
+		<value50>
+			<i>17</i>
+			<j>3</j>
+			<k>4</k>
+		</value50>
+		<value51>
+			<i>17</i>
+			<j>10</j>
+			<k>4</k>
+		</value51>
+		<value52>
+			<i>17</i>
+			<j>17</j>
+			<k>4</k>
+		</value52>
+		<value53>
+			<i>17</i>
+			<j>24</j>
+			<k>4</k>
+		</value53>
+		<value54>
+			<i>17</i>
+			<j>31</j>
+			<k>4</k>
+		</value54>
+		<value55>
+			<i>17</i>
+			<j>38</j>
+			<k>4</k>
+		</value55>
+		<value56>
+			<i>17</i>
+			<j>45</j>
+			<k>4</k>
+		</value56>
+		<value57>
+			<i>17</i>
+			<j>52</j>
+			<k>4</k>
+		</value57>
+		<value58>
+			<i>17</i>
+			<j>59</j>
+			<k>4</k>
+		</value58>
+		<value59>
+			<i>17</i>
+			<j>66</j>
+			<k>4</k>
+		</value59>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 	</ProbeList>
 	<ProbeMinHeightAboveGround>0.75</ProbeMinHeightAboveGround>
 	<ProbeMaxHeightAboveGround>1.75</ProbeMaxHeightAboveGround>
@@ -712,6 +963,7 @@
 		<Binary_Data_File>Acoustics_SampleScene.vox</Binary_Data_File>
 		<Bounding_Box>
 			<MaxCorner>
+<<<<<<< HEAD
 				<X>5.2844362258911133</X>
 				<Y>29.739356994628906</Y>
 				<Z>-2.1771340370178223</Z>
@@ -719,6 +971,15 @@
 			<MinCorner>
 				<X>-9.7155637741088867</X>
 				<Y>-23.490642547607422</Y>
+=======
+				<X>3.48443603515625</X>
+				<Y>21.774356842041016</Y>
+				<Z>-2.1771340370178223</Z>
+			</MaxCorner>
+			<MinCorner>
+				<X>-7.9155635833740234</X>
+				<Y>-15.525643348693848</Y>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 				<Z>-3.1771340370178223</Z>
 			</MinCorner>
 		</Bounding_Box>
@@ -726,6 +987,7 @@
 		<Input_Geometry>Unknown</Input_Geometry>
 		<Voxelization_Bounding_Box>
 			<MaxCorner>
+<<<<<<< HEAD
 				<X>5.2844362258911133</X>
 				<Y>29.739356994628906</Y>
 				<Z>0.08286595344543457</Z>
@@ -738,6 +1000,20 @@
 		</Voxelization_Bounding_Box>
 		<X_Resolution>31</X_Resolution>
 		<Y_Resolution>106</Y_Resolution>
+=======
+				<X>3.48443603515625</X>
+				<Y>21.774356842041016</Y>
+				<Z>0.08286595344543457</Z>
+			</MaxCorner>
+			<MinCorner>
+				<X>-7.9155635833740234</X>
+				<Y>-15.525643348693848</Y>
+				<Z>-3.1771340370178223</Z>
+			</MinCorner>
+		</Voxelization_Bounding_Box>
+		<X_Resolution>24</X_Resolution>
+		<Y_Resolution>75</Y_Resolution>
+>>>>>>> e8766384364ec5a4d37276cfad2b34e4f6454626
 		<Z_Resolution>8</Z_Resolution>
 	</VoxelData>
 	<PreappliedTransform>
