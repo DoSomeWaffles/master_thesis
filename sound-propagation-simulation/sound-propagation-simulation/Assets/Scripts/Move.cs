@@ -47,9 +47,24 @@ public class Move : MonoBehaviour
             float min_z = start_points.Min(t => t.position.z);
             float max_z = start_points.Max(t => t.position.z);
 
-            // choose 2 start points randomly
-            start_point = start_points[Random.Range(0, start_points.Length)];
-            end_point = start_points.Where(x => x != start_point).ToArray()[Random.Range(0, start_points.Length-1)];
+            // choose 2 start points close to each other
+            // shuffle point list
+            start_points = start_points.OrderBy(x => Random.value).ToArray();
+            // get the first point and the closest to the first point
+            start_point = start_points[0];
+            end_point = start_points[1];
+            foreach (Transform point in start_points)
+            {
+                // get the closest point to the first point in the list
+                if (Vector3.Distance(start_point.position, point.position) < Vector3.Distance(start_point.position, end_point.position))
+                {
+                    // don't choose the same point
+                    if (point != start_point)
+                    {
+                        end_point = point;
+                    }
+                }
+            }
 
             class_label = "/"+start_point.name + "_" + end_point.name;
             journeyLength = Vector3.Distance(start_point.position, end_point.position);
