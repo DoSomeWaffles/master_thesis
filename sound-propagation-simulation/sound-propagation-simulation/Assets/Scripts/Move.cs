@@ -53,7 +53,9 @@ public class Move : MonoBehaviour
 
             class_label = "/"+start_point.name + "_" + end_point.name;
             journeyLength = Vector3.Distance(start_point.position, end_point.position);
-            speed = journeyLength * speed_multiplier;
+            // random multiplier for the speed
+            float random_multiplier = Random.Range(0.7f, 1.3f);
+            speed = journeyLength * speed_multiplier * random_multiplier;
         }
         if (finished_pass)
         {
