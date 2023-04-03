@@ -12,6 +12,8 @@ public class Move : MonoBehaviour
     public AudioSource audio_source;
     public OutputAudioRecorder outputAudioRecorder;
     public AudioSource sync_sound;
+    public float min_random_speed = 0.7f;
+    public float max_random_speed = 1.3f;
 
     private Transform[] start_points;
     private bool finished_recording = true;
@@ -39,37 +41,11 @@ public class Move : MonoBehaviour
     {
         if (finished_recording)
         {
-            startTime = Time.time;
-            finished_recording = false;
-            float random = Random.Range(0f, 1f);
-            rec_counter++;
-            // get min and max Z value of the childrens
-            float min_z = start_points.Min(t => t.position.z);
-            float max_z = start_points.Max(t => t.position.z);
-
-            // choose 2 start points randomly
-            start_point = start_points[Random.Range(0, start_points.Length)];
-            end_point = start_points.Where(x => x != start_point).ToArray()[Random.Range(0, start_points.Length-1)];
-
-            class_label = "/"+start_point.name + "_" + end_point.name;
-            journeyLength = Vector3.Distance(start_point.position, end_point.position);
-            speed = journeyLength * speed_multiplier;
+            NewRecording();
         }
         if (finished_pass)
         {
-            finished_pass = false;
-            rec_position_number++;
-            sync_sound.Play();
-            // play audio based on the distance between the listener and the source
-            float delay = Vector3.Distance(audio_listener.transform.position, transform.position) / 343;
-            // make the delay a bit random
-            delay += Random.Range(-0.1f, 0.1f);
-            audio_source.PlayDelayed(delay);
-            outputAudioRecorder.StartRecording(
-                class_label,
-                rec_counter.ToString(),
-                rec_position_number.ToString()
-            );
+            NewPass();
         }
         float distCovered = (Time.time - startTime) * speed;
         float fracJourney = distCovered / journeyLength;
@@ -77,22 +53,104 @@ public class Move : MonoBehaviour
 
         if (fracJourney >= 1f)
         {
-            outputAudioRecorder.StopRecording();
-            audio_source.Stop();
-            finished_pass = true;
-            if (rec_position_number >= childrens.Length)
-            {
-                finished_recording = true;
-                rec_position_number = 0;
-            }
-            MoveListener(rec_position_number);
-            startTime = Time.time;
+            StopRecording();
         }
     }
 
-    void MoveListener(int rec_number)
+    private void MoveListener(int rec_number)
     {
         Debug.Log("Moving listener to " + childrens[rec_number].position);
         audio_listener.transform.position = childrens[rec_number].position;
+    }
+
+    private void NewPass()
+    {
+        finished_pass = false;
+        rec_position_number++;
+        sync_sound.Play();
+        // play audio based on the distance between the listener and the source
+        float delay = Vector3.Distance(audio_listener.transform.position, transform.position) / 343;
+        // make the delay a bit random
+        delay += Random.Range(-0.1f, 0.1f);
+        audio_source.PlayDelayed(delay);
+        outputAudioRecorder.StartRecording(
+            class_label,
+            rec_counter.ToString(),
+            rec_position_number.ToString()
+        );
+    }
+
+    private void NewRecording()
+    {
+        startTime = Time.time;
+        finished_recording = false;
+        Random.Range(0f, 1f);
+        rec_counter++;
+        // get min and max Z value of the childrens
+        float min_z = start_points.Min(t => t.position.z);
+        float max_z = start_points.Max(t => t.position.z);
+
+        // choose 2 start points close to each other
+        // shuffle point list
+        start_points = start_points.OrderBy(x => Random.value).ToArray();
+        // get the first point and the closest to the first point
+        start_point = start_points[0];
+
+        // array with only the other points
+        Transform[] other_points = start_points.Where(x => x != start_point).ToArray();
+        // get an array with the points that have a z value close bigger than the first point
+        Transform[] bigger_points = other_points
+            .Where(x => x.position.z > start_point.position.z)
+            .ToArray();
+        // get an array with the points that have a z value close smaller than the first point
+        Transform[] smaller_points = other_points
+            .Where(x => x.position.z < start_point.position.z)
+            .ToArray();
+        // sort both arrays by z value
+        bigger_points = bigger_points.OrderBy(x => x.position.z).ToArray();
+        smaller_points = smaller_points.OrderBy(x => x.position.z).ToArray();
+        if (bigger_points.Length == 0)
+        {
+            end_point = smaller_points[0];
+        }
+        else if (smaller_points.Length == 0)
+        {
+            end_point = bigger_points[0];
+        }
+        else
+        {
+            // choose the closest point randomly
+            if (Random.Range(0f, 1f) < 0.5f)
+            {
+                end_point = bigger_points[0];
+            }
+            else
+            {
+                end_point = smaller_points[0];
+            }
+        }
+
+        // change randomly the volume of the audio source
+        audio_source.volume = Random.Range(0.7f, 1f);
+
+        class_label = "/" + start_point.name + "_" + end_point.name;
+        journeyLength = Vector3.Distance(start_point.position, end_point.position);
+        // random multiplier for the speed
+        float random_multiplier = Random.Range(min_random_speed, max_random_speed);
+        speed = journeyLength * speed_multiplier * random_multiplier;
+    }
+
+    private void StopRecording()
+    {
+        outputAudioRecorder.StopRecording();
+        audio_source.Stop();
+        finished_pass = true;
+        if (rec_position_number >= childrens.Length)
+        {
+            finished_recording = true;
+            rec_position_number = 0;
+        }
+        MoveListener(rec_position_number);
+        startTime = Time.time;
     }
 }
