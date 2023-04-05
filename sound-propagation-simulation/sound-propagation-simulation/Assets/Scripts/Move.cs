@@ -14,6 +14,7 @@ public class Move : MonoBehaviour
     public AudioSource sync_sound;
     public float min_random_speed = 0.7f;
     public float max_random_speed = 1.3f;
+    public float random_delay = 0.1f;
 
     private Transform[] start_points;
     private bool finished_recording = true;
@@ -27,6 +28,7 @@ public class Move : MonoBehaviour
     private int rec_counter = 0;
     private Transform start_point;
     private Transform end_point;
+    private float play_random_delay;
 
     // Start is called before the first frame update
     void Start()
@@ -67,11 +69,11 @@ public class Move : MonoBehaviour
     {
         finished_pass = false;
         rec_position_number++;
-        sync_sound.Play();
         // play audio based on the distance between the listener and the source
         float delay = Vector3.Distance(audio_listener.transform.position, transform.position) / 343;
         // make the delay a bit random
-        delay += Random.Range(-0.1f, 0.1f);
+        delay += play_random_delay;
+        sync_sound.PlayDelayed(delay);
         audio_source.PlayDelayed(delay);
         outputAudioRecorder.StartRecording(
             class_label,
@@ -82,6 +84,7 @@ public class Move : MonoBehaviour
 
     private void NewRecording()
     {
+        play_random_delay = Random.Range(-1*random_delay, random_delay);
         startTime = Time.time;
         finished_recording = false;
         Random.Range(0f, 1f);
@@ -108,7 +111,7 @@ public class Move : MonoBehaviour
             .ToArray();
         // sort both arrays by z value
         bigger_points = bigger_points.OrderBy(x => x.position.z).ToArray();
-        smaller_points = smaller_points.OrderBy(x => x.position.z).ToArray();
+        smaller_points = smaller_points.OrderBy(x => x.position.z).ToArray().Reverse().ToArray();
         if (bigger_points.Length == 0)
         {
             end_point = smaller_points[0];
@@ -128,6 +131,16 @@ public class Move : MonoBehaviour
             {
                 end_point = smaller_points[0];
             }
+        }
+
+        // change rotation of the audio source if the end point is on the left or on the right
+        if (end_point.position.z < start_point.position.z)
+        {
+            audio_source.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            audio_source.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
         // change randomly the volume of the audio source
