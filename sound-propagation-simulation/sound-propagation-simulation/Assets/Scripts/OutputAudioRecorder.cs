@@ -140,7 +140,7 @@ public class OutputAudioRecorder : MonoBehaviour
             side += "toright";
         } */
         fileStream = new FileStream(folder + class_label + "/" + name, FileMode.Create);
-        Debug.Log("Recording started, file saved at: " + folder + class_label + "/" + name);
+        //Debug.Log("Recording started, file saved at: " + folder + class_label + "/" + name);
         var emptyByte = new byte();
         for (int i = 0; i < headerSize; i++) //preparing the header
         {
