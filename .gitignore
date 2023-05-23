@@ -2,3 +2,4 @@ sound-propagation-simulation/dataset/*
 sslrobots/dataset/*
 tools/sound-to-spectrogram/pretrained-models/*
 sound-propagation-simulation/sound-propagation-simulation/Assets/WhiteCity/*
+tools/classify-sound-type/dataset/*
