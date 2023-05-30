@@ -30,6 +30,8 @@ for label_folder in label_folders.values():
 video_files = [f for f in os.listdir(folder_path) if f.endswith('.mp4')]
 
 # Loop through each video file and play it
+last_video_saved_filename = ""
+counter = 0
 for video_file in video_files:
     # Open the video file
     cap = cv2.VideoCapture(os.path.join(folder_path, video_file))
@@ -50,12 +52,26 @@ for video_file in video_files:
 
     key = cv2.waitKey(0)
     # Check which key was pressed by the user and move the video file to the corresponding label folder
+    
     if key == ord('a'):
         label_folder = label_folders['1']
         shutil.copy(os.path.join(folder_path, video_file), os.path.join(label_folder, video_file))
+        print("Copied video file: ", video_file, " to folder: ", label_folder)
     elif key == ord('l'):
         label_folder = label_folders['2']
         shutil.copy(os.path.join(folder_path, video_file), os.path.join(label_folder, video_file))
+        print("Copied video file: ", video_file, " to folder: ", label_folder)
+    elif key == ord('s'):
+        # delete the video file from last video saved folder
+        if last_video_saved_filename != "":
+            os.remove(os.path.join(folder_path, last_video_saved_filename))
+            print("Deleted video file: ", last_video_saved_filename, " from folder: ", folder_path)
+    else:
+        counter-=1
+    print("Number of video saved:", counter)
+    counter += 1
+    last_video_saved_filename = video_file
+
 
     # Release the capture object and close all windows
 cap.release()

@@ -16,6 +16,7 @@ public class Move : MonoBehaviour
     public float max_random_speed = 1.3f;
     public float random_delay = 0.1f;
     public AudioClip[] audio_clips;
+    public int stop_after_n_passes = 5000;
 
     private Transform[] start_points;
     private bool finished_recording = true;
@@ -31,6 +32,7 @@ public class Move : MonoBehaviour
     private Transform end_point;
     private float play_random_delay;
     private AudioClip current_clip;
+    private int pass_counter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +95,11 @@ public class Move : MonoBehaviour
 
     private void NewRecording()
     {
+        pass_counter++;
+        if (pass_counter > stop_after_n_passes)
+        {
+            Application.Quit();
+        }
         play_random_delay = Random.Range(-1*random_delay, random_delay);
         startTime = Time.time;
         finished_recording = false;

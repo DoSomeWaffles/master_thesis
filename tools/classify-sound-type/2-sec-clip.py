@@ -1,27 +1,20 @@
+# execute this command for each file in the directory and add the filename to the output file :ffmpeg -i output00000.mp4 -c:v libx264 -crf 22 -map 0 -segment_time 2 -reset_timestamps 1 -g 30 -sc_threshold 0 -force_key_frames "expr:gte(t,n_forced*2)" -f segment new/output%03d.mp4
+
 import os
 import sys
-from moviepy.video.io.VideoFileClip import VideoFileClip
+import subprocess
 
-def split_videos_in_folder(folder_path):
-    output_folder = os.path.join(folder_path, '2_sec_clips')
-    os.makedirs(output_folder, exist_ok=True)
-    for filename in os.listdir(folder_path):
-        if filename.endswith('.mp4'):
-            video_path = os.path.join(folder_path, filename)
-            clips = split_video(video_path)
-            for i, clip in enumerate(clips):
-                clip.write_videofile(os.path.join(output_folder, f'{filename}_clip_{i}.mp4'))
+# get the directory name from the command line and the time in seconds
+if len(sys.argv) != 3:
+    print('Usage: python 2-sec-clip.py directory time')
+    sys.exit(1)
+directory = sys.argv[1]
+time = sys.argv[2]
 
-def split_video(video_path):
-    clip = VideoFileClip(video_path)
-    duration = clip.duration
-    clips = []
-    for i in range(0, int(duration), 2):
-        start_time = i
-        end_time = min(i + 2, duration)
-        clips.append(clip.subclip(start_time, end_time))
-    return clips
+# get the list of files in the directory
+files = os.listdir(directory)
 
-if __name__ == '__main__':
-    folder_path = sys.argv[1]
-    split_videos_in_folder(folder_path)
+# loop through each file in the directory
+for file in files:
+    subprocess.call(['ffmpeg', '-i', directory + '/' + file, '-c:v', 'libx264', '-crf', '22', '-map', '0', '-segment_time', time, '-reset_timestamps', '1', '-g', '30', '-sc_threshold', '0', '-force_key_frames', 'expr:gte(t,n_forced*'+str(time)+')', '-f', 'segment', directory+'new/' + file + '%05d.mp4'])
+
