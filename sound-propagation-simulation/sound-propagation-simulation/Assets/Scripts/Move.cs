@@ -15,6 +15,7 @@ public class Move : MonoBehaviour
     public float min_random_speed = 0.7f;
     public float max_random_speed = 1.3f;
     public float random_delay = 0.1f;
+    public AudioClip[] audio_clips;
 
     private Transform[] start_points;
     private bool finished_recording = true;
@@ -29,6 +30,7 @@ public class Move : MonoBehaviour
     private Transform start_point;
     private Transform end_point;
     private float play_random_delay;
+    private AudioClip current_clip;
 
     // Start is called before the first frame update
     void Start()
@@ -61,19 +63,26 @@ public class Move : MonoBehaviour
 
     private void MoveListener(int rec_number)
     {
-        Debug.Log("Moving listener to " + childrens[rec_number].position);
+        //Debug.Log("Moving listener to " + childrens[rec_number].position);
         audio_listener.transform.position = childrens[rec_number].position;
     }
 
     private void NewPass()
     {
+        audio_source.Stop();
+        // get every wav file in the folder Assets/Sounds/train_sounds
+        // print the number of files
+        // set the audio source file to a random one in the list
+        audio_source.clip = current_clip;
+        // print the name of the file
+        Debug.Log(audio_source.clip.name);
         finished_pass = false;
         rec_position_number++;
         // play audio based on the distance between the listener and the source
         float delay = Vector3.Distance(audio_listener.transform.position, transform.position) / 343;
         // make the delay a bit random
-        delay += play_random_delay;
         sync_sound.PlayDelayed(delay);
+        delay += play_random_delay;
         audio_source.PlayDelayed(delay);
         outputAudioRecorder.StartRecording(
             class_label,
@@ -145,7 +154,10 @@ public class Move : MonoBehaviour
 
         // change randomly the volume of the audio source
         audio_source.volume = Random.Range(0.7f, 1f);
-
+        // change randomly the pitch of the audio source
+        audio_source.pitch = Random.Range(0.9f, 1.1f);
+        // get a random clip from the folder
+        current_clip = audio_clips[Random.Range(0, audio_clips.Length)];
         class_label = "/" + start_point.name + "_" + end_point.name;
         journeyLength = Vector3.Distance(start_point.position, end_point.position);
         // random multiplier for the speed

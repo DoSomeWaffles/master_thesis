@@ -1,0 +1,1 @@
+ffmpeg -protocol_whitelist file,crypto,udp,rtp -i .\stream.sdp -acodec copy -vcodec copy -map 0 -segment_time 5 -f segment "videos/output%%05d.mov"
