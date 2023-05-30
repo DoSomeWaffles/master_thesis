@@ -1,3 +1,4 @@
 sound-propagation-simulation/dataset/*
+sound-propagation-simulation/dataset_real_data/*
 sslrobots/dataset/*
 tools/sound-to-spectrogram/pretrained-models/*
