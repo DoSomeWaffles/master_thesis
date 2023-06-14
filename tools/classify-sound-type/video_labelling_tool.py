@@ -1,6 +1,5 @@
 import os
 import cv2
-import numpy as np
 import argparse
 import shutil
 
@@ -8,7 +7,8 @@ import shutil
 parser = argparse.ArgumentParser(description='Video Labeling Tool')
 
 # Add the folder path argument
-parser.add_argument('folder_path', type=str, help='Path to the folder containing videos')
+parser.add_argument('folder_path', type=str,
+                    help='Path to the folder containing videos')
 
 # Parse the arguments
 args = parser.parse_args()
@@ -18,9 +18,12 @@ folder_path = args.folder_path
 
 # Define the label folders
 label_folders = {
-    '1': folder_path+'left_to_right',
-    '2': folder_path+'right_to_left'
+    '1': folder_path[:-1]+'left_to_right',
+    '2': folder_path[:-1]+'right_to_left',
+    '3': folder_path[:-1]+'multiple_cars',
+    '4': folder_path[:-1]+'no_car',
 }
+
 
 # Create the label folders if they don't exist
 for label_folder in label_folders.values():
@@ -52,27 +55,31 @@ for video_file in video_files:
 
     key = cv2.waitKey(0)
     # Check which key was pressed by the user and move the video file to the corresponding label folder
-    
+
     if key == ord('a'):
         label_folder = label_folders['1']
-        shutil.copy(os.path.join(folder_path, video_file), os.path.join(label_folder, video_file))
-        print("Copied video file: ", video_file, " to folder: ", label_folder)
     elif key == ord('l'):
         label_folder = label_folders['2']
-        shutil.copy(os.path.join(folder_path, video_file), os.path.join(label_folder, video_file))
-        print("Copied video file: ", video_file, " to folder: ", label_folder)
+    elif key == ord('m'):
+        label_folder = label_folders['3']
+    elif key == ord('n'):
+        label_folder = label_folders['4']
     elif key == ord('s'):
         # delete the video file from last video saved folder
         if last_video_saved_filename != "":
             os.remove(os.path.join(folder_path, last_video_saved_filename))
-            print("Deleted video file: ", last_video_saved_filename, " from folder: ", folder_path)
+            print("Deleted video file: ", last_video_saved_filename,
+                  " from folder: ", folder_path)
+            continue
     else:
-        counter-=1
+        counter -= 1
+    shutil.copy(os.path.join(folder_path, video_file),
+                os.path.join(label_folder, video_file))
+    print("Copied video file: ", video_file, " to folder: ", label_folder)
     print("Number of video saved:", counter)
     counter += 1
     last_video_saved_filename = video_file
-
-
     # Release the capture object and close all windows
+
 cap.release()
 cv2.destroyAllWindows()
