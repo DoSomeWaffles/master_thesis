@@ -2,6 +2,7 @@ import os
 import cv2
 import argparse
 import shutil
+import pygame
 
 # Define the argument parser
 parser = argparse.ArgumentParser(description='Video Labeling Tool')
@@ -22,10 +23,10 @@ folder_path = args.folder_path
 num_files_to_skip = args.skip
 # Define the label folders
 label_folders = {
-    '1': folder_path[:-1]+'-left_to_right',
-    '2': folder_path[:-1]+'-right_to_left',
-    '3': folder_path[:-1]+'-multiple_cars',
-    '4': folder_path[:-1]+'-no_car',
+    '1': folder_path[:-1]+'-left_to_right-from-sound',
+    '2': folder_path[:-1]+'-right_to_left-from-sound',
+    '3': folder_path[:-1]+'-multiple_cars-from-sound',
+    '4': folder_path[:-1]+'-no_car-from-sound',
 }
 
 # Create the label folders if they don't exist
@@ -41,6 +42,7 @@ counter = 0
 
 
 
+pygame.mixer.init()
 for video_file in video_files:
     counter += 1
     if counter <= num_files_to_skip:
@@ -51,6 +53,9 @@ for video_file in video_files:
     # Get the total number of frames in the video file
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
+    # Play the audio of the video file
+    pygame.mixer.music.load(os.path.join(folder_path, video_file))
+    pygame.mixer.music.play()
     # Loop through each frame of the video file and display it
     while True:
         ret, frame = cap.read()
