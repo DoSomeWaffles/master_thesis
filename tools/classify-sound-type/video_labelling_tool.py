@@ -10,20 +10,23 @@ parser = argparse.ArgumentParser(description='Video Labeling Tool')
 parser.add_argument('folder_path', type=str,
                     help='Path to the folder containing videos')
 
+# Add the number of files to skip argument
+parser.add_argument('--skip', type=int, default=0,
+                    help='Number of files to skip')
+
 # Parse the arguments
 args = parser.parse_args()
 
 # Define the folder path where videos are stored
 folder_path = args.folder_path
-
+num_files_to_skip = args.skip
 # Define the label folders
 label_folders = {
-    '1': folder_path[:-1]+'left_to_right',
-    '2': folder_path[:-1]+'right_to_left',
-    '3': folder_path[:-1]+'multiple_cars',
-    '4': folder_path[:-1]+'no_car',
+    '1': folder_path[:-1]+'-left_to_right',
+    '2': folder_path[:-1]+'-right_to_left',
+    '3': folder_path[:-1]+'-multiple_cars',
+    '4': folder_path[:-1]+'-no_car',
 }
-
 
 # Create the label folders if they don't exist
 for label_folder in label_folders.values():
@@ -35,7 +38,13 @@ video_files = [f for f in os.listdir(folder_path) if f.endswith('.mp4')]
 # Loop through each video file and play it
 last_video_saved_filename = ""
 counter = 0
+
+
+
 for video_file in video_files:
+    counter += 1
+    if counter <= num_files_to_skip:
+        continue
     # Open the video file
     cap = cv2.VideoCapture(os.path.join(folder_path, video_file))
 
@@ -56,15 +65,15 @@ for video_file in video_files:
     key = cv2.waitKey(0)
     # Check which key was pressed by the user and move the video file to the corresponding label folder
 
-    if key == ord('a'):
+    if key == ord('d'):
         label_folder = label_folders['1']
-    elif key == ord('l'):
+    elif key == ord('a'):
         label_folder = label_folders['2']
-    elif key == ord('m'):
+    elif key == ord('w'):
         label_folder = label_folders['3']
-    elif key == ord('n'):
-        label_folder = label_folders['4']
     elif key == ord('s'):
+        label_folder = label_folders['4']
+    elif key == ord('r'):
         # delete the video file from last video saved folder
         if last_video_saved_filename != "":
             os.remove(os.path.join(folder_path, last_video_saved_filename))
@@ -72,12 +81,11 @@ for video_file in video_files:
                   " from folder: ", folder_path)
             continue
     else:
-        counter -= 1
+        continue
     shutil.copy(os.path.join(folder_path, video_file),
                 os.path.join(label_folder, video_file))
     print("Copied video file: ", video_file, " to folder: ", label_folder)
     print("Number of video saved:", counter)
-    counter += 1
     last_video_saved_filename = video_file
     # Release the capture object and close all windows
 
