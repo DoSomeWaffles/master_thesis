@@ -1,0 +1,72 @@
+\chapter{Introduction}
+\label{ch:introduction}
+Within the framework of the research project "NPR Teleoperation", the engineers of the HEIA-FR have
+developed the first concept in Switzerland of a remote-controlled automated vehicle. However,
+teleoperation only makes sense if the vehicle is automated. There can be no teleoperation without
+automation (economic factors) just as there can be no automation without teleoperation (legal, technical,
+and social factors). ROSAS then created the Autovete (Automatisation de véhicules téléopérés) project,
+financed by HEIA-FR, to build up vehicle automation expertise.
+For a vehicle to be fully autonomous, the detection of other emergency vehicles is mandatory. To solve this
+issue, V2V (Vehicle-to-Vehicle) communication can be used but is not yet integrated into emergency vehicles.
+So, to be able to detect such a vehicle, two signals need to be processed: the sound of the emergency siren
+and the blinking lights of the vehicle. The first use case of this project focuses only on sound source
+distance estimation and localization.
+
+To understand if sound source estimation and localization could work for emergency detection, a
+simpler use case has been created for this project. It is the detection of excessively noisy vehicles on the
+street. The goal is to measure the sound level of the passing vehicles and compare it with the legal limits. If
+a vehicle exceeds the limit, the system can record its license plate and report it to the authorities. This way,
+the system can help reduce noise pollution and improve road safety.
+To implement this use case, the system requires a microphone array, a camera, and a processing unit. The
+microphone array captures the sound signals from different directions and sends them to the processing
+unit. The processing unit applies a sound source localization algorithm to estimate the direction and distance
+of the sound source. The camera captures the image of the vehicle and performs license plate recognition.
+Big improvements in sound source localization with the help of machine learning are being made1 and can be
+used to reliably localize the origin of a sound using one or more microphone arrays (multiple microphones operating in tandem).
+
+A non-negligible problem is that the number of real-world datasets with moving sources in an open
+environment is limited. A solution is to create the datasets in realistic sound propagation simulation.
+To validate and use the model, it should also be tested to see how it reacts against adversarial attacks,
+understand how it can be used in a real environment and limit the attack vector.
+\section{Motivation}
+\label{intro:motivation}
+
+\subsection{Objectives}
+
+\paragraph{3.1} Objective n°1 Dataset according to the baseline
+
+The first objective is to construct a dataset that is coherent with the project's baseline. The dataset should contain the target variable, features, and necessary pre-processing steps such as missing data imputation, data normalization, and feature engineering. This dataset will help create and understand the problem.
+
+\paragraph{3.2} Objective n°2 Model for better sound source localization and distance estimation
+
+The project should use a neural network model to detect the origin of a sound using a microphone array. The neural network should be trained using the dataset created in objective 3.1 and should be able to accurately localize the sound source. The trained neural network model should be evaluated in a real environment to see how it performs. It should also be evaluated to see how dependable it is in localizing sound sources and how it can be improved.
+
+\paragraph{3.3} Objective n°3 The model should be tested to see how it reacts to attacks
+
+The trained neural network model needs to be evaluated by testing it on data that has been modified in some way, such as by adding or removing noise, or by modifying the sound source. The model could also be tested against various types of attacks, such as masking, time-warping, and frequency-shifting.
+
+\section{Challenges}
+\label{intro:challenges}
+
+\subsection{Challenge n°1: Realistic datasets}
+
+One of the main challenges in this project is to construct realistic datasets that accurately capture the data in a real-world scenario. The lack of open-source datasets that contain moving sound sources in open-loop environments can make this difficult. To overcome this challenge, the project should use realistic simulations of sound propagation to produce suitable datasets.
+
+\subsection{Challenge n°2: Robust models}
+
+Another challenge is to create a neural network model that can accurately detect the origin of a sound using a microphone array. The trained model should be highly accurate and robust enough to resist adversarial attacks. To assess the model's robustness, the model should be tested on data that has been modified in some way, such as by adding or removing noise, or by modifying the sound source. The model should also be able to accurately localize the sound source despite the attack.
+
+\subsection{Challenge n°3: Adequate evaluation metrics}
+
+The last challenge is to create an evaluation metric that adequately reflects the model's performance. The evaluation metric should take into account the accuracy of sound source localization in a real environment as well as its ability to resist adversarial attacks. The metric should also be able to capture how well the model can provide reliable results in a variety of environments.
+\section{Structure of the thesis}
+
+
+\begin{itemize}
+    \item \textbf{Chapter \ref{ch:background}: Background}: This chapter provides an overview of the background knowledge necessary to understand the project, such as the theory of machine learning and sound propagation, and a brief introduction of sound source localization.
+    \item \textbf{Chapter \ref{ch:methodology}: Methodology}: This chapter explains the methodology used in the project, such as creating a dataset, creating a simulation, building a neural network model, and evaluating it using an appropriate metric.
+    \item \textbf{Chapter \ref{ch:setup}: Setup}: This chapter describes the work done on the project, such as the simulations used to create the dataset, the neural network model used, and the evaluation metrics used.
+    \item \textbf{Chapter \ref{ch:results}: Results}: This chapter presents the results of the project, such as the performance of the neural network model and the evaluation metrics.
+    \item \textbf{Chapter \ref{ch:conclusions}: Conclusion and future work}: This chapter concludes this project with a discussion of the main results and a summary of the key findings.
+\end{itemize}
+<<

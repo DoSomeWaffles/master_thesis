@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{knuth:1984}
+Donald~E. Knuth.
+\newblock Literate programming.
+\newblock {\em The Computer Journal}, 27(2):97--111, 1984.
+
+\bibitem{latex2e}
+Leslie Lamport.
+\newblock {\em {\LaTeX}: a Document Preparation System}.
+\newblock Addison Wesley, Massachusetts, 2 edition, 1994.
+
+\end{thebibliography}

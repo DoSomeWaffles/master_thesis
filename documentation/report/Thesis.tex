@@ -1,0 +1,86 @@
+\documentclass[oneside,a4paper]{book}
+
+\input{preamble}
+\chapter*{\centering Abstract}
+\begin{quotation}
+\noindent 
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\vspace{215pt}
+
+{ \centering
+Supervisors:
+\vspace{7.5pt}
+
+Michael Mäder: Professor in computer science
+
+Beat Wolf Professor: in computer science
+\vspace{7.5pt}
+
+Principals
+\vspace{7.5pt}
+
+Marc-Antoine Fénart: Professor in civil engineering
+
+Gabriel Python: Scientific associate at Rosas
+
+}
+\end{quotation}
+\clearpage
+\chapter*{\centering Acknowledgements}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\cite{latex2e}
+\cite{knuth:1984}
+
+\newpage
+
+\tableofcontents
+
+
+
+\include{Chapters/1_Introduction}
+\newpage{\pagestyle{empty} \cleardoublepage}
+
+
+\include{Chapters/2_Background}
+\newpage{\pagestyle{empty} \cleardoublepage}
+
+
+\include{Chapters/3_Methodology}
+\newpage{\pagestyle{empty} \cleardoublepage}
+
+
+\include{Chapters/4_Setup}
+\newpage{\pagestyle{empty} \cleardoublepage}
+
+
+\include{Chapters/5_Results}
+\newpage{\pagestyle{empty} \cleardoublepage}
+
+
+\include{Chapters/6_Conclusions}
+\newpage{\pagestyle{empty} \cleardoublepage}
+
+
+\begin{appendix}
+\include{Chapters/appendix}
+\newpage{\pagestyle{empty} \cleardoublepage}
+\end{appendix}
+
+\addcontentsline{toc}{chapter}{\numberline{}List of Tables}
+\listoftables
+
+\addcontentsline{toc}{chapter}{\numberline{}List of Figures}
+\listoffigures
+
+\addcontentsline{toc}{chapter}{\numberline{}Bibliography}
+
+\bibliography{refs}
+\bibliographystyle{plain}
+
+%END Doc
+%-------------------------------------------------------
+
+\end{document}
+
