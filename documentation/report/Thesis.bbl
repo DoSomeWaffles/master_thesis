@@ -1,13 +1,13 @@
 \begin{thebibliography}{1}
 
-\bibitem{knuth:1984}
-Donald~E. Knuth.
-\newblock Literate programming.
-\newblock {\em The Computer Journal}, 27(2):97--111, 1984.
+\bibitem{LIU201711}
+Weibo Liu, Zidong Wang, Xiaohui Liu, Nianyin Zeng, Yurong Liu, and Fuad~E. Alsaadi.
+\newblock A survey of deep neural network architectures and their applications.
+\newblock {\em Neurocomputing}, 234:11--26, 2017.
 
-\bibitem{latex2e}
-Leslie Lamport.
-\newblock {\em {\LaTeX}: a Document Preparation System}.
-\newblock Addison Wesley, Massachusetts, 2 edition, 1994.
+\bibitem{Scola2010DirectionOA}
+Carlos~Fern{\'a}ndez Scola and Mar{\'i}a Dolores~Bola{\~n}os Ortega.
+\newblock Direction of arrival estimation : A two microphones approach.
+\newblock 2010.
 
 \end{thebibliography}

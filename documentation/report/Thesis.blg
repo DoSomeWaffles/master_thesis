@@ -9,45 +9,49 @@ A level-1 auxiliary file: Chapters/5_Results.aux
 A level-1 auxiliary file: Chapters/6_Conclusions.aux
 A level-1 auxiliary file: Chapters/appendix.aux
 The style file: plain.bst
-Database file #1: refs.bib
+Database file #1: Bibliography/libs.bib
+Warning--I didn't find a database entry for "latex2e"
+Warning--I didn't find a database entry for "knuth:1984"
+Warning--empty booktitle in Scola2010DirectionOA
 You've used 2 entries,
             2118 wiz_defined-function locations,
-            518 strings with 4348 characters,
-and the built_in function-call counts, 535 in all, are:
-= -- 53
-> -- 14
+            519 strings with 4562 characters,
+and the built_in function-call counts, 710 in all, are:
+= -- 60
+> -- 46
 < -- 0
-+ -- 6
-- -- 4
-* -- 34
-:= -- 97
++ -- 19
+- -- 16
+* -- 51
+:= -- 129
 add.period$ -- 6
 call.type$ -- 2
-change.case$ -- 8
+change.case$ -- 14
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 23
-empty$ -- 49
-format.name$ -- 4
-if$ -- 109
+cite$ -- 3
+duplicate$ -- 24
+empty$ -- 51
+format.name$ -- 16
+if$ -- 140
 int.to.chr$ -- 0
 int.to.str$ -- 2
-missing$ -- 3
+missing$ -- 2
 newline$ -- 13
 num.names$ -- 4
-pop$ -- 8
+pop$ -- 17
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 12
 quote$ -- 0
-skip$ -- 13
+skip$ -- 15
 stack$ -- 0
-substring$ -- 32
+substring$ -- 26
 swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
-warning$ -- 0
-while$ -- 6
+type$ -- 8
+warning$ -- 1
+while$ -- 5
 width$ -- 3
-write$ -- 25
+write$ -- 22
+(There were 3 warnings)

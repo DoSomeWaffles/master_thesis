@@ -1,31 +1,69 @@
-\contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Motivation}{5}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Objectives}{5}{subsection.1.1.1}%
-\contentsline {paragraph}{3.1}{5}{section*.4}%
-\contentsline {paragraph}{3.2}{5}{section*.5}%
-\contentsline {paragraph}{3.3}{5}{section*.6}%
-\contentsline {section}{\numberline {1.2}Challenges}{5}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Challenge n°1: Realistic datasets}{5}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Challenge n°2: Robust models}{5}{subsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.2.3}Challenge n°3: Adequate evaluation metrics}{5}{subsection.1.2.3}%
-\contentsline {section}{\numberline {1.3}Structure of the thesis}{6}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Literature}{7}{chapter.2}%
-\contentsline {subsection}{\numberline {2.0.1}Sound Propagation}{7}{subsection.2.0.1}%
-\contentsline {subsection}{\numberline {2.0.2}Realistic sound propagation in simulations}{7}{subsection.2.0.2}%
-\contentsline {subsubsection}{\numberline {2.0.2.1}Microsoft Project Acoustics}{7}{subsubsection.2.0.2.1}%
-\contentsline {subsection}{\numberline {2.0.3}Sound Propagation in game-engine}{7}{subsection.2.0.3}%
-\contentsline {section}{\numberline {2.1}Sound Source Localization}{7}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Spectrograms for sound source localization}{8}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Convolutional Neural Networks}{8}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Convolutional Neural Networks for source localization}{8}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Related Work}{8}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}}{8}{subsection.2.2.1}%
-\contentsline {chapter}{\numberline {3}Methodology}{10}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Setup}{11}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Results}{12}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Conclusions and Future Work}{13}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Appendix}{14}{appendix.A}%
-\contentsline {section}{\numberline {A.1}}{15}{section.A.1}%
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }\leftprotrusion List of Tables}{16}{section.A.1}%
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }\leftprotrusion List of Figures}{16}{appendix*.9}%
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }\leftprotrusion Bibliography}{17}{appendix*.10}%
+\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivation}{6}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Objectives}{6}{subsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1.1}Objective n°1 Dataset according to the baseline}{6}{subsubsection.1.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1.2}Objective n°2 Model for better sound source localization and distance estimation}{6}{subsubsection.1.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.1.3}Objective n°3 The model should be tested to see how it reacts to attacks}{6}{subsubsection.1.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.2}Challenges}{6}{subsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.2.1}Challenge n°1: Realistic datasets}{6}{subsubsection.1.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.1.2.2}Challenge n°2: Robust models}{6}{subsubsection.1.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.1.2.3}Challenge n°3: Adequate evaluation metrics}{6}{subsubsection.1.1.2.3}%
+\contentsline {section}{\numberline {1.2}Structure of the thesis}{7}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Background and Literature}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Sound Propagation}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Realistic sound propagation in simulations}{8}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Microsoft Project Acoustics}{8}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Sound Propagation in game-engine}{8}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Sound Source Localization}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Spectrograms for sound visualization}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Origin of sound using two microphones}{10}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Neural networks}{12}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Convolutional Neural Networks}{12}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Convolutional Neural Networks for source localization}{12}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Related Work}{12}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}}{12}{subsection.2.4.1}%
+\contentsline {chapter}{\numberline {3}Conception}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Sound Propagation Simulation}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Dataset Creation}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Embedded system setup}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Data recording and storage}{13}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Neural Network for Sound Source Localization}{13}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Adversarial Attack conception}{13}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Setup}{14}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Simulation model creation}{14}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Microsoft Project plugin}{14}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Unity plugin}{14}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Dataset creation}{14}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Microphone installation}{14}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Embedded system setup and access}{14}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Data transmission}{14}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Data recording and storage}{14}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Neural Network for Sound Source Localization}{14}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Dataset preparation}{14}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Neural Network architecture}{14}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Training}{14}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Adversarial Attack}{14}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Fast Gradient Signed Method implementation}{14}{subsection.4.4.1}%
+\contentsline {chapter}{\numberline {5}Results}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Sound Propagation Simulation}{15}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Dataset Augmentation}{15}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Neural Network model results}{15}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Adversarial Attack results}{15}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Adversarial Attack mitigation}{15}{subsection.5.3.1}%
+\contentsline {chapter}{\numberline {6}Conclusions and Future Work}{16}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Conclusions}{16}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Specification Fulfillment}{16}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Future Work}{16}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Sound Propagation Simulation}{16}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Sound Propagation Simulation bachelor's thesis}{16}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Advanced adversarial attack}{16}{subsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.3.1}Patch attack}{16}{subsubsection.6.2.3.1}%
+\contentsline {subsubsection}{\numberline {6.2.3.2}Targeted attack}{16}{subsubsection.6.2.3.2}%
+\contentsline {subsection}{\numberline {6.2.4}Dataset publication}{16}{subsection.6.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.4.1}Dataset annotation}{16}{subsubsection.6.2.4.1}%
+\contentsline {subsection}{\numberline {6.2.5}Loxo Ears model}{16}{subsection.6.2.5}%
+\contentsline {chapter}{\numberline {A}Appendix}{17}{appendix.A}%
+\contentsline {section}{\numberline {A.1}}{18}{section.A.1}%
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }\leftprotrusion List of Tables}{19}{section.A.1}%
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }\leftprotrusion List of Figures}{19}{appendix*.10}%
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }\leftprotrusion Bibliography}{20}{appendix*.11}%

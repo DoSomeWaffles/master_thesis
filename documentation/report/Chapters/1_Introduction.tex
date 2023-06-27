@@ -33,30 +33,30 @@ understand how it can be used in a real environment and limit the attack vector.
 
 \subsection{Objectives}
 
-\paragraph{3.1} Objective n°1 Dataset according to the baseline
+\subsubsection{Objective n°1 Dataset according to the baseline}
 
 The first objective is to construct a dataset that is coherent with the project's baseline. The dataset should contain the target variable, features, and necessary pre-processing steps such as missing data imputation, data normalization, and feature engineering. This dataset will help create and understand the problem.
 
-\paragraph{3.2} Objective n°2 Model for better sound source localization and distance estimation
+\subsubsection{Objective n°2 Model for better sound source localization and distance estimation}
 
 The project should use a neural network model to detect the origin of a sound using a microphone array. The neural network should be trained using the dataset created in objective 3.1 and should be able to accurately localize the sound source. The trained neural network model should be evaluated in a real environment to see how it performs. It should also be evaluated to see how dependable it is in localizing sound sources and how it can be improved.
 
-\paragraph{3.3} Objective n°3 The model should be tested to see how it reacts to attacks
+\subsubsection{Objective n°3 The model should be tested to see how it reacts to attacks}
 
 The trained neural network model needs to be evaluated by testing it on data that has been modified in some way, such as by adding or removing noise, or by modifying the sound source. The model could also be tested against various types of attacks, such as masking, time-warping, and frequency-shifting.
 
-\section{Challenges}
+\subsection{Challenges}
 \label{intro:challenges}
 
-\subsection{Challenge n°1: Realistic datasets}
+\subsubsection{Challenge n°1: Realistic datasets}
 
 One of the main challenges in this project is to construct realistic datasets that accurately capture the data in a real-world scenario. The lack of open-source datasets that contain moving sound sources in open-loop environments can make this difficult. To overcome this challenge, the project should use realistic simulations of sound propagation to produce suitable datasets.
 
-\subsection{Challenge n°2: Robust models}
+\subsubsection{Challenge n°2: Robust models}
 
 Another challenge is to create a neural network model that can accurately detect the origin of a sound using a microphone array. The trained model should be highly accurate and robust enough to resist adversarial attacks. To assess the model's robustness, the model should be tested on data that has been modified in some way, such as by adding or removing noise, or by modifying the sound source. The model should also be able to accurately localize the sound source despite the attack.
 
-\subsection{Challenge n°3: Adequate evaluation metrics}
+\subsubsection{Challenge n°3: Adequate evaluation metrics}
 
 The last challenge is to create an evaluation metric that adequately reflects the model's performance. The evaluation metric should take into account the accuracy of sound source localization in a real environment as well as its ability to resist adversarial attacks. The metric should also be able to capture how well the model can provide reliable results in a variety of environments.
 \section{Structure of the thesis}
