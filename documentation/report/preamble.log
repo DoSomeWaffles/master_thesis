@@ -1,0 +1,36 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=latex 2023.6.21)  21 JUN 2023 12:03
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**preamble.tex
+(./preamble.tex
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-06-16>
+
+! LaTeX Error: \usepackage before \documentclass.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 \usepackage{
+                amsthm}
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.5 \usepackage{
+                amsthm}
+\usepackage may only appear in the document preamble, i.e.,
+between \documentclass and \begin{document}.
+
+ 
+Here is how much of TeX's memory you used:
+ 17 strings out of 475723
+ 529 string characters out of 5785851
+ 1851760 words of memory out of 5000000
+ 20874 multiletter control sequences out of 15000+600000
+ 513387 words of font info for 34 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 13i,0n,12p,93b,14s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.
