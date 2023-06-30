@@ -7,6 +7,8 @@ parser.add_argument('input_folder', type=str, help='path to input folder')
 parser.add_argument('output_folder', type=str, help='path to output folder')
 args = parser.parse_args()
 
+
+
 if not os.path.exists(args.output_folder):
     os.makedirs(args.output_folder)
 
