@@ -1,25 +1,20 @@
-\chapter{Background and Literature}
+\chapter{Background and Litterature}
 \label{ch:background}
 
-This chapter introduces technical concepts and background used in the conceptualized solution of the thesis. It also explains the state of the art of the different technologies used in the thesis and the current state of research in sound source localization and distance estimation.
+This chapter introduces technical concepts and background used in the conceptualized solution of the thesis. It also explains the analysis of the needs of the thesis and finds relations with the current state of research in sound source localization systems.
 
-\section{Sound Propagation}
+\section{Baseline analysis}
 
-Sound propagation is the physical process by which sound waves propagate in a given environment. The strength of the sound wave depends on various factors, including the frequency, environment, and distance from the sound source. These factors make an accurate identification and localization of a sound source difficult; thus, a more accurate and robust sound source localization system is needed.
+During the first weeks of the thesis, we had the opportunity to place an installation of microphones on the HEIA-FR main building roof. We took that opportunity to design the baseline and analyze how to build a system around it.
 
-\subsection{Realistic sound propagation in simulations}
-
-\subsection{Microsoft Project Acoustics}
-
-Microsoft Project Acoustics is a sound propagation engine that simulates the propagation of sound waves in a given environment. It is used in various applications, including video games, virtual reality, and augmented reality. It simulates wave effects like obstruction, reverberation, and occlusion in complex 3D scenes without requiring zone markup or raytracing. It works similarly to a raytracing engine but is precomputed and optimized for real-time performance. 
-
-\subsection{Sound Propagation in game-engine}
+After analyzing the road in front of the HEIA-FR main building, we decided to use the baseline to detect the position of vehicles driving on the road. The road is moderately busy, and the vehicles drive at a reasonable speed. The road is also straight, which makes it easier to detect the position of the vehicles. The baseline is shown in Figure \ref{fig:baseline_setup}. This analysis helps provide an intuitive understanding of the sound source localization system. The baseline comprises a vehicle as the sound source we want to record, multiple microphones recording the sound of the street, and an embedded system that manages the microphones.
 
 \section{Sound Source Localization}
 
-Sound Source Localization (SSL) is the process of determining the position of a sound source. It usually uses a microphone array that captures the sound signals from multiple directions. SSL is used in various applications, such as speech recognition, robot navigation, surveillance, and security. In this thesis, SSL is used to estimate the distance and direction of a sound source to detect excessively noisy vehicles.
+Sound Source Localization (SSL) is the process of determining the position of a sound source. It usually uses a microphone array that captures the sound signals from multiple directions. Various applications use SSL \cite{Grumiaux_2022}, such as speech recognition \cite{7952261}, source separation \cite{8903121}, human-robot interaction \cite{Li_2016} or room acoustic analysis \cite{amengual}. In this thesis, SSL is used to estimate the distance and direction of a sound source to detect excessively noisy vehicles.
 
 \subsection{Spectrograms for sound visualization}
+\label{subsec:spectrograms}
 
 Spectrograms are a visual representation of the frequency content of a sound signal. They are often used in sound source localization to identify the direction of a sound source. The spectrogram is a two-dimensional representation of the frequency content of a sound signal (figure \ref*{fig:spectrogram_example}).
 
@@ -39,7 +34,7 @@ The x-axis represents time, and the y-axis represents frequency. The intensity o
     \label{fig:2_channel_spectrogram_example}
 \end{figure}
 
-Looking at the frequency content of the sound signal allows us to identify the time delta of a recorded sound by using a multi-channel spectrogram. The bright spot on the spectrogram will indicate a jump in the amplitude and determine the start time of the record of a loud sound. By comparing this time with the other channel, we can find the direction of the sound source by comparing the sound signal's time delta with the other channels' time delta (figure \ref*{fig:spectrogram_offset}).
+Looking at the frequency content of the sound signal allows us to identify the time delta of a recorded sound by using a multi-channel spectrogram. The bright spot on the spectrogram will indicate a jump in the amplitude and determine the start time of the recording of a loud sound. By comparing this time with the other channel, we can find the direction of the sound source by comparing the sound signal's time delta with the other channels' time delta (figure \ref*{fig:spectrogram_offset}).
 
 \begin{figure}[H]
     \centering
@@ -70,7 +65,7 @@ This concept can be formalized and is better explained in \cite{Scola2010Directi
     \label{fig:sound-source-from-two-microphones}
 \end{figure}
 
-By looking at the graphic, the following equation can be found:
+Looking at the graphic allows us to find the following equation:
 
 \begin{equation}
     AB' = AM-B'M
@@ -92,11 +87,11 @@ The two microphones have the same $Y$ coordinate, so $Y_{a} = Y_{b} = Y$ and $Y_
 \end{equation}
 
 This setup shows that two microphones are enough to determine the direction of a sound source.
-% TODO - compléter la formalisation
+%!!!!!!! TODO - compléter la formalisation
 
 \section{Neural networks}
 
-Neural networks are machine learning algorithms based on biological neurons used to solve various problems, including image recognition, speech recognition, and natural language processing. Neural networks learn from provided data to solve a problem without explicitly programming the solution. Many domains, like self-driving cars, facial recognition, and medical imaging, achieve better results using neural network models. 
+The report [A survey of sound source localization with deep learning methods]\cite{Grumiaux_2022} shows that deep neural networks achieve good scores in sound source localization. Neural networks are machine learning algorithms based on biological neurons used to solve various problems, including image recognition, speech recognition, and natural language processing. Neural networks learn from provided data to solve a problem without explicitly programming the solution. Many domains, like self-driving cars, facial recognition, and medical imaging, achieve state of the art results using neural network models. 
 
 A neural network (figure \ref*{fig:neural_network}) is composed of multiple neurons (the circles) that are organized in layers and connected to the neurons in the previous and next layers. 
 
@@ -107,20 +102,109 @@ A neural network (figure \ref*{fig:neural_network}) is composed of multiple neur
     \label{fig:neural_network}
 \end{figure}
 
-Deep neural networks are a type of neural network composed of multiple layers of neurons. They are trained on a large dataset of images and then used to classify new images. There are countless architectures \cite{LIU201711} and implementations of neural networks, but they all share the same basic principles.
+Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks are trained by adjusting the weights to minimize the error between the predicted and desired outputs, using methods like gradient descent\cite{zhang2019gradient} and backpropagation\cite{Sekhar}.
+
+\subsection{Deep Neural Networks}
+
+Deep neural networks are a type of neural network composed of multiple layers of neurons\cite{Schmidhuber_2015}. They are trained on a large dataset of images and then used to classify new images. There are countless architectures \cite{LIU201711} and implementations of neural networks, but they all share the same basic principles. The most known architectures of neural networks include CNNs\cite{oshea2015introduction}, transformers\cite{vaswani2017attention}, and many others.
+
+\subsection{Convolutional Neural Networks for sound source localization}
+
+Convolutional Neural Networks (CNNs)\cite{oshea2015introduction} are deep neural networks specifically used for image recognition. They are often composed of convolutional, subsampling, and fully connected layers (Figure \ref*{fig:cnn_example}).
+\begin{itemize}
+    \item{} Convolutional layers are used to extract features from images. These features are then fed into fully connected layers to perform classification. Each convolutional layer comprises multiple filters convolved with the input image to produce a feature map. The filters are trained to extract specific features from the input image.
+    \item{} Subsampling layers are used to reduce the size of the feature maps. The most common subsampling layer is the max-pooling layer, which takes the maximum value of a specific region of the feature map.
+    \item{} Fully connected layers are trained to classify the features extracted by the convolutional layers. The output of the fully connected layers is a probability distribution over the possible classes. 
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Images/cnn_example.png}
+    \caption{CNN architecture example with LeNet-5 \protect\cite{726791} composed of two convolutional layers, two subsampling layers, and finishing with two fully connected layers.}
+    \label{fig:cnn_example}
+\end{figure}
+
+Even if CNNs are mainly used to classify photography, they can classify any images, including sounds\cite{Grumiaux_2022}. Based on section \ref*{subsec:spectrograms}, CNNs can use spectrograms as input since they also are images. The spectrograms are converted into images and fed into the CNN. 
+
+An approach for sound source localization is using classes to define zones where the sound can come from as the classes. The CNN will output a probability distribution over the possible classes. The class with the highest probability is the predicted class. The predicted class can then refer to a zone.
+
+The CNN then outputs a probability distribution over the possible classes. The possible classes need to be defined before training the CNN. In\cite{s20010172}, they approach the problem with 15 classes, using angles 0, 30, and 60 degrees and distances 1, 2, and 3 meters (Figure \ref*{fig:Yiwere_classes}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Images/Yiwere_classes.png}
+    \caption{CNN for source localization}
+    \label{fig:Yiwere_classes}
+\end{figure}
+
+Based on the baseline defined in chapter \ref*{chap:state_of_the_art}
 
 
 
-\subsection{Convolutional Neural Networks}
+\subsection{Transfer learning}
 
-Convolutional Neural Networks (CNNs) are neural networks used for image recognition. They use convolutional layers to extract features from images. These features are then fed into fully connected layers to perform classification. 
+%!!!!!!! TODO - réécrire la partie sur le transfer learning
+Transfer learning is a machine learning technique where a model trained on a specific task is reused as the starting point for a model on a different task. The model is trained on a large dataset and then used as a starting point for a model on a different dataset. The model is then trained on the new dataset, and the weights are adjusted to minimize the error between the predicted and desired outputs. Transfer learning is used to train models on smaller datasets and achieve better results than training the model from scratch.
+
+\section{Datasets for sound source localization}
+\label{sec:datasetsSSL}
+
+Datasets are needed to train and test neural networks. They are composed of data and labels. The data is the neural network input, and the label is the expected output. In the case of sound source localization, the data is audio, and the labels are the zones of the sound source. 
+
+Multiple datasets exist in sound source localization for neural networks. The most common are the DCASE 2019 task 3 dataset\cite{Adavanne2019_DCASE} and the DCASE 2020 task 3 dataset\cite{politis2020dataset}. These datasets are composed of audio files and the corresponding labels. The labels are the zones of the sound source. The audio files are recorded in a room with a microphone array and a sound source. The sound source is moved around the room, and the audio is recorded. The audio files are then annotated with the zones of the sound source. The annotations are done manually by listening to the audio files and annotating the zones. Multiple annotators then verify the annotations to ensure the quality of the annotations. 
+
+Although these datasets are good baselines for sound source localization, they do not suit the needs of this project. The datasets are recorded in a closed environment and do not reflect the baseline defined in this project. Still, these datasets are good baselines for sound source localization and help to understand how to create a dataset.
 
 
-\subsection{Convolutional Neural Networks for source localization}
 
-CNNs are mainly used to classify images but can also classify sounds. They are used in this thesis to classify the spectrograms of the sound signals recorded by the microphone array. The spectrograms are converted into images and fed into the CNN. The CNN then outputs a probability distribution over the possible classes. The output of the CNN gives the probability of the sound source coming from a specific direction.
 
-\section{Related Work}
+\subsection{Dataset augmentation for audio classification}
+% TODO add sources
+Since recording many audio files is time-consuming and costly, and since the dataset needs to be large to train a neural network, we decided to use dataset augmentation techniques.
 
-\subsection{}
+Dataset augmentation is a technique used to increase the size of a dataset. It is used to improve the performance of a neural network by training on more data, thus becoming better at generalizing. The most common techniques are flipping, rotating, and cropping images, but since the classification in this project is realized on audio, other techniques are needed to augment the dataset. 
 
+Some techniques that work well on audio are adding noise, changing the pitch, or simulating new data. 
+
+\section{Dataset simulation for sound source classification}
+
+Simulating a dataset is a technique used to create a dataset without recording audio from real life. It helps to create a dataset with many samples and labels. Since the goal is to generate sounds in an open environment, a 3D-capable engine is necessary. Game engines are increasingly used for simulation since they are optimized for real-time rendering and can simulate complex 3D scenes. The game engine must simulate sound propagation for a realistic audio simulation.
+
+\subsection{Sound propagation}
+Sound propagation is the physical process by which sound waves propagate in a given environment. Multiple factors affect the propagation of sound waves, including reverberation, occlusion, doppler effect, and obstruction.
+
+
+The strength of the sound wave depends on various factors, including the frequency, environment, and distance from the sound source. These factors make an accurate identification and localization of a sound source difficult; thus, we need a more accurate and robust sound source localization system.
+
+\subsection{Microsoft Project Acoustics}
+
+Microsoft Project Acoustics is a sound propagation engine that simulates the propagation of sound waves in a given environment. Various applications, including video games, virtual reality, and physics simulation, use this engine. It simulates wave effects like obstruction, reverberation, and occlusion in complex 3D scenes without requiring zone markup or raytracing. It works similarly to a raytracing engine but is precomputed and optimized for real-time performance. 
+
+\subsubsection{Sound Propagation in game-engine}
+
+\section{Adversarial Attacks}
+
+Adversarial attacks are a manipulation technique that aims to fool a neural network by modifying the input data. The goal is to make the neural network misclassify. Adversarial attacks allow us to test the robustness of neural networks and understand how neural networks work and how we can improve them.
+
+\subsection{Adversarial attacks categories}
+
+Adversarial attacks can be categorized into white-box attacks and black-box attacks. White-box attacks are attacks where the attacker has access to the neural network's parameters and architecture. Conversely, black-box attacks are attacks where the attacker cannot access the neural network's parameters and architecture.
+
+% Ajouter les sources
+
+\subsection{Fast Gradient Sign Method}
+
+One of the most common adversarial attacks is the Fast Gradient Sign Method (FGSM)\cite{goodfellow2015explaining}. It is a white-box attack that uses the gradient of the loss function to find the adversarial example. The adversarial example is calculated using the following equation:
+
+\begin{equation}
+    X_{adv} = X + \epsilon \cdot sign(\nabla_{X}J(\theta, X, y))
+\end{equation}
+
+$X$ is the input, $y$ is the target class, $\epsilon$ is the magnitude of the perturbation, and $J(\theta, X, y)$ is the loss function. The loss function is the function that the neural network normally tries to minimize, but here is used to maximize the loss. The gradient of the loss function is calculated for the input $X$. The sign of the gradient is then calculated and multiplied by the magnitude of the perturbation $\epsilon$. The result is added to the input to create the adversarial example $X_{adv}$. The adversarial example is then fed into the neural network, which outputs the adversarial class (Figure \ref*{fig:fgsm}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Images/fgsm.png}
+    \caption{FGSM example in \cite{goodfellow2015explaining} with a neural network classifying a panda as a gibbon because of the attack.}
+    \label{fig:fgsm}
+\end{figure}

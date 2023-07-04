@@ -1,13 +1,83 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Grumiaux_2022}
+Pierre-Amaury Grumiaux, Sr{dj}an Kiti{{c}}, Laurent Girin, and Alexandre Gu{{e}}rin.
+\newblock A survey of sound source localization with deep learning methods.
+\newblock {\em The Journal of the Acoustical Society of America}, 152(1):107--151, jul 2022.
+
+\bibitem{7952261}
+Jort~F. Gemmeke, Daniel P.~W. Ellis, Dylan Freedman, Aren Jansen, Wade Lawrence, R.~Channing Moore, Manoj Plakal, and Marvin Ritter.
+\newblock Audio set: An ontology and human-labeled dataset for audio events.
+\newblock In {\em 2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, pages 776--780, 2017.
+
+\bibitem{8903121}
+Shlomo~E. Chazan, Hodaya Hammer, Gershon Hazan, Jacob Goldberger, and Sharon Gannot.
+\newblock Multi-microphone speaker separation based on deep doa estimation.
+\newblock In {\em 2019 27th European Signal Processing Conference (EUSIPCO)}, pages 1--5, 2019.
+
+\bibitem{Li_2016}
+Xiaofei Li, Laurent Girin, Fabien Badeig, and Radu Horaud.
+\newblock Reverberant sound localization with a robot head based on direct-path relative transfer function.
+\newblock In {\em 2016 {IEEE}/{RSJ} International Conference on Intelligent Robots and Systems ({IROS})}. {IEEE}, oct 2016.
+
+\bibitem{amengual}
+Amengual Garamp.
+\newblock Spatial analysis and auralization of room acoustics using a tetrahedral microphone, Apr 2017.
+
+\bibitem{Scola2010DirectionOA}
+Carlos~Fern{\'a}ndez Scola and Mar{\'i}a Dolores~Bola{\~n}os Ortega.
+\newblock Direction of arrival estimation : A two microphones approach.
+\newblock In {\em 2010 IEEE International Conference on Acoustics, Speech and Signal Processing}, 2010.
+
+\bibitem{zhang2019gradient}
+Jiawei Zhang.
+\newblock Gradient descent based optimization algorithms for deep learning models training, 2019.
+
+\bibitem{Sekhar}
+Ch~Sekhar and P~Meghana.
+\newblock A study on backpropagation in artificial neural networks.
+\newblock {\em Asia-Pacific Journal of Neural Networks and Its Applications}, 4:21--28, 08 2020.
+
+\bibitem{Schmidhuber_2015}
+Jürgen Schmidhuber.
+\newblock Deep learning in neural networks: An overview.
+\newblock {\em Neural Networks}, 61:85--117, jan 2015.
 
 \bibitem{LIU201711}
 Weibo Liu, Zidong Wang, Xiaohui Liu, Nianyin Zeng, Yurong Liu, and Fuad~E. Alsaadi.
 \newblock A survey of deep neural network architectures and their applications.
 \newblock {\em Neurocomputing}, 234:11--26, 2017.
 
-\bibitem{Scola2010DirectionOA}
-Carlos~Fern{\'a}ndez Scola and Mar{\'i}a Dolores~Bola{\~n}os Ortega.
-\newblock Direction of arrival estimation : A two microphones approach.
-\newblock 2010.
+\bibitem{oshea2015introduction}
+Keiron O'Shea and Ryan Nash.
+\newblock An introduction to convolutional neural networks, 2015.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N. Gomez, Lukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need, 2017.
+
+\bibitem{726791}
+Y.~Lecun, L.~Bottou, Y.~Bengio, and P.~Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock {\em Proceedings of the IEEE}, 86(11):2278--2324, 1998.
+
+\bibitem{s20010172}
+Mariam Yiwere and Eun~Joo Rhee.
+\newblock Sound source distance estimation using deep learning: An image classification approach.
+\newblock {\em Sensors}, 20(1), 2020.
+
+\bibitem{Adavanne2019_DCASE}
+Sharath Adavanne, Archontis Politis, and Tuomas Virtanen.
+\newblock A multi-room reverberant dataset for sound event localization and detection.
+\newblock In {\em Proceedings of the Detection and Classification of Acoustic Scenes and Events 2019 Workshop (DCASE2019)}, pages 10--14, New York University, NY, USA, October 2019.
+
+\bibitem{politis2020dataset}
+Archontis Politis, Sharath Adavanne, and Tuomas Virtanen.
+\newblock A dataset of reverberant spatial sound scenes with moving sources for sound event localization and detection.
+\newblock In {\em Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020)}, pages 165--169, Tokyo, Japan, November 2020.
+
+\bibitem{goodfellow2015explaining}
+Ian~J. Goodfellow, Jonathon Shlens, and Christian Szegedy.
+\newblock Explaining and harnessing adversarial examples, 2015.
 
 \end{thebibliography}
