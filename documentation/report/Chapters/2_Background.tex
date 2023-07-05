@@ -10,6 +10,22 @@ During the first weeks of the thesis, we had the opportunity to place an install
 
 After analyzing the road in front of the HEIA-FR main building, we decided to use the baseline to detect the position of vehicles driving on the road. The road is moderately busy, and the vehicles drive at a reasonable speed. The road is also straight, which makes it easier to detect the position of the vehicles. The baseline is shown in Figure \ref{fig:baseline_setup}. This analysis helps provide an intuitive understanding of the sound source localization system. The baseline comprises a vehicle as the sound source we want to record, multiple microphones recording the sound of the street, and an embedded system that manages the microphones.
 
+\subsection{Audio file format} % TODO ajouter les sources
+\label{subsec:audio_file_format}
+
+The Waveform Audio File Format is a standard for storing computer audio data. The audio signal is continuous and is sampled to store it on a computer. The sampling rate represents the number of samples per second. The sampling rate is usually measured in Hertz (Hz). The numerical representation of the audio often used with wav is the PCM.
+
+The PCM (pulse-code modulation) is a method used to represent an analog signal with a binary. It is often used to represent uncompressed digital audio. The PCM is a sequence of amplitude values. Depending on the quality, the amplitude values are often stored as 8-bit, 16-bit, or 24-bit integers. A representation of a sampled sinusoidal signal is shown in Figure \ref{fig:sine_wave_representation_audacity}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../Images/sine_wave_representation_audacity.png}
+    \caption{PCM representation of a sinusoidal signal}
+    \label{fig:sine_wave_representation_audacity}
+\end{figure}
+
+Each vertical line represents a sample. The horizontal axis represents the time, and the vertical axis represents the amplitude. The sampling rate is usually 44100 Hz, 48000 Hz, or 96000 Hz.
+
 \section{Sound Source Localization}
 
 Sound Source Localization (SSL) is the process of determining the position of a sound source. It usually uses a microphone array that captures the sound signals from multiple directions. Various applications use SSL \cite{Grumiaux_2022}, such as speech recognition \cite{7952261}, source separation \cite{8903121}, human-robot interaction \cite{Li_2016} or room acoustic analysis \cite{amengual}. In this thesis, SSL is used to estimate the distance and direction of a sound source to detect excessively noisy vehicles.
@@ -172,7 +188,9 @@ Some techniques that work well on audio are adding noise, changing the pitch, or
 \section{Dataset generation using simulation}
 \label{sec:dataset_generation_simulation}
 
-Simulating a dataset is a technique used to create a dataset without recording audio from real life. It helps to create a dataset with many samples and labels. Since the goal is to generate sounds in an open environment, a 3D-capable engine is necessary. Game engines are increasingly used for simulation since they are optimized for real-time rendering and can simulate complex 3D scenes. The game engine must simulate sound propagation for a realistic audio simulation.
+Simulating a dataset is a technique used to create a dataset without recording data from real life. It helps to create a dataset with many samples. Since the goal is to generate sounds in an open environment, a 3D-capable engine is necessary. Game engines are increasingly popular for simulation tasks since they are optimized for real-time rendering and can simulate complex 3D scenes. The game engine must simulate sound propagation for a realistic audio simulation. 
+
+TODO
 
 % TODO
 
@@ -198,7 +216,7 @@ The recall is another metric that can be used. The recall is the number of true 
     \text{Recall} = \frac{\text{True positives}}{\text{True positives} + \text{False negatives}}
 \end{equation}
 
-The recall is a good metric for unbalanced datasets since it takes into account the number of false negatives.
+The recall is a good metric for unbalanced datasets since it considers the number of false negatives.
 
 \paragraph*{F1 score}
 Another metric that can be used is the F1 score. The F1 score is the harmonic mean of the precision and recall. The F1 score is defined as follows:
@@ -207,7 +225,7 @@ Another metric that can be used is the F1 score. The F1 score is the harmonic me
     \text{F1 score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
 \end{equation}
 
-The F1 score is a good metric for unbalanced datasets since it takes into account the precision and the recall. 
+The F1 score is a good metric for unbalanced datasets since it considers precision and recall. 
 
 \paragraph*{Confusion matrix}
 
@@ -245,16 +263,11 @@ Microsoft Project Acoustics is a sound propagation engine that simulates the pro
 \subsubsection{Sound Propagation in game-engine}
 
 \section{Adversarial Attacks}
+\label{sec:adversarial_attacks}
 
 Adversarial attacks are a manipulation technique that aims to fool a neural network by modifying the input data. The goal is to make the neural network misclassify. Adversarial attacks allow us to test the robustness of neural networks and understand how neural networks work and how we can improve them.
 
-\subsection{Adversarial attacks categories}
-
 Adversarial attacks can be categorized into white-box attacks and black-box attacks. White-box attacks are attacks where the attacker has access to the neural network's parameters and architecture. Conversely, black-box attacks are attacks where the attacker cannot access the neural network's parameters and architecture.
-
-% Ajouter les sources
-
-\subsection{Fast Gradient Sign Method}
 
 One of the most common adversarial attacks is the Fast Gradient Sign Method (FGSM)\cite{goodfellow2015explaining}. It is a white-box attack that uses the gradient of the loss function to find the adversarial example. The adversarial example is calculated using the following equation:
 
@@ -270,3 +283,9 @@ $X$ is the input, $y$ is the target class, $\epsilon$ is the magnitude of the pe
     \caption{FGSM example in \cite{goodfellow2015explaining} with a neural network classifying a panda as a gibbon because of the attack.}
     \label{fig:fgsm}
 \end{figure}
+
+\subsection{Signal estimation from Short Time Fourier Transform}
+
+The Griffin-Lim algorithm\cite{6701851} is an iterative algorithm that uses a spectrogram to estimate the phase of an audio signal. The algorithm starts with a random phase and iteratively updates the phase until the spectrogram converges to the original spectrogram. The algorithm is defined as follows:
+
+% TODO ajouter l'algo

@@ -80,4 +80,9 @@ Archontis Politis, Sharath Adavanne, and Tuomas Virtanen.
 Ian~J. Goodfellow, Jonathon Shlens, and Christian Szegedy.
 \newblock Explaining and harnessing adversarial examples, 2015.
 
+\bibitem{6701851}
+Nathanaël Perraudin, Peter Balazs, and Peter~L. Søndergaard.
+\newblock A fast griffin-lim algorithm.
+\newblock In {\em 2013 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics}, pages 1--4, 2013.
+
 \end{thebibliography}

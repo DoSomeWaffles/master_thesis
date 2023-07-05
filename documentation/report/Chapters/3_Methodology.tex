@@ -1,10 +1,11 @@
 
-\chapter{Methodology}
+\chapter{Design}
 \label{ch:methodology}
 
-This chapter presents the methodology used to create the dataset, train the neural network, and perform the adversarial attack. 
+This chapter presents the design of the project. It is the description of the project's architecture and the project's components.
 
 \section{Baseline design}
+\label{sec:baseline_design}
 
 We must design a baseline since we start the project without previous work. The baseline is the starting point of the project. It is the simplest system that we can create to solve the problem. The baseline can then compare the results and improve the system.
 
@@ -38,10 +39,10 @@ To create the dataset, we must have vehicle recordings with multiple microphones
 
 \begin{figure}[H]
     \centering
-    \subfloat[\centering Side view]{{\includegraphics[width=5cm]{../Images/setup_side_view.drawio.png} }}%
+    \subfloat[\centering Side view]{{\includegraphics[width=4cm]{../Images/setup_side_view.drawio.png} }}%
     \qquad
-    \subfloat[\centering Top down view]{{\includegraphics[width=5cm]{../Images/setup_top_down_view.drawio.png} }}%
-    \caption{Setup of the baseline}
+    \subfloat[\centering Top down view]{{\includegraphics[width=4cm]{../Images/setup_top_down_view.drawio.png} }}%
+    \caption{Baseline's microphone setup}
     \label{fig:baseline_setup}
 \end{figure}
 
@@ -49,7 +50,7 @@ We also need to record a video of the vehicle to have a ground truth to annotate
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.7\textwidth]{../Images/recording_system_design.drawio.png}
+    \includegraphics[width=.8\textwidth]{../Images/recording_system_design.drawio.png}
     \caption{Recording system design}
     \label{fig:recording_system_design.drawio}
 \end{figure}
@@ -79,18 +80,18 @@ We also used only two classes at the beginning of the project to ensure the conc
 
 \subsubsection{Recorded data design}
 
-% TODO add appendix
-The results and comparison of this task are available in the appendix TODO
+The input data needs to be an audio signal. Based on the analysis in section \ref{subsec:audio_file_format}, we use the Waveform Audio File Format with pulse-code modulation to represent our audio signal. With this representation, we obtain a vector of floating point numbers representing the audio signal. Since we record multiple channels simultaneously, we can consider the channels as another vector dimension. We can then represent the audio signal as a matrix of floating point numbers.
 
-\section{Convolutional Neural Network for Sound Source Localization}
+\section{Convolutional Neural Network design for Sound Source Localization}
+\label{sec:cnn_design_for_ssl}
 
 For our baseline, we use a convolutional neural network to predict the position of the sound source. We use a convolutional neural network because, based on the analysis in section \ref{sec:cnn_for_ssl}, it is the most common neural network architecture for image classification and hence for sound source localization. We can use the spectrograms as image input and the convolutional neural network to classify the spectrograms.
 
-Our network design is composed of a feature extraction part and a classifier part. The feature extraction part is composed of convolutional layers, ReLU, and pooling layers. The classifier part is composed of fully connected layers. The feature extraction part is used to extract the features from the spectrograms, and the classifier part is used to classify the features extracted. The full architecture is shown in Figure \ref{fig:baseline_feature_extraction}.
+The network design is composed of a feature extraction part and a classifier part. The feature extraction part is composed of convolutional layers, ReLU, and pooling layers. The classifier part is composed of fully connected layers. The feature extraction part is used to extract the features from the spectrograms, and the classifier part is used to classify the features extracted. The full architecture is shown in Figure \ref{fig:baseline_feature_extraction}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.2\textwidth]{../Images/cnn_architecture_design.drawio.png}
+    \includegraphics[width=.25\textwidth]{../Images/cnn_architecture_design.drawio.png}
     \caption{Baseline feature extraction}
     \label{fig:baseline_feature_extraction}
 \end{figure}
@@ -112,15 +113,6 @@ There are differences with the baseline system. The main one is that we generate
 
 The main advantages of the simulation are that we can generate as much data as we want. We can generate data for any position of the sound source. The simulation is composed of a vehicle, a microphone, and a camera. Based on the section \ref{sec:dataset_conception}, we want to generate data for the classes \textit{left\_to\_right} and \textit{right\_to\_left}. We can generate data for the class \textit{left\_to\_right} by placing the vehicle on the microphone's left and moving it to the right. We can generate data for the class \textit{right\_to\_left} by placing the vehicle on the right of the microphone and moving it to the left. For \textit{no\_cars} class, we can generate data by not placing the vehicle in the simulation. For the \textit{multiple\_cars} class, we can generate data by placing multiple vehicles in the simulation and moving them in the same direction. 
 
-We need to assign an engine sound to the vehicle during the simulation for the vehicle to be recorded by the microphone.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=1\textwidth]{../Images/simulation_training_design.drawio.png}
-%     \caption{Simulation system design for training}
-%     \label{fig:simulation_system_design.drawio}
-% \end{figure}
-
 \subsection{Genrealization aspect of the simulation}
 
 For the simulation to best generalize and better represent real-life data, we need to add randomness to the simulation in multiple ways. 
@@ -135,24 +127,36 @@ At the beginning of the simulation, we define multiple points as possible start 
 
 \paragraph{Random starting time}
 
-The vehicle's arrival time is not constant in real life. We add randomness to the vehicle's starting time in the simulation to match the real-life cases. We can add randomness to the vehicle's starting time by varying the time the vehicle waits at the beginning of the simulation.
+The vehicle's arrival time is not constant in real life. We add randomness to the vehicle's starting time in the simulation to match the real-life cases. We achieve it by varying the vehicle's waiting time at the simulation's beginning.
 
 \paragraph{Random engine noise}
 
-There are many vehicles in real life, and most have different engine noises. We can reproduce this by randomly choosing an engine noise at the beginning of the simulation and playing it during the simulation. 
+We need to assign an engine sound to the vehicle during the simulation for the vehicle to be recorded by the microphone. There are many vehicles in real life, and many different engine noises. We reproduce this by randomly choosing an engine noise at the beginning of the simulation and playing it during the simulation. 
 
 \paragraph{Random background noise}
 
-
-
-
+We add randomness to the background noise by randomly choosing a noise track at the beginning of the simulation and playing it during the simulation.
 
 \subsection{Simulation software design}
 
-The simulation should generate audio data by playing scenarios and recording the sound generated inside it. The comportment should represent the ones analyzed in the section \ref{sec:baseline_analysis}. Based on what 
+The simulation should generate audio data by playing scenarios and recording the sound generated inside it. The comportment should represent the ones analyzed in the section \ref{sec:baseline_analysis}. Based on the observation, the scenarios chosen were the following:
 
-\section{Adversarial Attack conception}
+\begin{itemize}
+    \item \textbf{No cars}: No cars are present in the simulation. The background noise is played during the simulation.
+    \item \textbf{Left to right}: A car is present in the simulation. The car starts on the left of the microphone and moves to the right. The background noise is played during the simulation.
+    \item \textbf{Right to left}: A car is present in the simulation. The car starts on the right of the microphone and moves to the left. The background noise is played during the simulation.
+    \item \textbf{Multiple cars}: Multiple cars are present in the simulation. The cars start on the left of the microphone and move to the right. The background noise is played during the simulation.
+\end{itemize}
 
-\subsection{Audio reconstruction from spectrograms}
+\section{Adversarial Attack design}
 
-Since the adversarial example is a spectrogram, it needs to be converted back into audio to be re-recorded through the microphone. The conversion is done using the Griffin-Lim algorithm\cite{griffin1984signal}. The Griffin-Lim algorithm is an algorithm that reconstructs an audio signal from a spectrogram. It is an iterative algorithm that uses the spectrogram to estimate the phase of the audio signal. The algorithm starts with a random phase and iteratively updates the phase until the spectrogram converges to the original spectrogram. The algorithm is defined as follows:
+Based on the analysis in section \ref{sec:adversarial_attacks}, we can use an adversarial attack to fool the model designed in section \ref{sec:cnn_design_for_ssl}. This project uses the Fast Gradient Sign Method (FGSM) to generate adversarial inputs. The FGSM is a white-box attack meaning that we need the model's parameters to generate the adversarial inputs. Once we finish training the model, we can calculate the loss function's gradient concerning the input to find the direction that maximizes the loss function. Once we find the direction, we can add a perturbation multiplied by a value of epsilon to the input to generate the adversarial input. 
+Once we generate adversarial inputs, we test them on the model to see how it reacts. We realize the attack on a specific value of epsilon. We can try to attack the model with different epsilon values to see how much noise is needed for the model to fail. We analyzed the results by comparing them with the baseline model's results.
+
+\subsection{Audio reconstruction design}
+
+Realizing the adversarial attack by modifying the spectrogram input is not enough to have a negative impact if we use the model for inference in a real-life scenario. Since the system designed in section \ref{sec:baseline_design} uses microphones as input, we need to transform the adversarial spectrogram back to audio. We can then play the audio on a speaker in front of the baseline system to see if the model still fails after the reconstruction of the audio signal.
+
+\subsection{Adversarial attack protection design}
+
+Once we generate the adversarial audio signal, we must again play it through a speaker and the microphone. We can analyze the adversarial audio signal before the classification and try detecting an attempted attack. We can use a classic CNN to classify the type of sound recorded. We can then use the classification score to detect an attempted attack.
