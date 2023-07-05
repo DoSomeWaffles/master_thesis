@@ -12,34 +12,34 @@ Using machine learning to solve the sound source localization problem can lead t
 
 \subsection{Objectives}
 
-\subsubsection{Objective n°1 Definition of a baseline}
+\paragraph{Objective n°1 Definition of a baseline}
 
 The first objective is to define a baseline for the project. The baseline should contain the problem statement, the project's scope, and objectives. The baseline will help us understand the project's context and the problem we are trying to solve.
 
-\subsubsection{Objective n°2 Dataset according to the baseline}
+\paragraph{Objective n°2 Dataset according to the baseline}
 
 The first objective is constructing a coherent dataset with the project's baseline. The dataset contains the target variable, features, and necessary pre-processing steps. This dataset will help represent and understand the problem.
 
-\subsubsection{Objective n°3 Realising a model for better sound source localization and distance estimation}
+\paragraph{Objective n°3 Realising a model for better sound source localization and distance estimation}
 
 The project uses a neural network model to detect the origin of a sound using a microphone array. The neural network uses the dataset created in objective 2 for training and can localize the sound source accurately. An evaluation of the trained neural network model in a real environment allows us to see how it performs. The model will also be evaluated to understand how it can be improved.
 
-\subsubsection{Objective n°4 Attacking the model to understand how it reacts}
+\paragraph{Objective n°4 Attacking the model to understand how it reacts}
 
 The trained neural network model needs to be evaluated by testing it on data modified in some way, such as by adding or removing noise or modifying the sound source. Tests against various attacks, such as masking, time-warping, and frequency-shifting, will help us understand how it performs.
 
 \subsection{Challenges}
 \label{intro:challenges}
 
-\subsubsection{Challenge n°1: Realistic datasets}
+\paragraph{Challenge n°1: Realistic datasets}
 
 One of the main challenges in this project is to construct realistic datasets that accurately capture the data in a real-world scenario. The lack of open-source datasets that contain moving sound sources in open environments can make this difficult. The project should use realistic simulations of sound propagation to produce suitable datasets.
 
-\subsubsection{Challenge n°2: Robust models}
+\paragraph{Challenge n°2: Robust models}
 
 Another challenge is to create a neural network model that can accurately detect the origin of a sound using a microphone array. The trained model must be accurate and robust to resist adversarial attacks. The model should localize the sound source accurately on altered data.
 
-\subsubsection{Challenge n°3: Adequate evaluation metrics}
+\paragraph{Challenge n°3: Adequate evaluation metrics}
 
 The last challenge is to create an evaluation metric that adequately reflects the model's performance. The evaluation metric should consider the accuracy of sound source localization in a real environment and its ability to resist adversarial attacks. The metric should also capture how well the model can provide reliable results in various environments.
 \section{Structure of the thesis}

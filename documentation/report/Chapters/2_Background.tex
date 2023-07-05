@@ -4,6 +4,7 @@
 This chapter introduces technical concepts and background used in the conceptualized solution of the thesis. It also explains the analysis of the needs of the thesis and finds relations with the current state of research in sound source localization systems.
 
 \section{Baseline analysis}
+\label{sec:baseline_analysis}
 
 During the first weeks of the thesis, we had the opportunity to place an installation of microphones on the HEIA-FR main building roof. We took that opportunity to design the baseline and analyze how to build a system around it.
 
@@ -91,7 +92,7 @@ This setup shows that two microphones are enough to determine the direction of a
 
 \section{Neural networks}
 
-The report [A survey of sound source localization with deep learning methods]\cite{Grumiaux_2022} shows that deep neural networks achieve good scores in sound source localization. Neural networks are machine learning algorithms based on biological neurons used to solve various problems, including image recognition, speech recognition, and natural language processing. Neural networks learn from provided data to solve a problem without explicitly programming the solution. Many domains, like self-driving cars, facial recognition, and medical imaging, achieve state of the art results using neural network models. 
+Neural networks are machine learning algorithms based on biological neurons used to solve various problems, including image recognition, speech recognition, and natural language processing. Neural networks learn from provided data to solve a problem without explicitly programming the solution. Many domains, like self-driving cars, facial recognition, and medical imaging, achieve state-of-the-art results using neural network models. 
 
 A neural network (figure \ref*{fig:neural_network}) is composed of multiple neurons (the circles) that are organized in layers and connected to the neurons in the previous and next layers. 
 
@@ -104,12 +105,14 @@ A neural network (figure \ref*{fig:neural_network}) is composed of multiple neur
 
 Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks are trained by adjusting the weights to minimize the error between the predicted and desired outputs, using methods like gradient descent\cite{zhang2019gradient} and backpropagation\cite{Sekhar}.
 
+There are two main phases in the life of a neural network: training and inference. During the training phase, the neural network is trained on a large dataset of images. The neural network learns to recognize patterns in the images and classify them. During the inference phase, the neural network is used to classify new images.
+
 \subsection{Deep Neural Networks}
 
 Deep neural networks are a type of neural network composed of multiple layers of neurons\cite{Schmidhuber_2015}. They are trained on a large dataset of images and then used to classify new images. There are countless architectures \cite{LIU201711} and implementations of neural networks, but they all share the same basic principles. The most known architectures of neural networks include CNNs\cite{oshea2015introduction}, transformers\cite{vaswani2017attention}, and many others.
 
 \subsection{Convolutional Neural Networks for sound source localization}
-
+\label{sec:cnn_for_ssl}
 Convolutional Neural Networks (CNNs)\cite{oshea2015introduction} are deep neural networks specifically used for image recognition. They are often composed of convolutional, subsampling, and fully connected layers (Figure \ref*{fig:cnn_example}).
 \begin{itemize}
     \item{} Convolutional layers are used to extract features from images. These features are then fed into fully connected layers to perform classification. Each convolutional layer comprises multiple filters convolved with the input image to produce a feature map. The filters are trained to extract specific features from the input image.
@@ -124,39 +127,39 @@ Convolutional Neural Networks (CNNs)\cite{oshea2015introduction} are deep neural
     \label{fig:cnn_example}
 \end{figure}
 
-Even if CNNs are mainly used to classify photography, they can classify any images, including sounds\cite{Grumiaux_2022}. Based on section \ref*{subsec:spectrograms}, CNNs can use spectrograms as input since they also are images. The spectrograms are converted into images and fed into the CNN. 
 
-An approach for sound source localization is using classes to define zones where the sound can come from as the classes. The CNN will output a probability distribution over the possible classes. The class with the highest probability is the predicted class. The predicted class can then refer to a zone.
 
-The CNN then outputs a probability distribution over the possible classes. The possible classes need to be defined before training the CNN. In\cite{s20010172}, they approach the problem with 15 classes, using angles 0, 30, and 60 degrees and distances 1, 2, and 3 meters (Figure \ref*{fig:Yiwere_classes}).
+Even if CNNs are mainly used to classify real-life photography, they can classify any image, including sounds. The report [A survey of sound source localization with deep learning methods]\cite{Grumiaux_2022} shows that deep neural networks achieve good scores in sound source localization. CNNs can use any image as input. Based on section \ref*{subsec:spectrograms}, we can use the spectrograms as input in the network since we convert the sound into images during the spectrogram process. An approach for sound source localization is to use zones from which the sound can come as classes. The CNN will output a probability distribution over the possible classes. The class with the highest probability is the predicted class. The predicted class can then refer to a zone. The CNN then outputs a probability distribution over the possible classes. The possible classes need to be defined before training the CNN. In\cite{s20010172}, they approach the problem with 15 classes, using angles 0, 30, and 60 degrees and distances 1, 2, and 3 meters (Figure \ref*{fig:Yiwere_classes}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{../Images/Yiwere_classes.png}
+    \includegraphics[width=0.5\textwidth]{../Images/Yiwere_classes.png}
     \caption{CNN for source localization}
     \label{fig:Yiwere_classes}
 \end{figure}
 
-Based on the baseline defined in chapter \ref*{chap:state_of_the_art}
-
-
+This setup gives nine classes representing a different zone from where the sound can come from. The CNN will output a probability distribution over the nine classes, which allows determining the zone from where the sound comes from.
 
 \subsection{Transfer learning}
 
 %!!!!!!! TODO - réécrire la partie sur le transfer learning
 Transfer learning is a machine learning technique where a model trained on a specific task is reused as the starting point for a model on a different task. The model is trained on a large dataset and then used as a starting point for a model on a different dataset. The model is then trained on the new dataset, and the weights are adjusted to minimize the error between the predicted and desired outputs. Transfer learning is used to train models on smaller datasets and achieve better results than training the model from scratch.
 
-\section{Datasets for sound source localization}
+
+\section{Datasets for machine learning}
+
+Datasets are needed to train and test neural networks. They are composed of data and labels. The data is the neural network input, and the label is the expected output. Each entry in the dataset is composed of the data and the corresponding label. An entry in a dataset can also be called a sample. 
+
+A balanced dataset contains nearly the same number of samples for each class. An unbalanced dataset contains a considerably different number of samples for each class.
+
+\subsection{Datasets for sound source localization}
 \label{sec:datasetsSSL}
 
-Datasets are needed to train and test neural networks. They are composed of data and labels. The data is the neural network input, and the label is the expected output. In the case of sound source localization, the data is audio, and the labels are the zones of the sound source. 
+In the case of sound source localization, the data is audio, and the labels are the zones of the sound source. 
 
 Multiple datasets exist in sound source localization for neural networks. The most common are the DCASE 2019 task 3 dataset\cite{Adavanne2019_DCASE} and the DCASE 2020 task 3 dataset\cite{politis2020dataset}. These datasets are composed of audio files and the corresponding labels. The labels are the zones of the sound source. The audio files are recorded in a room with a microphone array and a sound source. The sound source is moved around the room, and the audio is recorded. The audio files are then annotated with the zones of the sound source. The annotations are done manually by listening to the audio files and annotating the zones. Multiple annotators then verify the annotations to ensure the quality of the annotations. 
 
 Although these datasets are good baselines for sound source localization, they do not suit the needs of this project. The datasets are recorded in a closed environment and do not reflect the baseline defined in this project. Still, these datasets are good baselines for sound source localization and help to understand how to create a dataset.
-
-
-
 
 \subsection{Dataset augmentation for audio classification}
 % TODO add sources
@@ -166,11 +169,70 @@ Dataset augmentation is a technique used to increase the size of a dataset. It i
 
 Some techniques that work well on audio are adding noise, changing the pitch, or simulating new data. 
 
-\section{Dataset simulation for sound source classification}
+\section{Dataset generation using simulation}
+\label{sec:dataset_generation_simulation}
 
 Simulating a dataset is a technique used to create a dataset without recording audio from real life. It helps to create a dataset with many samples and labels. Since the goal is to generate sounds in an open environment, a 3D-capable engine is necessary. Game engines are increasingly used for simulation since they are optimized for real-time rendering and can simulate complex 3D scenes. The game engine must simulate sound propagation for a realistic audio simulation.
 
-\subsection{Sound propagation}
+% TODO
+
+
+
+
+
+\subsection{Metrics review for neural networks}
+
+\paragraph{Accuracy}
+The most common metric for neural networks is the accuracy. The accuracy is the number of correct predictions divided by the total number of predictions. Accuracy is a good metric for classification problems since it tells us how the model performs. The accuracy is defined as follows:
+
+\begin{equation}
+    \text{Accuracy} = \frac{\text{Number of correct predictions}}{\text{Total number of predictions}}
+\end{equation}
+
+The accuracy is a useful metric for classification problems as it provides insight into how well the model performs. However, it may not be the best metric for unbalanced datasets. For instance, if a dataset contains 90\% of class A and 10\% of class B, a model that always predicts class A will have an accuracy of 90\%. Although this model has high accuracy, it is ineffective since it always predicts the same class.
+
+\paragraph{Recall}
+The recall is another metric that can be used. The recall is the number of true positives divided by the number of true positives and false negatives. The recall is defined as follows:
+
+\begin{equation}
+    \text{Recall} = \frac{\text{True positives}}{\text{True positives} + \text{False negatives}}
+\end{equation}
+
+The recall is a good metric for unbalanced datasets since it takes into account the number of false negatives.
+
+\paragraph*{F1 score}
+Another metric that can be used is the F1 score. The F1 score is the harmonic mean of the precision and recall. The F1 score is defined as follows:
+
+\begin{equation}
+    \text{F1 score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
+
+The F1 score is a good metric for unbalanced datasets since it takes into account the precision and the recall. 
+
+\paragraph*{Confusion matrix}
+
+To have a visual understanding of how a model performs, a confusion matrix can be used. A confusion matrix is a matrix that shows the number of correct and incorrect predictions for each class. The confusion matrix can be used with any number of classes and is a good way to visualize the performance of a model. The main aim of the visualization of a confusion matrix is to see which classes are misclassified and which classes are correctly classified. For example, in a binary classification problem, the confusion matrix is a 2x2 matrix. The confusion matrix is defined as follows:
+
+\begin{equation}
+    \begin{bmatrix}
+        \text{True positive} & \text{False negative} \\
+        \text{False positive} & \text{True negative}
+    \end{bmatrix}
+\end{equation}
+
+And the matrix can be visualized as follows:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/confusion_matrix_example.png}
+    \caption{Confusion matrix visualization}
+    \label{fig:confusion_matrix}
+\end{figure}
+
+The confusion matrix allows us to understand which classes are misclassified and to better understand if there are difficulties for the model to predict certain classes.
+
+
+\section{Sound propagation}
 Sound propagation is the physical process by which sound waves propagate in a given environment. Multiple factors affect the propagation of sound waves, including reverberation, occlusion, doppler effect, and obstruction.
 
 
