@@ -55,6 +55,8 @@ We also need to record a video of the vehicle to have a ground truth to annotate
     \label{fig:recording_system_design.drawio}
 \end{figure}
 
+We defined two seconds of recording as our sample length. We chose this length arbitrarily, mainly because it is long enough to have a vehicle passing by the microphones and short enough to have a reasonable size for the dataset.
+
 Overall, the baseline provides a context to develop further a concept of an accurate sound source localization system for outdoor space.
 
 \subsection{Dataset conception}
@@ -113,7 +115,7 @@ There are differences with the baseline system. The main one is that we generate
 
 The main advantages of the simulation are that we can generate as much data as we want. We can generate data for any position of the sound source. The simulation is composed of a vehicle, a microphone, and a camera. Based on the section \ref{sec:dataset_conception}, we want to generate data for the classes \textit{left\_to\_right} and \textit{right\_to\_left}. We can generate data for the class \textit{left\_to\_right} by placing the vehicle on the microphone's left and moving it to the right. We can generate data for the class \textit{right\_to\_left} by placing the vehicle on the right of the microphone and moving it to the left. For \textit{no\_cars} class, we can generate data by not placing the vehicle in the simulation. For the \textit{multiple\_cars} class, we can generate data by placing multiple vehicles in the simulation and moving them in the same direction. 
 
-\subsection{Genrealization aspect of the simulation}
+\subsection{Generalization aspect of the simulation} % TODO expliquer pourquoi il faut généraliser
 
 For the simulation to best generalize and better represent real-life data, we need to add randomness to the simulation in multiple ways. 
 
