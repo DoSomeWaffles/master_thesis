@@ -110,6 +110,8 @@ This setup shows that two microphones are enough to determine the direction of a
 
 Neural networks are machine learning algorithms based on biological neurons used to solve various problems, including image recognition, speech recognition, and natural language processing. Neural networks learn from provided data to solve a problem without explicitly programming the solution. Many domains, like self-driving cars, facial recognition, and medical imaging, achieve state-of-the-art results using neural network models. 
 
+A neural network needs to be trained to solve a problem. The training consists of providing the neural network with examples to recognize patterns in the data. Once we finish the training, the model can solve the problem.
+
 A neural network (figure \ref*{fig:neural_network}) is composed of multiple neurons (the circles) that are organized in layers and connected to the neurons in the previous and next layers. 
 
 \begin{figure}[H]
@@ -119,9 +121,96 @@ A neural network (figure \ref*{fig:neural_network}) is composed of multiple neur
     \label{fig:neural_network}
 \end{figure}
 
-Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks are trained by adjusting the weights to minimize the error between the predicted and desired outputs, using methods like gradient descent\cite{zhang2019gradient} and backpropagation\cite{Sekhar}.
-
 There are two main phases in the life of a neural network: training and inference. During the training phase, the neural network is trained on a large dataset of images. The neural network learns to recognize patterns in the images and classify them. During the inference phase, the neural network is used to classify new images.
+
+Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks train themselves by adjusting the weights to minimize the error between the predicted and desired outputs. They use an optimization algorithm to adjust the neurons' weights \cite{sun2019optimization}. Multiple optimization algorithms exist, including gradient descent\cite{zhang2019gradient} and backpropagation\cite{Sekhar}. These algorithms minimize the error between the predicted and desired outputs.
+
+%TODO - plagiat?
+\subsection{Neuron}
+
+A neuron is a mathematical function that takes multiple inputs and produces an output. The activation function and the weights of the neuron determine the output. The activation function determines how the neuron responds to inputs. The weights determine the importance of the inputs. The neuron's output is calculated by multiplying the inputs by their weights and applying the activation function to the result. The neuron sends its output to the next layer of neurons.
+
+\paragraph{Activation function}
+
+Multiple activation functions exist for neural networks. The most common activation functions are the linear function, the sigmoid function, the tanh function, and the ReLU function.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Images/activation_functions.png}
+    \caption{Activation functions}
+    \label{fig:activation_functions}
+\end{figure}
+
+These functions will determine how the neurons respond to inputs. These functions have been surveyed in [Activation Functions in Deep Learning: A Comprehensive Survey and Benchmark]\cite{dubey2022activation}. It shows that the ReLU function is the most used activation function in deep learning. The ReLU function is defined as:
+
+\begin{equation}
+    f(x) = max(0, x)
+\end{equation}
+
+The ReLU function is used in most neural networks because it is fast to compute and provides good results.
+
+% TODO Vérifier les équations
+
+\paragraph{Loss function}
+
+Neural networks use a loss function to measure the error between the predicted and desired outputs. The loss function is a mathematical function that takes the predicted and desired outputs as inputs and outputs a value representing the error between the predicted and desired outputs. The optimization algorithms use the loss function to adjust the neurons' weights to minimize the error between the predicted and desired outputs. When the loss function's value is low, the neural network accurately predicts the desired outputs.
+
+
+There is a wide variety of loss functions, including the mean squared error and the cross-entropy.
+
+The mean squared error loss function is defined as follows:
+
+\begin{equation}
+    L(y, \hat{y}) = \frac{1}{n} \sum_{i=1}^{n} (y_{i} - \hat{y}_{i})^2
+\end{equation}
+
+Where $y$ is the desired output, $\hat{y}$ is the predicted output, and $n$ is the number of classes.
+
+The cross-entropy loss function is defined as follows:
+
+\begin{equation}
+    L(y, \hat{y}) = - \sum_{i=1}^{n} y_{i} \cdot log(\hat{y}_{i})
+\end{equation}
+
+Where $y$ is the desired output, $\hat{y}$ is the predicted output, and $n$ is the number of classes.
+
+We can add weights to the loss function to give more importance to some classes. It helps when a dataset is unbalanced by giving more importance to the underrepresented classes. The weighted cross-entropy loss function is defined as follows:
+
+\begin{equation}
+    L(y, \hat{y}) = - \sum_{i=1}^{n} w_{i} \cdot y_{i} \cdot log(\hat{y}_{i})
+\end{equation}
+
+Where $y$ is the desired output, $\hat{y}$ is the predicted output, $n$ is the number of classes, and $w$ is the weight of the class.
+
+\paragraph{Gradient descent}
+
+Gradient descent is an optimization algorithm that minimizes the error between the predicted and desired outputs. We use it to train neural networks. Gradient descent works by iteratively adjusting the neurons' weights to minimize the error between the predicted and desired outputs. It uses the gradient of the loss function to find the direction of the steepest descent. The weights are adjusted in the opposite direction of the gradient. The gradient descent algorithm is defined as follows:
+
+\begin{equation}
+    \theta_{n+1} = \theta_{n} - \alpha \cdot \nabla f(\theta_{n})
+\end{equation}
+
+Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\nabla f(\theta_{n})$ is the gradient of the loss function.
+
+\paragraph{Backpropagation}
+
+Backpropagation is another optimization algorithm used to train neural networks. Gradient descent forms the basis of the backpropagation algorithm. It uses the gradient of the loss function to find the direction of the steepest descent. The weights are adjusted in the opposite direction of the gradient. Backpropagation is an iterative algorithm that adjusts the neurons' weights to minimize the error between the predicted and desired outputs. The backpropagation algorithm is defined as follows:
+
+\begin{equation}
+    \theta_{n+1} = \theta_{n} - \alpha \cdot \nabla f(\theta_{n})
+\end{equation}
+
+Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\nabla f(\theta_{n})$ is the gradient of the loss function.
+
+\subsection{Neural network hyperparameters}
+Neural networks use different hyperparameters to control the training process. The most common hyperparameters are the activation function and the learning rate.
+
+
+\paragraph{Learning rate}
+
+To train efficiently a neural network, we use a learning rate. It determines a factor of how much the weights are adjusted during training. A high learning rate will adjust the weights by a large amount, hence training the neural network faster but less precisely. A low learning rate will adjust the weights by a small amount, hence training the neural network slower but more precisely. The learning rate is a hyperparameter that needs to be tuned to achieve the best results.
+
+A solution to this problem is to use an adaptive learning rate. Adaptive learning rates are learning rates that change during training. They are used to train the neural network faster and more precisely. [Adaptive Learning Rate and Momentum for Training Deep Neural Networks]\cite{hao2021adaptive} shows us how it can train neural networks efficiently without losing precision. 
 
 \subsection{Deep Neural Networks}
 
@@ -129,9 +218,10 @@ Deep neural networks are a type of neural network composed of multiple layers of
 
 \subsection{Convolutional Neural Networks for sound source localization}
 \label{sec:cnn_for_ssl}
-Convolutional Neural Networks (CNNs)\cite{oshea2015introduction} are deep neural networks specifically used for image recognition. They are often composed of convolutional, subsampling, and fully connected layers (Figure \ref*{fig:cnn_example}).
+
+Convolutional Neural Networks (CNNs)\cite{oshea2015introduction} are deep neural networks specifically used for image recognition. They often comprise convolutional, subsampling, and fully connected layers (Figure \ref*{fig:cnn_example}).
 \begin{itemize}
-    \item{} Convolutional layers are used to extract features from images. These features are then fed into fully connected layers to perform classification. Each convolutional layer comprises multiple filters convolved with the input image to produce a feature map. The filters are trained to extract specific features from the input image.
+    \item{} Convolutional layers are used to extract features from images. These features are then fed into fully connected layers to perform classification. Each convolutional layer comprises multiple filters convolved with the input image to produce a feature map. The model trains the filters to extract specific features from the input image.
     \item{} Subsampling layers are used to reduce the size of the feature maps. The most common subsampling layer is the max-pooling layer, which takes the maximum value of a specific region of the feature map.
     \item{} Fully connected layers are trained to classify the features extracted by the convolutional layers. The output of the fully connected layers is a probability distribution over the possible classes. 
 \end{itemize}
@@ -143,8 +233,6 @@ Convolutional Neural Networks (CNNs)\cite{oshea2015introduction} are deep neural
     \label{fig:cnn_example}
 \end{figure}
 
-
-
 Even if CNNs are mainly used to classify real-life photography, they can classify any image, including sounds. The report [A survey of sound source localization with deep learning methods]\cite{Grumiaux_2022} shows that deep neural networks achieve good scores in sound source localization. CNNs can use any image as input. Based on section \ref*{subsec:spectrograms}, we can use the spectrograms as input in the network since we convert the sound into images during the spectrogram process. An approach for sound source localization is to use zones from which the sound can come as classes. The CNN will output a probability distribution over the possible classes. The class with the highest probability is the predicted class. The predicted class can then refer to a zone. The CNN then outputs a probability distribution over the possible classes. The possible classes need to be defined before training the CNN. In\cite{s20010172}, they approach the problem with 15 classes, using angles 0, 30, and 60 degrees and distances 1, 2, and 3 meters (Figure \ref*{fig:Yiwere_classes}).
 
 \begin{figure}[H]
@@ -155,6 +243,10 @@ Even if CNNs are mainly used to classify real-life photography, they can classif
 \end{figure}
 
 This setup gives nine classes representing a different zone from where the sound can come from. The CNN will output a probability distribution over the nine classes, which allows determining the zone from where the sound comes from.
+
+\subsection{Dropout layers}
+
+Dropout layers are used to prevent overfitting in neural networks. 
 
 \subsection{Transfer learning}
 

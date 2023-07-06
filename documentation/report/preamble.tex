@@ -51,6 +51,7 @@
 
 \usepackage{subfig}
 
+
 % constants
 
 \newcounter{qcounter}
@@ -130,7 +131,8 @@
 	upquote=true,
 	escapechar={!},
 	keepspaces=true,
-	breaklines=false,
+	breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 	alsoletter={:},
 	breakautoindent=true,
 	columns=fullflexible,

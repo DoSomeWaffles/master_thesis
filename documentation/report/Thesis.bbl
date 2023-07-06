@@ -29,6 +29,10 @@ Carlos~Fern{\'a}ndez Scola and Mar{\'i}a Dolores~Bola{\~n}os Ortega.
 \newblock Direction of arrival estimation : A two microphones approach.
 \newblock In {\em 2010 IEEE International Conference on Acoustics, Speech and Signal Processing}, 2010.
 
+\bibitem{sun2019optimization}
+Ruoyu Sun.
+\newblock Optimization for deep learning: theory and algorithms, 2019.
+
 \bibitem{zhang2019gradient}
 Jiawei Zhang.
 \newblock Gradient descent based optimization algorithms for deep learning models training, 2019.
@@ -37,6 +41,14 @@ Jiawei Zhang.
 Ch~Sekhar and P~Meghana.
 \newblock A study on backpropagation in artificial neural networks.
 \newblock {\em Asia-Pacific Journal of Neural Networks and Its Applications}, 4:21--28, 08 2020.
+
+\bibitem{dubey2022activation}
+Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
+\newblock Activation functions in deep learning: A comprehensive survey and benchmark, 2022.
+
+\bibitem{hao2021adaptive}
+Zhiyong Hao, Yixuan Jiang, Huihua Yu, and Hsiao-Dong Chiang.
+\newblock Adaptive learning rate and momentum for training deep neural networks, 2021.
 
 \bibitem{Schmidhuber_2015}
 Jürgen Schmidhuber.

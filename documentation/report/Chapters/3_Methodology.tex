@@ -133,7 +133,7 @@ The vehicle's arrival time is not constant in real life. We add randomness to th
 
 \paragraph{Random engine noise}
 
-We need to assign an engine sound to the vehicle during the simulation for the vehicle to be recorded by the microphone. There are many vehicles in real life, and many different engine noises. We reproduce this by randomly choosing an engine noise at the beginning of the simulation and playing it during the simulation. 
+We need to assign an engine sound to the vehicle during the simulation for the vehicle to be recorded by the microphone. There are many vehicles in real life and many different engine noises. We reproduce this by randomly choosing an engine noise at the beginning of the simulation and playing it during the simulation. 
 
 \paragraph{Random background noise}
 
@@ -151,6 +151,7 @@ The simulation should generate audio data by playing scenarios and recording the
 \end{itemize}
 
 \section{Adversarial Attack design}
+\label{sec:adversarial_attack_design}
 
 Based on the analysis in section \ref{sec:adversarial_attacks}, we can use an adversarial attack to fool the model designed in section \ref{sec:cnn_design_for_ssl}. This project uses the Fast Gradient Sign Method (FGSM) to generate adversarial inputs. The FGSM is a white-box attack meaning that we need the model's parameters to generate the adversarial inputs. Once we finish training the model, we can calculate the loss function's gradient concerning the input to find the direction that maximizes the loss function. Once we find the direction, we can add a perturbation multiplied by a value of epsilon to the input to generate the adversarial input. 
 Once we generate adversarial inputs, we test them on the model to see how it reacts. We realize the attack on a specific value of epsilon. We can try to attack the model with different epsilon values to see how much noise is needed for the model to fail. We analyzed the results by comparing them with the baseline model's results.
