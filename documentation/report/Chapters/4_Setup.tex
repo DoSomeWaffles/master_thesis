@@ -243,6 +243,7 @@ For the neural network implementation, we use Python. Python is a popular progra
 The shape of a tensor is a representation of the size of each of their dimension and their sizes.
 
 \subsection{Data loading}
+\label{sec:data_loading}
 
 Once we have annotated the dataset, we can load the train set in as a matrix. The matrix contains a dimension for each sample, a dimension for each channel, and a dimension for each time step. In parallel, we keep an array with every label for each sample. We then convert the matrix to a tensor with shape ([1422, 2, 88200]). The first dimension is the number of samples in the train set (here, 1418). The second dimension is the number of channels (here, two since we recorded with two microphones). The third dimension is the number of samples (here 88200, which is two times the used sampling rate since we recorded for two seconds). 
 
@@ -316,11 +317,12 @@ We added a dropout layer between the last layer and the output. It will help to 
 
 Our dataset is unbalanced, so we use the weighted cross-entropy loss function. We use the pytorch implementation of the weighted cross-entropy loss function\footnote{\url{https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html}}.
 
-We use the Adam optimizer with a learning rate of 0.001. We use the pytorch implementation of the Adam optimizer\footnote{\url{https://pytorch.org/docs/stable/generated/torch.optim.Adam.html}}.
+We use the Adam optimizer with a learning rate of 0.001 by using the pytorch implementation of the Adam optimizer\footnote{\url{https://pytorch.org/docs/stable/generated/torch.optim.Adam.html}}.
 
 We also use a scheduler to reduce the learning rate when the loss function stops decreasing. We use the pytorch implementation of the ReduceLROnPlateau scheduler\footnote{\url{https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html}}. This will change the rate at which the optimizer will change the weights of the neural network.
 
 \subsection{Training}
+\label{sec:training}
 
 When training, we have to define some more parameters for the training. We use the following parameters:
 
@@ -419,9 +421,11 @@ To record the sound, we use the \textit{AudioListener} component of Unity and ga
 
 \subsection{Creating the dataset}
 
-Based on each class defined in section \ref{sec:dataset_conception}, we can create a folder correspondingto the class. When the simulation runs, it saves the audio file in the correct folder. Since the simulation always knows the state of the objects, we can use this information to define in which folder the audio file is saved. This process allows us to create a dataset based on the same design as the one created with real-life data.
+We can create a folder corresponding to the class based on each class defined in section \ref{sec:simulation_concept_design}. When the simulation runs, it saves the audio file in the correct folder. Since the simulation always knows the state of the objects, we can use this information to define in which folder we need to save the audio file. This process allows us to create a dataset based on the same design as the one created with real-life data.
 
-Once we create the dataset, we can use it to extend the dataset created with real-life data to improve the neural network's performance.
+Once we create the dataset, we can extend the training dataset created with real-life data to improve the neural network's performance. We achieve the extension of the real-life dataset by loading the dataset the same way as the real-life dataset (in section \ref{sec:data_loading}) and extending the matrix containing the real-life dataset. We then train the model with the extended dataset by following the procedure described in section \ref{sec:training}. We generated 1267 audio files with the simulation. We then added them to the training dataset.
+
+We detail the results of this process in section \ref{sec:augmentation_results}.
 
 \section{Adversarial Attack}
 

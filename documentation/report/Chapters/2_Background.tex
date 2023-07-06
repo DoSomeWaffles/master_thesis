@@ -190,7 +190,11 @@ Gradient descent is an optimization algorithm that minimizes the error between t
     \theta_{n+1} = \theta_{n} - \alpha \cdot \nabla f(\theta_{n})
 \end{equation}
 
-Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\nabla f(\theta_{n})$ is the gradient of the loss function.
+Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\nabla f(\theta_{n})$ is the gradient of the loss function. This algorithm is repeated until the loss function's value is low enough. The gradient descent algorithm is slow because it uses the entire dataset to compute the gradient of the loss function.
+
+\paragraph{Mini-batch gradient descent}
+
+Mini-batch gradient descent is a variant of gradient descent. It uses a batch of samples to compute the gradient of the loss function. It is faster than full gradient descent because it uses a mini-batch of samples instead of the entire dataset. It is also more stable than gradient descent because it uses a mini-batch of samples instead of a single sample. The mini-batch gradient descent algorithm is defined as follows:
 
 \paragraph{Backpropagation}
 
