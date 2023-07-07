@@ -55,6 +55,9 @@
 \usepackage[T1]{fontenc}
 % constants
 
+
+
+
 \newcounter{qcounter}
 
 % commands
@@ -81,7 +84,6 @@
 
 
 % ============================================================================
-% Put edit comments in a really ugly standout display
 
 \usepackage{xcolor}
 \usepackage[normalem]{ulem}
@@ -108,7 +110,6 @@
 	}
 
 % ============================================================================
-% Make quotes be italic
 \renewenvironment{quote}
     {\list{}{\rightmargin\leftmargin}%
      \item\relax\begin{it}}
@@ -194,15 +195,16 @@
 \newcommand{\lessSpace}{\vspace{-1em}}
 \DeclareGraphicsExtensions{.pdf,.png}
 \graphicspath{{images/}}
-%\newcommand{\fig}[4]{
-%	\begin{figure}[#1]
-%		\centering
-%		\includegraphics[width=#2\textwidth]{#3}
-%		\lessSpace
-%		\caption{\label{fig:#3}#4}
-%	\end{figure}}
+\newcommand{\fig}[4]{
+	\begin{figure}[#1]
+		\centering
+		\includegraphics[width=#2\textwidth]{#3}
+		\lessSpace
+		\caption{\label{fig:#3}#4}
+	\end{figure}}
 
 % ===========================================================================
+
 
 
 \newcommand{\thesistitle}{Sound Source Localization and Distance

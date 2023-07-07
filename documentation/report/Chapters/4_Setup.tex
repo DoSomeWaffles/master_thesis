@@ -17,7 +17,7 @@ To record real data that suits our baseline, we must design a system to record a
     \label{fig:global_architecture}
 \end{figure}
 
-The HEIA-FR has a small balcony on the 4th floor with hardware installed for other projects. We use this balcony to install our system. The balcony is located on the side of a street and has a barrier on which we can attach hardware to have a good view of the street. 
+The HEIA-FR has a small balcony on the 4th floor with hardware installed for other projects. We use this balcony to install our system. The balcony is on the side of the street. It comprises a barrier on which we can attach hardware to have a good view of the street. 
 
 To record real data that suits our baseline, we must get hardware to record and save the data. The hardware we use is the following:
 
@@ -53,7 +53,7 @@ We use the \textit{Raspberry Pi 4} from \textit{raspberrypi} \footnote{\url{http
 
 \paragraph{Storage}
 
-We asked the HEIA-FR for a storage server in the school to upload the data. They lend us a server with two terabyte of storage accessible from the school network and from the internet.
+We asked the HEIA-FR for a storage server in the school to upload the data. They lend us a server with two terabytes of storage accessible from the school network and the internet.
 
 \paragraph{Data transmission}
 
@@ -65,6 +65,16 @@ Since there is no network cable on the HEIA-FR's balcony, we use a 4G modem lent
     \caption{D-Link router used for the recordings}
     \label{fig:4g_lte_router}
 \end{figure}
+
+We connect the raspberry pi to the router via an ethernet cable and the router access to the internet via the 4G modem. They are put in a waterproof suitcase to protect them from the weather (Figure \ref{fig:embedded_system_installation}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{images/embedded_system_installation.jpg}
+    \caption{4G router and modem in their case}
+    \label{fig:embedded_system_installation}
+\end{figure}
+
 
 \paragraph{3D support}
 
@@ -78,7 +88,26 @@ To attach the microphones, we design 3D pieces with CAD software to 3D print the
 \end{figure}
 
 % TODO ajouter images
-We can see the installed hardware in Figure TODO Ajouter image ! + mesure de la distance entre les micros
+
+We installed the microphones on the barrier with the 3D-printed clamp (Figure \ref{fig:microphones_support_installation}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{images/microphones_support_installation.jpg}
+    \caption{Microphones installation on the barrier.}
+    \label{fig:microphones_support_installation}
+\end{figure}
+
+We can see the complete setup in Figure \ref{fig:global_installation}. We can see the yellow case containing the Raspberry Pi and the two microphones with their 3D-printed support. We taped the camera to the side of the balcony. We connect the microphones with a 3-meter USB cable to the Raspberry Pi. The HEIA-FR'balcony has a roof, so the hardware is protected from rain.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{images/global_installation.jpg}
+    \caption{Hardware installation on the HEIA-FR's balcony.}
+    \label{fig:global_installation}
+\end{figure}
+
+Once we made the installation, we can start the recordings.
 
 \subsection{Software for the recordings}
 
@@ -90,7 +119,7 @@ We used \textit{Raspberry Pi OS} \footnote{\url{https://www.raspberrypi.org/soft
 
 \paragraph{Audio recording}
 
-Since each microphone has its sound card, we must treat them as one sound card per microphone on the operating system. This can cause some issues if we start the recording at a slightly different time. This problem can, for example, be the case when we execute two consecutive commands, one after the other, in a script to start the microphone recording. We can use \textit{Advanced Linux Sound Architecture (ALSA)} \footnote{\url{https://www.alsa-project.org/}} to manage each sound interface and combine them into one virtual sound interface to be able to start the record from both sound cards at the same time. This can be done in a configuration file for ALSA. We used the following configuration file to combine the two sound cards into one virtual sound card:
+Since each microphone has its sound card, we must treat them as one sound card per microphone on the operating system. This can cause issues if we start the recording at a slightly different time. This problem can, for example, be the case when we execute two consecutive commands, one after the other, in a script to start the microphone recording. We can use \textit{Advanced Linux Sound Architecture (ALSA)} \footnote{\url{https://www.alsa-project.org/}} to manage each sound interface and combine them into one virtual sound interface to be able to start the record from both sound cards at the same time. We can do this setup in a configuration file for ALSA. We used the following configuration file to combine the two sound cards into one virtual sound card:
 
 \begin{lstlisting}
 pcm.mic1 {
@@ -147,13 +176,13 @@ Since the data we transmit could be sensitive, we transferred it using a secure 
     sshfs drosset@proxy51.rt3.io:/home/drosset/workspace/videos /mnt/videos -p 33838
 \end{lstlisting}
 
-This command will ask for a password to connect to the server and provide us with a local drive on the Raspberry Pi that is connected to the server. We can then use this local drive to store the data directly on the storage server.
+This command will ask for a password to connect to the server and provide us with a local drive on the Raspberry Pi that is, in reality, the server's drive. We can then use this local drive to store the data directly on the storage server.
 
 \section{Dataset creation}
 
 For most of the dataset management, we used Python. Python is a programming language that gives us many dataset management tools. We used Python to split the recordings into smaller files, annotate the dataset, and manage the folders.
 
-Once we set up the hardware and the software allows us to record the vehicles on the street, we can build a dataset. The recordings of the vehicles contain audio and video in mp4 files of ten minutes each. We must split the recordings into smaller files to get to the two seconds of length defined in section \ref{sec:vehicle_recordings}. We split the recordings into two seconds files. Since splitting a video can be time-consuming, we launch it in a subprocess to execute it concurrently on multiple files at the same time. We used the following script:
+Once we set up the hardware and the software allows us to record the vehicles on the street, we can build a dataset. The recordings of the vehicles contain audio and video in mp4 files of ten minutes each. We must split the recordings into smaller files to get to the two seconds of length defined in section \ref{sec:vehicle_recordings}. We split the recordings into two seconds files. Since splitting a video can be time-consuming, we launch it in a subprocess to execute it concurrently on multiple files. We used the following script:
 
 \begin{lstlisting}[language=python]
 for file in files:
@@ -224,8 +253,8 @@ We made a script to shuffle the dataset and split it into training and test sets
 
 \begin{lstlisting}[language=bash]
 classes:  ['left_to_right', 'multiple_cars', 'no_car', 'right_to_left']
-files in train:  1426
-files in test:  611
+files in train set:  1426
+files in test set:  611
 total files:  2037
 ratio:  0.29995090819833087
 \end{lstlisting}
@@ -291,17 +320,17 @@ And Figure \ref{fig:spectrogram_test} shows some spectrograms from the test set.
     \label{fig:spectrogram_test}
 \end{figure}
 
-It's hard to tell the difference between the spectrograms even when they are in two different classes. That's why we use a neural network to classify them.
+It is hard to tell the difference between the spectrograms even when they are in two different classes. That's why we use a neural network to classify them.
 
 \subsection{Convolutional Neural Network architecture}
 
-We use the architecture defined in section \ref{sec:cnn_design_for_ssl}. Based on the input dimension, it gives the architecture in Figure \ref{fig:cnn_architecture}. We generate this by using the \textit{sumarry} function of library \textit{torchsumarry}\footnote{\url{https://pypi.org/project/torchsummary/}}. The \textit{sumarry} function takes a neural network as input and returns the architecture of the network.
+We use the architecture defined in section \ref{sec:cnn_design_for_ssl}. Based on the input dimension, it gives the architecture in Figure \ref{fig:ascii_cnn_architecture}. We generate this by using the \textit{sumarry} function of library \textit{torchsumarry}\footnote{\url{https://pypi.org/project/torchsummary/}}. The \textit{sumarry} function takes a neural network as input and returns the architecture of the network.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{images/ascii_model_architecture.png}
     \caption{Convolutional Neural Network architecture from Torchsumarry}
-    \label{fig:cnn_architecture}
+    \label{fig:ascii_cnn_architecture}
 \end{figure}
 
 We can better visualize the network architecture with Figure \ref{fig:cnn_architecture}. It shows us the different layers that we apply to the network. 
@@ -317,9 +346,9 @@ We added a dropout layer between the last layer and the output. It will help to 
 
 Our dataset is unbalanced, so we use the weighted cross-entropy loss function. We use the pytorch implementation of the weighted cross-entropy loss function\footnote{\url{https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html}}.
 
-We use the Adam optimizer with a learning rate of 0.001 by using the pytorch implementation of the Adam optimizer\footnote{\url{https://pytorch.org/docs/stable/generated/torch.optim.Adam.html}}.
+We use the Adam optimizer with a learning rate of 0.001 by using the PyTorch implementation of the Adam optimizer\footnote{\url{https://pytorch.org/docs/stable/generated/torch.optim.Adam.html}}.
 
-We also use a scheduler to reduce the learning rate when the loss function stops decreasing. We use the pytorch implementation of the ReduceLROnPlateau scheduler\footnote{\url{https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html}}. This will change the rate at which the optimizer will change the weights of the neural network.
+We also use a scheduler to reduce the learning rate when the loss function stops decreasing. We use the PyTorch implementation of the ReduceLROnPlateau scheduler\footnote{\url{https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html}}. This will change the rate at which the optimizer will change the weights of the neural network.
 
 \subsection{Training}
 \label{sec:training}
@@ -343,7 +372,7 @@ We used a computer with the following specifications to train the neural network
     \item \textbf{RAM}: 32 GB
 \end{itemize}
 
-The important part of the hardware is the GPU. Since machine learning comprises many parallelizable operations, it's much faster on GPU. We use CUDA\footnote{https://developer.nvidia.com/cuda-toolkit} to use the GPU. CUDA is a parallel computing platform and application programming interface model created by Nvidia. It allows us to use the GPU to train the neural network. The Pytorch library does the CUDA integration. To use the GPU, we have to tell Pytorch to move the model and the data on the GPU by using the \textit{.to('cuda')} function.
+The important part of the hardware is the GPU. Since machine learning comprises many parallelizable operations, it is much faster on GPU. We use CUDA\footnote{https://developer.nvidia.com/cuda-toolkit} to use the GPU. CUDA is a parallel computing platform and application programming interface model created by Nvidia. It allows us to use the GPU to train the neural network. The Pytorch library does the CUDA integration. To use the GPU, we have to tell Pytorch to move the model and the data on the GPU by using the \textit{.to('cuda')} function.
 
 This hardware helps us to train the neural network faster. We can train the neural network in 2 minutes on this hardware. If we don't use the GPU, the training time is multiplied by ~40. The short training time allows us to train the neural network multiple times and to try different parameters.
 
@@ -381,7 +410,7 @@ We reproduced a street in Unity. We used the Unity Asset Store\footnote{\url{htt
 
 \subsection{Microsoft Project Acoustic plugin}
 
-The Microsoft Project Acoustic plugin allows us to simulate the sound propagation in the scene. We can add it in the Unity's plugin tab by following Microsoft's guide\footnote{https://learn.microsoft.com/en-us/gaming/acoustics/unity-integration}. Once it's added, we need to voxelize the scene to define which 3D surface the sound will bounce. The plugin does the voxelization and takes a short time to complete. Figure \ref{fig:simulation_voxelization} shows the voxelization of the scene. Each green square represents a voxel.
+The Microsoft Project Acoustic plugin allows us to simulate sound propagation in the scene. We can add it in Unity's plugin tab by following Microsoft's guide\footnote{https://learn.microsoft.com/en-us/gaming/acoustics/unity-integration}. Once we add it, we need to voxelize the scene to define which 3D surface the sound will bounce. Voxelization is the process of averaging a 3D model with squares. The plugin does the voxelization and takes a short time to complete. Figure \ref{fig:simulation_voxelization} shows the voxelization of the scene. Each green square represents a voxel.
 
 \begin{figure}[H]
     \centering
@@ -443,7 +472,7 @@ To generate adversarial examples, we need to do the equivalent of one pass of th
 
 The $model(input_tensor)$ gives us the model prediction. The $label$ is the true class of the $input_tensor$. The $criterion$ is the loss function. We calculate the loss value when we call $backward()$. Once we find the loss, we can find the gradient direction by taking its sign. Once we have the direction of the gradient, we can multiply our $epsilon$ by the direction to find an image modified to maximize the loss, hence maximizing the miss-classification of the image.
 
-The point of the FGSM on images is to get a modified image that is undetectable by the human eye. To achieve this, the $epsilon$ must be the smallest possible. To find the smallest possible $epsilon$, we can run the FGSM multiple times with an increasing $epsilon$ until we find the most efficient value of $epsilon$. This value will show the level of resistance of the model to adversarial attacks.
+The point of the FGSM on images is to get a modified image undetectable by the human eye. We have to get the smallest $epsilon$ possible to stay undetected. To find the smallest possible $epsilon$, we can run the FGSM multiple times with an increasing $epsilon$ until we find the most efficient value of $epsilon$. This value will show the level of resistance of the model to adversarial attacks.
 
 Once we have the $perturbed_input_tensor$, we can save it as an adversarial example.
 

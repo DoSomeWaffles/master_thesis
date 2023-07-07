@@ -138,6 +138,11 @@ Matthew Rosen, Keith Godin, and Nikunj Raghuvanshi.
 Ian~J. Goodfellow, Jonathon Shlens, and Christian Szegedy.
 \newblock Explaining and harnessing adversarial examples, 2015.
 
+\bibitem{9930820}
+Rong Huang and Yuancheng Li.
+\newblock Adversarial attack mitigation strategy for machine learning-based network attack detection model in power system.
+\newblock {\em IEEE Transactions on Smart Grid}, 14(3):2367--2376, 2023.
+
 \bibitem{li2021generative}
 Xiang Li and Shihao Ji.
 \newblock Generative dynamic patch attack, 2021.

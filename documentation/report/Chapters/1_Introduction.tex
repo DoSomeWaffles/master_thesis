@@ -1,22 +1,21 @@
 \chapter{Introduction}
 \label{ch:introduction}
 Within the framework of the research project "NPR Teleoperation," the engineers of the HEIA-FR have developed the first concept in Switzerland of a remote-controlled automated vehicle. However, teleoperation only makes sense if the vehicle is automated. There can be no teleoperation without automation (economic factors), just as there can be no automation without teleoperation (legal, technical, and social factors). ROSAS then created the Autovete (Automatisation de véhicules téléopérés) project. HEIA-FR finances them to build up vehicle automation expertise. Detecting other emergency vehicles is mandatory for a vehicle to be fully autonomous. V2V (Vehicle-to-Vehicle) communication is a solution but is not yet integrated into emergency vehicles.
-So, to detect such a vehicle, two signals need to be processed: the sound of the emergency siren and the blinking lights of the vehicle. The first use case of this project focuses only on sound source distance estimation and localization. Detecting excessively noisy vehicles on the street is a simpler use case created for this project to understand if sound source estimation and localization could work for vehicles in an open environment. The goal is to measure the sound level of the passing vehicles and compare it with the legal limits. If a vehicle exceeds the limit, the system can record its license plate and report it to the authorities. This way, the system can help reduce noise pollution and improve road safety. This system requires a microphone array, a camera, and a processing unit to achieve the needed detection. The microphone array captures the sound signals from different positions and sends them to the processing unit. The processing unit applies a sound source localization algorithm to estimate the direction and distance of the sound source. The camera captures the image of the vehicle and performs license plate recognition. 
+So, to detect such a vehicle, two signals need to be processed: the sound of the emergency siren and the blinking lights of the vehicle. The first use case of this project focuses only on sound source distance estimation and localization. Detecting excessively noisy vehicles on the street is a simpler use case for this project to understand if sound source estimation and localization could work for vehicles in an open environment. The goal is to measure the sound level of the passing vehicles and compare it with the legal limits. If a vehicle exceeds the limit, the system can record its license plate and report it to the authorities. This way, the system can help reduce noise pollution and improve road safety. This system requires a microphone array, a camera, and a processing unit to achieve the needed detection. The microphone array captures the sound signals from different positions and sends them to the processing unit. The processing unit applies a sound source localization algorithm to estimate the direction and distance of the sound source. The camera captures the image of the vehicle and performs license plate recognition. 
 
-Big improvements in sound source localization with the help of neural networks are being made \cite{Grumiaux_2022}. They can be used to reliably localize the origin of a sound using one or more microphone arrays (multiple microphones operating in tandem). A non-negligible problem is the small number of real-world datasets with moving sources in an open environment. A solution is to create datasets in realistic sound propagation simulation and use them to augment the real-world datasets. A model can then be trained on the augmented dataset and tested for its performance in real-world data. 
+Big improvements in sound source localization are being achieved with the help of neural networks\cite{Grumiaux_2022}. They can be used to reliably localize the origin of a sound using one or more microphone arrays (multiple microphones operating in tandem). A non-negligible problem is the small number of real-world datasets with moving sources in an open environment. A solution is to create datasets in realistic sound propagation simulation and use them to augment the real-world datasets. A model can then be trained on the augmented dataset and tested for its performance in real-world data. 
 
-Using neural networks to solve the sound source localization problem can lead to a new attack vector for the system. The system can be attacked by modifying the sound source or the sound signal. Tests to understand how the system reacts to such attacks are necessary to understand the system's robustness.
+Using neural networks to solve the sound source localization problem can lead to a new attack vector for the system. The system can be attacked by modifying the sound source or signal. Tests to understand how the system reacts to such attacks are necessary to understand the system's robustness.
 
 \section{Motivation}
 \label{intro:motivation}
 
-More and more cities want to fight the noise pollution in the streets. Excessively noisy vehicles are mainly causing this pollution.
-The project's main objective is to help elaborate a system to detect excessively noisy vehicles on the street and report them to the authorities. The system should be able to detect the sound source's direction and distance and the vehicle's license plate. To achieve this, the system needs to localize a noisy vehicle on the street based on the sound it produces. This is important because when multiple vehicles are on a video or a picture, it is difficult to know which vehicle is noisy.
+More and more cities are fighting against noise pollution in the streets. Excessively noisy vehicles are mainly causing this pollution. The project's main objective is to help elaborate a system to detect excessively noisy vehicles on the street and report them to the authorities. The system should know where the sound source is to achieve this detection. The system needs to localize a noisy vehicle on the street based on the sound it produces. This capability is important because when multiple vehicles are on a video or a picture, it is difficult to know which vehicle is noisy.
 
 \subsection{Objectives}
-The project's main objective is to help elaborate a system to localize a vehicle sound source in an open environment. The system should be able to detect the sound source's direction and distance and the vehicle's license plate.
+The project's main objective is to help elaborate a system to localize a vehicle sound source in an open environment.
 
-Since we realized the specification file at the start of the project before the baseline definition, this report has updated the objectives to make them more precise and adapted to the chosen baseline. The initial objectives are available in the appendix \ref{appendix:specification}. We do a self-assessment on the specification file in the conclusion (chapter \ref{ch:conclusions}).
+Since we realized the specification file at the start of the project before the baseline definition, we updated this objective section to match the new baseline more precisely. The initial objectives are available in the appendix \ref{appendix:specification}. We do a self-assessment on the specification file in the conclusion (chapter \ref{ch:conclusions}).
 
 \paragraph{Objective n°1 Baseline}
 \label{intro:objective1}
@@ -31,17 +30,17 @@ The second objective is constructing a coherent dataset with the project's basel
 \paragraph{Objective n°3 Model for sound source localization and distance estimation}
 \label{intro:objective3}
 
-The third objective wants to create a neural network model to detect the origin of a sound using a microphone array. The neural network uses the dataset created in objective 2 for training and can localize the sound source accurately. An evaluation of the trained neural network model in a real environment allows us to see how it performs. The model will also be evaluated to understand how it can be improved.
+The third objective wants to create a neural network model to detect the origin of a sound using a microphone array. The neural network uses the dataset created in objective 2 for training and can localize the sound source accurately. An evaluation of the trained neural network model in a real environment allows us to see how it performs. We will also evaluate the model to understand how we can improve it.
 
 \paragraph{Objective n°4 Realization of a dataset in a simulation}
 \label{intro:objective4}
 
-The fourth objective is to create a new dataset in a simulation. The dataset will augment the real-world dataset and help provide a better neural network model. The dataset should be realistic and contain the same characteristics as the real-world dataset. The model trained with the augmented dataset will be evaluated to understand its utility.
+The fourth objective is to create a new dataset in a simulation. The dataset will augment the real-world dataset and help provide a better neural network model. The dataset should be realistic and contain the same characteristics as the real-world dataset. We will evaluate the model trained with the augmented dataset to understand its usefulness.
 
 \paragraph{Objective n°5 Attacking the model to understand how it reacts}
 \label{intro:objective5}
 
-The fifth objective is to attack the model. The trained neural network model needs to be evaluated by testing it on modified data, such as by adding or removing noise. Tests against adversarial attacks should be performed to understand how the model reacts.
+The fifth objective is to attack the model. We must evaluate the trained neural network model by testing it on modified data, such as by adding or removing noise. We must perform tests against adversarial attacks to understand how the model reacts.
 
 \section{Structure of the report}
 \label{intro:structure}

@@ -6,7 +6,7 @@ This chapter introduces technical concepts and background used in the conceptual
 \section{Baseline analysis}
 \label{sec:baseline_analysis}
 
-During the first weeks of the thesis, we had the opportunity to place an installation of microphones on the HEIA-FR main building roof. We took that opportunity to design the baseline and analyze how to build a system around it.
+During the first weeks of the thesis, we had the opportunity to place an installation of microphones on the HEIA-FR main building roof. We took that opportunity to design the baseline and analyze how to build a system around this possibility.
 
 After analyzing the road in front of the HEIA-FR main building, we decided to use the baseline to detect the position of vehicles driving on the road. The road is moderately busy, and the vehicles drive at a reasonable speed. The road is also straight, which makes it easier to detect the position of the vehicles. The baseline is shown in Figure \ref{fig:baseline_setup}. This analysis helps provide an intuitive understanding of the sound source localization system. The baseline comprises a vehicle as the sound source we want to record, multiple microphones recording the sound of the street, and an embedded system that manages the microphones.
 
@@ -15,7 +15,7 @@ After analyzing the road in front of the HEIA-FR main building, we decided to us
 
 The Waveform Audio File Format\footnote{https://www.loc.gov/preservation/digital/formats/fdd/fdd000001.shtml} is a standard for storing numerical audio data. The audio signal is continuous and is sampled to store it on a computer. The sampling rate represents the number of samples per second. The sampling rate is usually measured in Hertz (Hz). The numerical representation of the audio often used with wav is the PCM.
 
-The PCM (pulse-code modulation)\cite{5059525} is a method used to represent an analog signal with a binary. It is often used to represent uncompressed digital audio. The PCM is a sequence of amplitude values. Depending on the quality, the amplitude values are often stored as 8-bit, 16-bit, or 24-bit integers. A representation of a sampled sinusoidal signal is shown in Figure \ref{fig:sine_wave_representation_audacity}.
+The PCM (pulse-code modulation)\cite{5059525} is a method used to represent an analog signal with a binary. It is often used to represent uncompressed digital audio. The PCM is a sequence of amplitude values. The amplitude values are often stored as 8-bit, 16-bit, or 24-bit integers, depending on the quality. A representation of a sampled sinusoidal signal is shown in Figure \ref{fig:sine_wave_representation_audacity}.
 
 \begin{figure}[H]
     \centering
@@ -109,7 +109,7 @@ The two microphones have the same $Y$ coordinate, so $Y_{a} = Y_{b} = Y$ and $Y_
     y = \pm\sqrt{\frac{AB'^2}{4} - x^2_{B} + x^2(\frac{4\cdot x^2_{B}}{AB'^2} - 1)}
 \end{equation}
 
-The only variables are y and x. The value $x_{B}$ represent the position of the microphones which are taken as reference points. The value $AB'$ will not change even if the direction varies. Considering the speed of sound $c$, the distance $AB'$ is:
+The only variables are y and x. The value $x_{B}$ represents the position of the microphones, which we take as reference points. The value $AB'$ will not change even if the direction varies. Considering the speed of sound $c$, the distance $AB'$ is:
 
 \begin{equation}
     AB' = c \cdot \Delta t
@@ -134,9 +134,9 @@ A neural network (figure \ref*{fig:neural_network}) is composed of multiple neur
     \label{fig:neural_network}
 \end{figure}
 
-There are two main phases in the life of a neural network: training and inference. During the training phase, the neural network is trained on a large dataset. The neural network learns to recognize patterns in the train data and tries to generalize them. During the inference phase, the neural network is used to classify new images.
+There are two main phases in the life of a neural network: training and inference. We train the neural network on a large dataset during the first phase. The neural network learns to recognize patterns in the training data and tries to generalize them. During the inference phase, we use the neural network to classify new images.
 
-Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks train themselves by adjusting the weights to minimize the error between the predicted and desired outputs. They use an optimization algorithm to adjust the neurons' weights \cite{sun2019optimization}. Multiple optimization algorithms exist, the most used is gradient descent\cite{zhang2019gradient}. These algorithms minimize the error between the predicted and desired outputs.
+Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks train themselves by adjusting the weights to minimize the error between the predicted and desired outputs. They use an optimization algorithm to adjust the neurons' weights \cite{sun2019optimization}. Multiple optimization algorithms exist. The most used is gradient descent\cite{zhang2019gradient}. These algorithms minimize the error between the predicted and desired outputs.
 
 \subsection{Neuron}
 
@@ -194,13 +194,13 @@ Where $y$ is the desired output, $\hat{y}$ is the predicted output, $n$ is the n
 
 \paragraph{Gradient descent}
 
-Gradient descent is an optimization algorithm that minimizes the error between the predicted and desired outputs \cite{zhang2019gradient}. We use it to train neural networks. Gradient descent works by iteratively adjusting the neurons' weights to minimize the error between the predicted and desired outputs. It uses the gradient of the loss function to find the direction of the steepest descent. The weights are adjusted in the opposite direction of the gradient. The gradient descent algorithm is defined as follows:
+Gradient descent is an optimization algorithm that minimizes the error between the predicted and desired outputs \cite{zhang2019gradient}. We use it to train neural networks. Gradient descent works by iteratively adjusting the neurons' weights to minimize the error between the predicted and desired outputs. It uses the gradient of the loss function to find the direction of the steepest descent. We adjust the weights in the opposite direction of the gradient. The gradient descent algorithm is defined as follows:
 
 \begin{equation}
     \theta_{n+1} = \theta_{n} - \alpha \cdot \nabla f(\theta_{n})
 \end{equation}
 
-Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\nabla f(\theta_{n})$ is the gradient of the loss function. This algorithm is repeated until the loss function's value is low enough. The gradient descent algorithm is slow because it uses the entire dataset to compute the gradient of the loss function.
+Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\nabla f(\theta_{n})$ is the gradient of the loss function. We repeat the algorithm until the loss function's value is low enough. The gradient descent algorithm is slow because it uses the entire dataset to compute the gradient of the loss function.
 
 \paragraph{Mini-batch gradient descent}
 
@@ -208,14 +208,14 @@ Mini-batch gradient descent is a variant of gradient descent \cite{8264077}. It 
 
 \paragraph{Backpropagation}
 
-Backpropagation is algorithm used to train neural networks\cite{Sekhar}. Its utility is to compute the gradient of the loss function.
+Backpropagation is an algorithm used to train neural networks\cite{Sekhar}. Its utility is to compute the gradient of the loss function.
 
 \subsection{Neural network hyperparameters}
 Neural networks use different hyperparameters to control the training process. Some of the most common hyperparameters are the activation function, the learning rate, the number and type of layers, and the optimizer. We use these parameters to train the neural network efficiently. Multiple solutions exist to find the best hyperparameters for a neural network, but none are perfect \cite{yu2020hyperparameter}.
 
 \paragraph{Learning rate}
 
-To train efficiently a neural network, we use a learning rate. It determines a factor of how much the weights are adjusted during training. A high learning rate will adjust the weights by a large amount, hence training the neural network faster but less precisely. A low learning rate will adjust the weights by a small amount, hence training the neural network slower but more precisely. The learning rate is a hyperparameter that needs to be tuned to achieve the best results.
+To train efficiently a neural network, we use a learning rate. It determines a factor of how much we adjust the weights during training. A high learning rate will adjust the weights by a large amount, hence training the neural network faster but less precisely. A low learning rate will adjust the weights by a small amount, hence training the neural network slower but more precisely. The learning rate is a hyperparameter that needs to be tuned to achieve the best results.
 
 A solution to this problem is to use an adaptive learning rate. Adaptive learning rates are learning rates that change during training. They are used to train the neural network faster and more precisely. [Adaptive Learning Rate and Momentum for Training Deep Neural Networks]\cite{hao2021adaptive} shows us how it can train neural networks efficiently without losing precision. 
 
@@ -240,7 +240,7 @@ Convolutional Neural Networks (CNNs)\cite{oshea2015introduction} are deep neural
     \label{fig:cnn_example}
 \end{figure}
 
-Even if CNNs are mainly used to classify real-life photography, they can classify any image, including sounds. The report [A survey of sound source localization with deep learning methods]\cite{Grumiaux_2022} shows that deep neural networks achieve good scores in sound source localization. CNNs can use any image as input. Based on section \ref*{subsec:spectrograms}, we can use the spectrograms as input in the network since we convert the sound into images during the spectrogram process. An approach for sound source localization is to use zones from which the sound can come as classes. The CNN will output a probability distribution over the possible classes. The class with the highest probability is the predicted class. The predicted class can then refer to a zone. The CNN then outputs a probability distribution over the possible classes. The possible classes need to be defined before training the CNN. In\cite{s20010172}, they approach the problem with 15 classes, using angles 0, 30, and 60 degrees and distances 1, 2, and 3 meters (Figure \ref*{fig:Yiwere_classes}).
+Even if we mainly use CNNs to classify real-life photography, they can classify any image, including sounds. The report [A survey of sound source localization with deep learning methods]\cite{Grumiaux_2022} shows that deep neural networks achieve good scores in sound source localization. CNNs can use any image as input. Based on section \ref*{subsec:spectrograms}, we can use the spectrograms as input in the network since we convert the sound into images during the spectrogram process. An approach for sound source localization is to use zones from which the sound can come as classes. The CNN will output a probability distribution over the possible classes. The class with the highest probability is the predicted class. The predicted class can then refer to a zone. The CNN then outputs a probability distribution over the possible classes. We need to define the possible classes before training the CNN. In this work\cite{s20010172}, they approach the problem with 15 classes, using angles -60, -30, 0, 30, and 60 degrees multiplied by distances 1, 2, and 3 meters (Figure \ref*{fig:Yiwere_classes}).
 
 \begin{figure}[H]
     \centering
@@ -266,16 +266,14 @@ A balanced dataset contains nearly the same number of samples for each class. An
 
 In the case of sound source localization, the data is audio, and the labels are the zones of the sound source. 
 
-Multiple datasets exist in sound source localization for neural networks. The most common are the DCASE 2019 task 3 dataset\cite{Adavanne2019_DCASE} and the DCASE 2020 task 3 dataset\cite{politis2020dataset}. These datasets are composed of audio files and the corresponding labels. The labels are the zones of the sound source. The audio files are recorded in a room with a microphone array and a sound source. The sound source is moved around the room, and the audio is recorded. The audio files are then annotated with the zones of the sound source. The annotations are done manually by listening to the audio files and annotating the zones. Multiple annotators then verify the annotations to ensure the quality of the annotations. 
+Multiple datasets exist in sound source localization for neural networks. The most common are the DCASE 2019 task 3 dataset\cite{Adavanne2019_DCASE} and the DCASE 2020 task 3 dataset\cite{politis2020dataset}. These datasets are composed of audio files and the corresponding labels. The labels are the zones of the sound source. They record the audio files in a room with a microphone array and a sound source. They move the sound source around the room and record the audio. They annotate the audio files based on the zones of the sound source. The annotations are done manually by listening to the audio files and annotating the zones. Multiple annotators then verify the annotations to ensure the quality of the annotations. 
 
 Although these datasets are good baselines for sound source localization, they do not suit the needs of this project. The datasets are recorded in a closed environment and do not reflect the baseline defined in this project. Still, these datasets are good baselines for sound source localization and help to understand how to create a dataset.
 
 \subsection{Dataset augmentation for audio classification}
 Since recording many audio files is time-consuming and costly, and since the dataset needs to be large to train a neural network, we can use dataset augmentation techniques.
 
-Dataset augmentation is a technique used to increase the size of a dataset. It is used to improve the performance of a neural network by training on more data, thus becoming better at generalizing. The most common techniques\cite{yang2022image} are flipping, rotating, and cropping images, but since the classification in this project is realized on audio, other techniques are needed to augment the dataset. 
-
-Some techniques that work well on audio are adding noise, changing the pitch, or simulating new data\cite{ghilardi2019automatic}. 
+Dataset augmentation is a technique used to increase the size of a dataset. It is used to improve the performance of a neural network by training on more data, thus becoming better at generalizing. The most common techniques\cite{yang2022image} are flipping, rotating, and cropping images, but we realize the classification in this project on audio. Some other techniques are needed to augment the dataset. Techniques that work well on audio are adding noise, changing the pitch, or simulating new data\cite{ghilardi2019automatic}. 
 
 \subsection{Metrics review for neural networks}
 
@@ -286,19 +284,19 @@ The most common metric for neural networks is accuracy. The accuracy is the numb
     \text{Accuracy} = \frac{\text{Number of correct predictions}}{\text{Total number of predictions}}
 \end{equation}
 
-The accuracy is a useful metric for classification problems as it provides insight into how well the model performs. However, it may not be the best metric for unbalanced datasets. For instance, if a dataset contains 90\% of class A and 10\% of class B, a model that always predicts class A will have an accuracy of 90\%. Although this model has high accuracy, it is ineffective since it always predicts the same class.
+Accuracy is a useful metric for classification problems as it provides insight into how well the model performs. However, it may not be the best metric for unbalanced datasets. For instance, if a dataset contains 90\% of class A and 10\% of class B, a model that always predicts class A will have an accuracy of 90\%. Although this model has high accuracy, it is ineffective since it always predicts the same class.
 
 \paragraph{Recall}
-The recall is another metric that can be used. The recall is the number of true positives divided by the number of true positives and false negatives. The recall is defined as follows:
+Recall is another metric that we use. The recall is the number of true positives divided by the number of true positives and false negatives. The recall is defined as follows:
 
 \begin{equation}
     \text{Recall} = \frac{\text{True positives}}{\text{True positives} + \text{False negatives}}
 \end{equation}
 
-The recall is a good metric for unbalanced datasets since it considers the number of false negatives.
+Recall is a good metric for unbalanced datasets since it considers the number of false negatives.
 
 \paragraph{F1 score}
-Another metric that can be used is the F1 score. The F1 score is the harmonic mean of the precision and recall. The F1 score is defined as follows:
+Another metric that we can use is the F1 score. The F1 score is the harmonic mean of the precision and recall. The F1 score is defined as follows:
 
 \begin{equation}
     \text{F1 score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
@@ -306,13 +304,13 @@ Another metric that can be used is the F1 score. The F1 score is the harmonic me
 
 \paragraph{Loss}
 
-The loss is a metric that is calculated during the training. It can also be used to represent how well the model performs. The loss is used to update the weights of the neural network. The loss is defined as follows:
+The model calculates the loss metric during the training to update the neural network weights. We can use the loss value to represent how well the model performs. The loss is defined as follows:
 
 The F1 score is a good metric for unbalanced datasets since it considers precision and recall. 
 
 \paragraph{Confusion matrix}
 
-To have a visual understanding of how a model performs, we use a confusion matrix. A confusion matrix shows the number of correct and incorrect predictions for each class. The confusion matrix can be used with any number of classes and is a good way to visualize the performance of a model. The main aim of the visualization of a confusion matrix is to see which classes are misclassified and which classes are correctly classified. For example, in a binary classification problem, the confusion matrix is a 2x2 matrix. The confusion matrix is defined as follows:
+To have a visual understanding of how a model performs, we use a confusion matrix. A confusion matrix shows the number of correct and incorrect predictions for each class. The confusion matrix can be used with any number of classes and is a good way to visualize the performance of a model. The main aim of visualizing a confusion matrix is to see which classes the model misclassified and which are correctly classified. For example, in a binary classification problem, the confusion matrix is a 2x2 matrix. The confusion matrix is defined as follows:
 
 \begin{equation}
     \begin{bmatrix}
@@ -327,19 +325,13 @@ And the matrix can be visualized as follows:
     \centering
     \includegraphics[width=0.5\textwidth]{images/confusion_matrix_example.png}
     \caption{Confusion matrix visualization}
-    \label{fig:confusion_matrix}
+    \label{fig:binary_confusion_matrix}
 \end{figure}
 
-The confusion matrix allows us to understand which classes are misclassified and to better understand if there are difficulties for the model to predict certain classes.
-
+The confusion matrix allows us to understand which classes are misclassified and better understand if the model has difficulty predicting certain classes.
 
 \section{Sound propagation}
-Sound propagation is the physical process by which sound waves propagate in a given environment. Multiple factors affect the propagation of sound waves, including reverberation, occlusion, doppler effect, and obstruction.
-
-\subsection{Microsoft Project Acoustics}
-
-
-\subsubsection{Sound Propagation in game-engine}
+Sound propagation is the physical process by which sound waves propagate in a given environment. Multiple factors affect the propagation of sound waves, including reverberation, occlusion, doppler effect, and obstruction. These effects are needed to have a realistic representation of the sound in a given environment.
 
 \section{Dataset generation using simulation}
 \label{sec:dataset_generation_simulation}
@@ -360,22 +352,22 @@ Microsoft Project Acoustics\footnote{\url{https://learn.microsoft.com/en-us/gami
     \label{fig:microsoft_ray_based_acoustics}
 \end{figure}
 
-The plugin can be used in any 3D environment by pre-calculating the possible path of the sound. Once the pre-calculation is realized, the plugin can simulate the sound propagation effects in real-time.
+The plugin can be used in any 3D environment by pre-calculating the possible path of the sound. Once we realize the pre-calculation, the plugin can simulate the sound propagation effects in real-time.
 
 \section{Adversarial Attacks}
 \label{sec:adversarial_attacks}
 
 Adversarial attacks are a manipulation technique that aims to fool a neural network by modifying the input data. The goal is to make the neural network misclassify. Adversarial attacks allow us to test the robustness of neural networks and understand how neural networks work and how we can improve them.
 
-Adversarial attacks can be categorized into white-box attacks and black-box attacks. White-box attacks are attacks where the attacker has access to the neural network's parameters and architecture. Conversely, black-box attacks are attacks where the attacker cannot access the neural network's parameters and architecture.
+We classify adversarial attacks into two categories: white-box attacks and black-box attacks. White-box attacks are attacks where the attacker has access to the neural network's parameters and architecture. Conversely, black-box attacks are attacks where the attacker has no access the neural network's parameters and architecture.
 
-One of the most common adversarial attacks is the Fast Gradient Sign Method (FGSM)\cite{goodfellow2015explaining}. It is a white-box attack that uses the gradient of the loss function to find the adversarial example. The adversarial example is calculated using the following equation:
+One of the most common adversarial attacks is the Fast Gradient Sign Method (FGSM)\cite{goodfellow2015explaining}. It is a white-box attack that uses the gradient of the loss function to find the adversarial example. We calculate the adversarial example using the following equation:
 
 \begin{equation}
     X_{adv} = X + \epsilon \cdot sign(\nabla_{X}J(\theta, X, y))
 \end{equation}
 
-$X$ is the input, $y$ is the target class, $\epsilon$ is the magnitude of the perturbation, and $J(\theta, X, y)$ is the loss function. The loss function is the function that the neural network normally tries to minimize, but here is used to maximize the loss. The gradient of the loss function is calculated for the input $X$. The sign of the gradient is then calculated and multiplied by the magnitude of the perturbation $\epsilon$. The result is added to the input to create the adversarial example $X_{adv}$. The adversarial example is then fed into the neural network, which outputs the adversarial class (Figure \ref*{fig:fgsm}).
+Where $X$ is the input, $y$ is the target class, $\epsilon$ is the magnitude of the perturbation, and $J(\theta, X, y)$ is the loss function. The loss function is the function that the neural network normally tries to minimize, but here is used to maximize the loss. We calculate the gradient of the loss function for the input $X$. The sign of the gradient is then calculated and multiplied by the magnitude of the perturbation $\epsilon$. The result is added to the input to create the adversarial example $X_{adv}$. We feed the adversarial example into the neural network, which, if the attack succeeds, can output the wrong class (Figure \ref*{fig:fgsm}).
 
 \begin{figure}[H]
     \centering

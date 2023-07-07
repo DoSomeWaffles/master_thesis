@@ -36,6 +36,72 @@ MonoBehaviour:
   DataFileBaseName: Acoustics_SampleScene
   ActiveJobID: 
   MaterialsListElements:
+  - m_name: b1
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b1-1
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b4
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b4-1
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b4-2
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b4-3
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b5
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b5-1
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b6
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: b6-1
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Border
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Car_Lamps
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Car_Paint_Blue
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Car_Paint_Green
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Car_Rubber
+    m_absorptivity: 0.1
+    m_materialCode: 23
+  - m_name: Car_Windows
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Default-Material
+    m_absorptivity: 0.1
+    m_materialCode: 40
   - m_name: New Material
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Pavement
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Pole1
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Pole-base
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Pole-light
+    m_absorptivity: 0.1
+    m_materialCode: 2
+  - m_name: Road-1-line
     m_absorptivity: 0.1
     m_materialCode: 2

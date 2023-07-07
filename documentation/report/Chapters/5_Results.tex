@@ -10,9 +10,9 @@ Once we installed the recording system on the HEIA-FR building, it allowed us to
 
 \paragraph*{Problems encountered}
 
-We first tried streaming the data directly from the raspberry pi to the storage server with the Real-time Transport Protocol (RTP) \footnote{\url{https://fr.wikipedia.org/wiki/Real-time\_Transport\_Protocol}}. By default, the RTP protocol did not encrypt the streamed data. The \textit{ffmpeg} encoding buffer was regularly full, which caused the loss of some frames and some artifacts in the audio, and the streaming technique gave us a bad image quality due to the real-time encoding of the video.
+We first tried streaming the data directly from the raspberry pi to the storage server with the Real-time Transport Protocol (RTP) \footnote{\url{https://fr.wikipedia.org/wiki/Real-time\_Transport\_Protocol}}. By default, the RTP protocol did not encrypt the streamed data. The \textit{FFMPEG} encoding buffer was regularly full, which caused the loss of some frames and some artifacts in the audio, and the streaming technique gave us a bad image quality due to the real-time encoding of the video.
 
-We solved all these problems by using the SFTP protocol. We solved the image quality by mounting the storage server's folder on the raspberry pi as a network driver. Since ffmpeg no longer used the RTP, it could take his time to encode the video in good quality and save it. The SFTP use also solved the buffer issue. Finally, the SFTP protocol allowed us to encrypt the data since it's a secure protocol by default. An example of the difference between the two method's quality can be seen in the figure \ref{fig:streaming}.
+We solved all these problems by using the SFTP protocol. We solved the image quality by mounting the storage server's folder on the raspberry pi as a network driver. Since FFMPEG no longer used the RTP, it could take his time to encode the video in good quality and save it. The SFTP use also solved the buffer issue. Finally, the SFTP protocol allowed us to encrypt the data since it's a secure protocol by default. An example of the difference between the two method's quality can be seen in the figure \ref{fig:streaming}.
 
 \begin{figure}[H]
     \centering
@@ -33,18 +33,18 @@ With the analysis and design parts of the report (section \ref{sec:baseline_anal
 
 With the recording system in place, we built a dataset for this project comprising 2028 dual-channel audio and video files of 2 seconds classified into four classes. The realization of this dataset achieves the goal defined in section \ref{intro:objective2} of having a dataset that follows the baseline to train our model. The dataset is complete and follows the baseline. It is also large enough to train a model with it. The dataset's creation solves the problem of the lack of a dataset for this project. We can consider the objective defined in section \ref{intro:objective2} as achieved.
 
-Although the dataset is created and follows the baseline, it is questioned in the next section ()\ref{sec:neural_network_results}).
+Although the dataset is created and follows the baseline, we challenge it in the next section ()\ref{sec:neural_network_results}).
 
 \section{Neural Network model results}
 \label{sec:neural_network_results}
 
-We trained the neural network multiple times and tested it on the test set. The results were not as good as expected. The model was not able to classify the \textit{no\_car} and the \textit{multiple\_cars} classes very well. The model could not accurately classify the \textit{right\_to\_left} and \textit{left\_to\_right} classes. We trained the model with different percentages of the dataset in the train set. First with 60\%, then with 70\%, and finally with 80\%.
+We trained the neural network multiple times and tested it on the test set. The results were not as good as expected. The model could not classify the \textit{no\_car} and the \textit{multiple\_cars} classes well. The model could not accurately classify the \textit{right\_to\_left} and \textit{left\_to\_right}. We trained the model with different percentages of the dataset in the train set. First with 60\%, then with 70\%, and finally with 80\%.
 The results are presented in the table \ref{tab:neural_network_results}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/accuracy_test.png}
-    \caption{Accuracy of the neural network model for each train set proportion. Orange is 60\%, purple is 70\%, and pink is 80\%}
+    \caption{Accuracy of the neural network model for each train set proportion. Orange is 60\%, purple is 70\%, and pink is 80\%. X axis is the number of epochs.}
     \label{ftab:neural_network_results}
 \end{figure}
 
@@ -53,11 +53,13 @@ We can see that the model trained with 70\% of the dataset in the train set is t
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/loss_test.png}
-    \caption{Loss of the neural network model each train set proportion. Orange is 60\%, purple is 70\%, and pink is 80\%}
+    \caption{Loss of the neural network model each train set proportion. Orange is 60\%, purple is 70\%, and pink is 80\%. X axis is the number of epochs.}
     \label{fig:loss_test}
 \end{figure}
 
-The accuracy and loss of the models are presented in the next table. We added the runs with the 40\%, 50\%, and 90\% of the dataset in the train set to the table \ref{tab:neural_network_results} to show that the model's accuracy and loss are not better with these percentages.
+Here we see that both the validation loss and the accuracy are increasing. This double increase can happen because the loss function is not always directly related to accuracy. The loss function measures how well the model can predict the correct output. The model may make more confident incorrect predictions, increasing both loss and accuracy. 
+
+We present the accuracy and loss of the models in Table \ref{tab:neural_network_results}. We added the runs with the 40\%, 50\%, and 90\% of the dataset in the train set to the table to show that the model's accuracy and loss are not better with these percentages.
 
 \begin{table}[H]
     \centering
@@ -101,7 +103,7 @@ We also have a dataset that is hard to tell when a vehicle is coming from the le
 
 \subsection{Human accuracy}
 
-We annotated the test set with only the audio to compare the human and model performance. At this task, the human did only 30.3\% of accuracy. This accuracy is just slightly better than average. We can see on the confusion matrix (figure \ref{fig:human_score_only_audio}) that the human has difficulty telling when there is a vehicle. He predicted more than 50\% of the classes as \textit{no\_car}. 
+We annotated the test set with only the audio to compare the human and model performance. At this task, the human did only 30.3\% accuracy. This accuracy is just slightly better than average. We can see on the confusion matrix (figure \ref{fig:human_score_only_audio}) that the human has difficulty telling when there is a vehicle. He predicted more than 50\% of the classes as \textit{no\_car}. 
 
 \begin{figure}[H]
     \centering
@@ -110,7 +112,7 @@ We annotated the test set with only the audio to compare the human and model per
     \label{fig:human_score_only_audio}
 \end{figure}
 
-To have a fair comparison, we tested the model on the same dataset that the human was confronted to. The model achieved a score of 63.08\% with the following confusion matrix (figure \ref{fig:model_score_only_audio}):
+To have a fair comparison, we tested the model on the same dataset used to confront the human. The model achieved a score of 63.08\% with the following confusion matrix (figure \ref{fig:model_score_only_audio}):
 
 \begin{figure}[H]
     \centering
@@ -121,11 +123,11 @@ To have a fair comparison, we tested the model on the same dataset that the huma
 
 We can see that the model performs way better than the human. 
 
-With this result, we can tell that the objective \ref{intro:objective3} is achieved. The model is better than humans at predicting the vehicle's direction with only the audio input. Still, the model could be way better. Achieving 63.08\% of accuracy is not enough to be used in a real-life situation. With this model, we have a complete baseline definition and can try to improve the score.
+With this result, we can tell that the objective \ref{intro:objective3} is achieved. The model is better than humans at predicting the vehicle's direction with only the audio input. Still, the model could be way better. Achieving 63.08\% % of accuracy is not enough to be used in a real-life situation. With this model, we have a complete baseline definition and can try to improve the score.
 
 \subsection{Dataset quality}
 
-With the results from the convolutional neural network, it's hard to tell if the dataset is well labeled or not. We can see that the model can classify the \textit{no\_car} and the \textit{multiple\_cars} classes very well. The model could not accurately classify the \textit{right\_to\_left} and \textit{left\_to\_right} classes. This could mean that the dataset is not well labeled.
+With the results from the convolutional neural network, it's hard to tell if the dataset is well labeled or not. We can see that the model can classify the \textit{no\_car} and the \textit{multiple\_cars} classes very well. The model could not accurately classify the \textit{right\_to\_left} and \textit{left\_to\_right}. This accuracy could mean that the dataset is not well labeled.
 
 \subsection{Dataset Augmentation with the Simulation}
 \label{sec:augmentation_results}
@@ -148,7 +150,7 @@ By adding the simulated data to the real-life dataset, we hoped to see better ac
     \label{tab:neural_network__augmented_results}
 \end{table}
 
-We can see in the table \ref{tab:neural_network__augmented_results} that the augmented dataset does not improve the model's accuracy. We can see that the model trained with 70\% of the dataset in the train set has the best accuracy and loss. We can also compare the confusion matrix of both models (figure \ref{fig:confusion_matrix}). We can see that the augmented dataset does not change a lot the confusion matrix.
+We can see in the table \ref{tab:neural_network__augmented_results} that the augmented dataset does not improve the model's accuracy. We can see that the model trained with 70\% of the dataset in the train set has the best accuracy and loss. We can also compare the confusion matrix of both models (figure \ref{fig:augmented_confusion_matrix}). We can see that the augmented dataset does not change a lot the confusion matrix.
 
 \begin{figure}[H]
     \centering
@@ -156,7 +158,7 @@ We can see in the table \ref{tab:neural_network__augmented_results} that the aug
     \qquad
     \subfloat[Augmented dataset]{\includegraphics[width=0.7\textwidth]{images/confusion_matrix_augmented.png}\label{fig:confusion_matrix_augmented}}
     \caption{Confusion matrix of the model trained with 70\% of the dataset in the train set}
-    \label{fig:confusion_matrix}
+    \label{fig:augmented_confusion_matrix}
 \end{figure}
 
 We can deduce that the simulated data does not help the model. The reason might be that the simulated data is unrealistic, so the models ignore it. It might happen because there are errors in the simulation, and the generated data contains them.
@@ -165,7 +167,7 @@ The objective \ref{intro:objective4} was to augment the dataset with the simulat
 
 \section{Adversarial Attack results}
 
-The adversarial attacks were realized on the best model of the convolutional neural network. We use the model that uses 70\% of the dataset (Table \ref{tab:neural_network_results}).
+We realized the adversarial attacks on the best model of the convolutional neural network. We use the model that uses 70\% of the dataset (Table \ref{tab:neural_network_results}).
 
 We took every input from the test set that is classified correctly by the convolutional neural network. We try the FGSM with the following $epsilons$: 1e-08, 1e-07, 1e-06, 1e-05, 0.0001, 0.001, 0.01, 0.1, 1.0, 10.0. For each epsilon, we modify the input we chose previously and use it to predict again on the model. This attack gives us the following graph (Figure \ref{fig:fgsm_results}).
 
@@ -185,11 +187,13 @@ We can see that the accuracy is dropping around $10^-3$ and $10^-1$. We can visu
     \label{fig:adversarial_attack_results}
 \end{figure}
 
-This allows us to see that our attack works only when the spectrogram is heavily modified. After reconstructing the audio from the spectrogram, we can hear that the audio is not understandable anymore. It's mainly noise This attack is not useful for our case because we need an audio that will produce the exact spectrogram we modified with the attack.
+We can see that our attack only works when the spectrogram is heavily modified. After reconstructing the audio from the spectrogram, we can hear that the audio is not understandable anymore. It's mainly noise. This attack is not useful for our case because we need audio to produce the exact spectrogram we modified with the attack.
 
 \subsection{Adversarial Attack mitigation}
 
-We can conclude that a CNN that classifies sounds is safer by design than one that classifies images when attacked with the FGSM. The loss of information during the griffin-lim and the fourier transform makes the model more robust to adversarial attacks. 
+We can conclude that a CNN that classifies sounds is safer by design than one that classifies images when attacked with the FGSM. The loss of information during the griffin-lim and the Fourier transform makes the model more robust to adversarial attacks. 
 
 Even if we managed to attack with a small $epsilon$, the attack would need to play the sound through a speaker. The speaker would not be able to reproduce every small noise that we added to the spectrogram. So the attack would not work in real life without having a considerably different sound.
 By referring to the objective \ref{intro:objective5}, we can conclude that we have partially fulfilled it. We have shown that an adversarial attack is possible but useless in a real-life case. We must find an attack that works differently to fulfill this objective completely.
+
+Suppose the attack is possible in a real-life case. In that case, we can mitigate it by following the proposed strategy in [Adversarial Attack Mitigation Strategy for Machine Learning-Based Network Attack Detection Model in Power System]\cite{9930820}.
