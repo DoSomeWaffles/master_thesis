@@ -1,5 +1,5 @@
 
-\chapter{Design}
+\chapter{Approach and Design}
 \label{ch:methodology}
 
 This chapter presents the design of the project. It is the description of the project's architecture and the project's components.
@@ -122,7 +122,9 @@ There are differences with the baseline system. The main one is that we generate
 
 The main advantages of the simulation are that we can generate as much data as we want. We can generate data for any position of the sound source. The simulation is composed of a vehicle, a microphone, and a camera. Based on the section \ref{sec:dataset_conception}, we want to generate data for the classes \textit{left\_to\_right} and \textit{right\_to\_left}. We can generate data for the class \textit{left\_to\_right} by placing the vehicle on the microphone's left and moving it to the right. We can generate data for the class \textit{right\_to\_left} by placing the vehicle on the right of the microphone and moving it to the left. We did not generate data for the classes \textit{no\_cars} and \textit{multiple\_cars}.
 
-\subsection{Generalization aspect of the simulation} % TODO expliquer pourquoi il faut généraliser
+\subsection{Generalization aspect of the simulation}
+
+Simulation is a tool to generate data, but it is a tool that can generate bad data. The simulation can generate data that does not represent real-life data. If the simulation generates data that does not represent real-life data, the classification score on the real-life data will be low.
 
 For the simulation to best generalize and better represent real-life data, we need to add randomness to the simulation in multiple ways. 
 

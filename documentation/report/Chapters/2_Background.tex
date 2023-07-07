@@ -1,4 +1,4 @@
-\chapter{Background and Litterature}
+\chapter{Analysis and Litterature}
 \label{ch:background}
 
 This chapter introduces technical concepts and background used in the conceptualized solution of the thesis. It also explains the analysis of the needs of the thesis and finds relations with the current state of research in sound source localization systems.
@@ -10,12 +10,12 @@ During the first weeks of the thesis, we had the opportunity to place an install
 
 After analyzing the road in front of the HEIA-FR main building, we decided to use the baseline to detect the position of vehicles driving on the road. The road is moderately busy, and the vehicles drive at a reasonable speed. The road is also straight, which makes it easier to detect the position of the vehicles. The baseline is shown in Figure \ref{fig:baseline_setup}. This analysis helps provide an intuitive understanding of the sound source localization system. The baseline comprises a vehicle as the sound source we want to record, multiple microphones recording the sound of the street, and an embedded system that manages the microphones.
 
-\subsection{Audio file format} % TODO ajouter les sources
+\subsection{Audio file format}
 \label{subsec:audio_file_format}
 
-The Waveform Audio File Format is a standard for storing computer audio data. The audio signal is continuous and is sampled to store it on a computer. The sampling rate represents the number of samples per second. The sampling rate is usually measured in Hertz (Hz). The numerical representation of the audio often used with wav is the PCM.
+The Waveform Audio File Format\footnote{https://www.loc.gov/preservation/digital/formats/fdd/fdd000001.shtml} is a standard for storing numerical audio data. The audio signal is continuous and is sampled to store it on a computer. The sampling rate represents the number of samples per second. The sampling rate is usually measured in Hertz (Hz). The numerical representation of the audio often used with wav is the PCM.
 
-The PCM (pulse-code modulation) is a method used to represent an analog signal with a binary. It is often used to represent uncompressed digital audio. The PCM is a sequence of amplitude values. Depending on the quality, the amplitude values are often stored as 8-bit, 16-bit, or 24-bit integers. A representation of a sampled sinusoidal signal is shown in Figure \ref{fig:sine_wave_representation_audacity}.
+The PCM (pulse-code modulation)\cite{5059525} is a method used to represent an analog signal with a binary. It is often used to represent uncompressed digital audio. The PCM is a sequence of amplitude values. Depending on the quality, the amplitude values are often stored as 8-bit, 16-bit, or 24-bit integers. A representation of a sampled sinusoidal signal is shown in Figure \ref{fig:sine_wave_representation_audacity}.
 
 \begin{figure}[H]
     \centering
@@ -42,6 +42,8 @@ Spectrograms are a visual representation of the frequency content of a sound sig
     \label{fig:spectrogram_example}
 \end{figure}
 
+Spectrograms are drawn by computing the Fourier transform of a sound signal. The most common way to compute the Fourier transform is to use the Fast Fourier Transform (FFT) algorithm \cite{5217220}.
+
 The x-axis represents time, and the y-axis represents frequency. The intensity of the color at each point in the spectrogram represents the amplitude of the frequency component. A matrix of spectrograms allows the representation of multiple channels, such as the ones recorded by a microphone array. On that matrix, each spectrogram represents the frequency content of a single channel (figure \ref*{fig:2_channel_spectrogram_example}).
 
 \begin{figure}[H]
@@ -62,6 +64,10 @@ Looking at the frequency content of the sound signal allows us to identify the t
 
 Since we know the distance between the microphones, we can determine the direction of the sound.
 
+\subsection{Signal estimation from Short Time Fourier Transform}
+
+The Griffin-Lim algorithm\cite{6701851} is an iterative algorithm that uses a spectrogram to estimate the phase of a signal. The algorithm starts with a random phase and iteratively updates the phase until the spectrogram converges to the original spectrogram. This algorithm allows to reconstruct a signal from a spectrogram.
+
 \subsection{Origin of sound using two microphones}
 
 Admitting the following setup (figure \ref*{fig:microphones_setup}), if the time delta 1 is greater than the time delta 2 of the other channels (setup 1), the sound source is closer to microphone 2. If the time delta 1 equals the time delta 2 (setup 3), the sound source is at the same distance to both microphones. If the time delta 2 is greater than the time delta 1 (setup 2), the sound source is closer to the microphone 1. 
@@ -73,7 +79,7 @@ Admitting the following setup (figure \ref*{fig:microphones_setup}), if the time
     \label{fig:microphones_setup}
 \end{figure}
 
-This concept can be formalized and is better explained in \cite{Scola2010DirectionOA}. Once the delay between the two microphones is known, the equation allows us to find the direction of the sound source by using trigonometric calculations. As in the figure \ref*{fig:sound-source-from-two-microphones}, considering point $M$ as the sound source and point $A$ and $B$ as microphones, the distance between the two microphones is $d$ and the time delta between the two microphones is $\Delta t$, the angle $\alpha$ can be calculated.
+As explained in \cite{Scola2010DirectionOA}, once the delay between the two microphones is known, the equation allows us to find the direction of the sound source by using trigonometric calculations. As in the figure \ref*{fig:sound-source-from-two-microphones}, considering point $M$ as the sound source and point $A$ and $B$ as microphones, the distance between the two microphones is $d$ and the time delta between the two microphones is $\Delta t$, the angle $\alpha$ can be calculated.
 
 \begin{figure}[H]
     \centering
@@ -103,12 +109,19 @@ The two microphones have the same $Y$ coordinate, so $Y_{a} = Y_{b} = Y$ and $Y_
     y = \pm\sqrt{\frac{AB'^2}{4} - x^2_{B} + x^2(\frac{4\cdot x^2_{B}}{AB'^2} - 1)}
 \end{equation}
 
+The only variables are y and x. The value $x_{B}$ represent the position of the microphones which are taken as reference points. The value $AB'$ will not change even if the direction varies. Considering the speed of sound $c$, the distance $AB'$ is:
+
+\begin{equation}
+    AB' = c \cdot \Delta t
+\end{equation}
+
+This equation gives us the possible positions of the sound source on a line. If we admit that the sound source is always in front of the microphones, we can eliminate the negative values of $y$ and keep only the positive values. With that solution, 
+
 This setup shows that two microphones are enough to determine the direction of a sound source.
-%!!!!!!! TODO - compléter la formalisation
 
-\section{Neural networks}
+\section{Artificial Neural networks}
 
-Neural networks are machine learning algorithms based on biological neurons used to solve various problems, including image recognition, speech recognition, and natural language processing. Neural networks learn from provided data to solve a problem without explicitly programming the solution. Many domains, like self-driving cars, facial recognition, and medical imaging, achieve state-of-the-art results using neural network models. 
+Artificial neural networks, also more simply called neural networks, are machine learning algorithms based on biological neurons used to solve various problems, including image recognition, speech recognition, and natural language processing. Neural networks learn from provided data to solve a problem without explicitly programming the solution. Many domains, like self-driving cars, facial recognition, and medical imaging, achieve state-of-the-art results using neural network models. 
 
 A neural network needs to be trained to solve a problem. The training consists of providing the neural network with examples to recognize patterns in the data. Once we finish the training, the model can solve the problem.
 
@@ -121,18 +134,17 @@ A neural network (figure \ref*{fig:neural_network}) is composed of multiple neur
     \label{fig:neural_network}
 \end{figure}
 
-There are two main phases in the life of a neural network: training and inference. During the training phase, the neural network is trained on a large dataset of images. The neural network learns to recognize patterns in the images and classify them. During the inference phase, the neural network is used to classify new images.
+There are two main phases in the life of a neural network: training and inference. During the training phase, the neural network is trained on a large dataset. The neural network learns to recognize patterns in the train data and tries to generalize them. During the inference phase, the neural network is used to classify new images.
 
-Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks train themselves by adjusting the weights to minimize the error between the predicted and desired outputs. They use an optimization algorithm to adjust the neurons' weights \cite{sun2019optimization}. Multiple optimization algorithms exist, including gradient descent\cite{zhang2019gradient} and backpropagation\cite{Sekhar}. These algorithms minimize the error between the predicted and desired outputs.
+Neural networks comprise multiple neurons. Neurons are mathematical functions with activation functions and weights. These determine how the neurons respond to inputs and connect to other neurons. Neural networks train themselves by adjusting the weights to minimize the error between the predicted and desired outputs. They use an optimization algorithm to adjust the neurons' weights \cite{sun2019optimization}. Multiple optimization algorithms exist, the most used is gradient descent\cite{zhang2019gradient}. These algorithms minimize the error between the predicted and desired outputs.
 
-%TODO - plagiat?
 \subsection{Neuron}
 
 A neuron is a mathematical function that takes multiple inputs and produces an output. The activation function and the weights of the neuron determine the output. The activation function determines how the neuron responds to inputs. The weights determine the importance of the inputs. The neuron's output is calculated by multiplying the inputs by their weights and applying the activation function to the result. The neuron sends its output to the next layer of neurons.
 
 \paragraph{Activation function}
 
-Multiple activation functions exist for neural networks. The most common activation functions are the linear function, the sigmoid function, the tanh function, and the ReLU function.
+Multiple activation functions exist for neural networks. The most common activation functions are the linear function, the sigmoid function, the tanh function, and the ReLU function (Figure \ref{fig:activation_functions}).
 
 \begin{figure}[H]
     \centering
@@ -148,8 +160,6 @@ These functions will determine how the neurons respond to inputs. These function
 \end{equation}
 
 The ReLU function is used in most neural networks because it is fast to compute and provides good results.
-
-% TODO Vérifier les équations
 
 \paragraph{Loss function}
 
@@ -174,7 +184,7 @@ The cross-entropy loss function is defined as follows:
 
 Where $y$ is the desired output, $\hat{y}$ is the predicted output, and $n$ is the number of classes.
 
-We can add weights to the loss function to give more importance to some classes. It helps when a dataset is unbalanced by giving more importance to the underrepresented classes. The weighted cross-entropy loss function is defined as follows:
+We can multiply the loss function by the weights to give more importance to some classes. It helps when a dataset is unbalanced by giving more importance to the underrepresented classes. The weighted cross-entropy loss function is defined as follows:
 
 \begin{equation}
     L(y, \hat{y}) = - \sum_{i=1}^{n} w_{i} \cdot y_{i} \cdot log(\hat{y}_{i})
@@ -184,7 +194,7 @@ Where $y$ is the desired output, $\hat{y}$ is the predicted output, $n$ is the n
 
 \paragraph{Gradient descent}
 
-Gradient descent is an optimization algorithm that minimizes the error between the predicted and desired outputs. We use it to train neural networks. Gradient descent works by iteratively adjusting the neurons' weights to minimize the error between the predicted and desired outputs. It uses the gradient of the loss function to find the direction of the steepest descent. The weights are adjusted in the opposite direction of the gradient. The gradient descent algorithm is defined as follows:
+Gradient descent is an optimization algorithm that minimizes the error between the predicted and desired outputs \cite{zhang2019gradient}. We use it to train neural networks. Gradient descent works by iteratively adjusting the neurons' weights to minimize the error between the predicted and desired outputs. It uses the gradient of the loss function to find the direction of the steepest descent. The weights are adjusted in the opposite direction of the gradient. The gradient descent algorithm is defined as follows:
 
 \begin{equation}
     \theta_{n+1} = \theta_{n} - \alpha \cdot \nabla f(\theta_{n})
@@ -194,21 +204,14 @@ Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\n
 
 \paragraph{Mini-batch gradient descent}
 
-Mini-batch gradient descent is a variant of gradient descent. It uses a batch of samples to compute the gradient of the loss function. It is faster than full gradient descent because it uses a mini-batch of samples instead of the entire dataset. It is also more stable than gradient descent because it uses a mini-batch of samples instead of a single sample. The mini-batch gradient descent algorithm is defined as follows:
+Mini-batch gradient descent is a variant of gradient descent \cite{8264077}. It uses a batch of samples to compute the gradient of the loss function. It is faster than full gradient descent because it uses a mini-batch of samples instead of the entire dataset. It is also more stable than gradient descent because it uses a mini-batch of samples instead of a single sample. The mini-batch gradient descent algorithm is defined as follows:
 
 \paragraph{Backpropagation}
 
-Backpropagation is another optimization algorithm used to train neural networks. Gradient descent forms the basis of the backpropagation algorithm. It uses the gradient of the loss function to find the direction of the steepest descent. The weights are adjusted in the opposite direction of the gradient. Backpropagation is an iterative algorithm that adjusts the neurons' weights to minimize the error between the predicted and desired outputs. The backpropagation algorithm is defined as follows:
-
-\begin{equation}
-    \theta_{n+1} = \theta_{n} - \alpha \cdot \nabla f(\theta_{n})
-\end{equation}
-
-Where $\theta_{n}$ is the current weight, $\alpha$ is the learning rate, and $\nabla f(\theta_{n})$ is the gradient of the loss function.
+Backpropagation is algorithm used to train neural networks\cite{Sekhar}. Its utility is to compute the gradient of the loss function.
 
 \subsection{Neural network hyperparameters}
-Neural networks use different hyperparameters to control the training process. The most common hyperparameters are the activation function and the learning rate.
-
+Neural networks use different hyperparameters to control the training process. Some of the most common hyperparameters are the activation function, the learning rate, the number and type of layers, and the optimizer. We use these parameters to train the neural network efficiently. Multiple solutions exist to find the best hyperparameters for a neural network, but none are perfect \cite{yu2020hyperparameter}.
 
 \paragraph{Learning rate}
 
@@ -218,7 +221,7 @@ A solution to this problem is to use an adaptive learning rate. Adaptive learnin
 
 \subsection{Deep Neural Networks}
 
-Deep neural networks are a type of neural network composed of multiple layers of neurons\cite{Schmidhuber_2015}. They are trained on a large dataset of images and then used to classify new images. There are countless architectures \cite{LIU201711} and implementations of neural networks, but they all share the same basic principles. The most known architectures of neural networks include CNNs\cite{oshea2015introduction}, transformers\cite{vaswani2017attention}, and many others.
+Deep neural networks are a type of neural network composed of multiple layers of neurons\cite{Schmidhuber_2015}. They are trained on a large dataset and are then used to classify new data. There are countless architectures \cite{LIU201711} and implementations of neural networks, but they all share the same basic principles. The most known architectures of neural networks include CNNs\cite{oshea2015introduction}, transformers\cite{vaswani2017attention}, and many others.
 
 \subsection{Convolutional Neural Networks for sound source localization}
 \label{sec:cnn_for_ssl}
@@ -242,7 +245,7 @@ Even if CNNs are mainly used to classify real-life photography, they can classif
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{../Images/Yiwere_classes.png}
-    \caption{CNN for source localization}
+    \caption{Class definition for the Yiwere classification approach\cite{s20010172}.}
     \label{fig:Yiwere_classes}
 \end{figure}
 
@@ -250,13 +253,7 @@ This setup gives nine classes representing a different zone from where the sound
 
 \subsection{Dropout layers}
 
-Dropout layers are used to prevent overfitting in neural networks. 
-
-\subsection{Transfer learning}
-
-%!!!!!!! TODO - réécrire la partie sur le transfer learning
-Transfer learning is a machine learning technique where a model trained on a specific task is reused as the starting point for a model on a different task. The model is trained on a large dataset and then used as a starting point for a model on a different dataset. The model is then trained on the new dataset, and the weights are adjusted to minimize the error between the predicted and desired outputs. Transfer learning is used to train models on smaller datasets and achieve better results than training the model from scratch.
-
+Dropout layers help prevent overfitting in neural networks \cite{hinton2012improving}. They are stochastic techniques used to forget part of the information during training to generalize better.
 
 \section{Datasets for machine learning}
 
@@ -274,30 +271,16 @@ Multiple datasets exist in sound source localization for neural networks. The mo
 Although these datasets are good baselines for sound source localization, they do not suit the needs of this project. The datasets are recorded in a closed environment and do not reflect the baseline defined in this project. Still, these datasets are good baselines for sound source localization and help to understand how to create a dataset.
 
 \subsection{Dataset augmentation for audio classification}
-% TODO add sources
-Since recording many audio files is time-consuming and costly, and since the dataset needs to be large to train a neural network, we decided to use dataset augmentation techniques.
+Since recording many audio files is time-consuming and costly, and since the dataset needs to be large to train a neural network, we can use dataset augmentation techniques.
 
-Dataset augmentation is a technique used to increase the size of a dataset. It is used to improve the performance of a neural network by training on more data, thus becoming better at generalizing. The most common techniques are flipping, rotating, and cropping images, but since the classification in this project is realized on audio, other techniques are needed to augment the dataset. 
+Dataset augmentation is a technique used to increase the size of a dataset. It is used to improve the performance of a neural network by training on more data, thus becoming better at generalizing. The most common techniques\cite{yang2022image} are flipping, rotating, and cropping images, but since the classification in this project is realized on audio, other techniques are needed to augment the dataset. 
 
-Some techniques that work well on audio are adding noise, changing the pitch, or simulating new data. 
-
-\section{Dataset generation using simulation}
-\label{sec:dataset_generation_simulation}
-
-Simulating a dataset is a technique used to create a dataset without recording data from real life. It helps to create a dataset with many samples. Since the goal is to generate sounds in an open environment, a 3D-capable engine is necessary. Game engines are increasingly popular for simulation tasks since they are optimized for real-time rendering and can simulate complex 3D scenes. The game engine must simulate sound propagation for a realistic audio simulation. 
-
-TODO
-
-% TODO
-
-
-
-
+Some techniques that work well on audio are adding noise, changing the pitch, or simulating new data\cite{ghilardi2019automatic}. 
 
 \subsection{Metrics review for neural networks}
 
 \paragraph{Accuracy}
-The most common metric for neural networks is the accuracy. The accuracy is the number of correct predictions divided by the total number of predictions. Accuracy is a good metric for classification problems since it tells us how the model performs. The accuracy is defined as follows:
+The most common metric for neural networks is accuracy. The accuracy is the number of correct predictions divided by the total number of predictions. Accuracy is a good metric for classification problems since it tells us how the model performs. The accuracy is defined as follows:
 
 \begin{equation}
     \text{Accuracy} = \frac{\text{Number of correct predictions}}{\text{Total number of predictions}}
@@ -314,18 +297,22 @@ The recall is another metric that can be used. The recall is the number of true 
 
 The recall is a good metric for unbalanced datasets since it considers the number of false negatives.
 
-\paragraph*{F1 score}
+\paragraph{F1 score}
 Another metric that can be used is the F1 score. The F1 score is the harmonic mean of the precision and recall. The F1 score is defined as follows:
 
 \begin{equation}
     \text{F1 score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
 \end{equation}
 
+\paragraph{Loss}
+
+The loss is a metric that is calculated during the training. It can also be used to represent how well the model performs. The loss is used to update the weights of the neural network. The loss is defined as follows:
+
 The F1 score is a good metric for unbalanced datasets since it considers precision and recall. 
 
-\paragraph*{Confusion matrix}
+\paragraph{Confusion matrix}
 
-To have a visual understanding of how a model performs, a confusion matrix can be used. A confusion matrix is a matrix that shows the number of correct and incorrect predictions for each class. The confusion matrix can be used with any number of classes and is a good way to visualize the performance of a model. The main aim of the visualization of a confusion matrix is to see which classes are misclassified and which classes are correctly classified. For example, in a binary classification problem, the confusion matrix is a 2x2 matrix. The confusion matrix is defined as follows:
+To have a visual understanding of how a model performs, we use a confusion matrix. A confusion matrix shows the number of correct and incorrect predictions for each class. The confusion matrix can be used with any number of classes and is a good way to visualize the performance of a model. The main aim of the visualization of a confusion matrix is to see which classes are misclassified and which classes are correctly classified. For example, in a binary classification problem, the confusion matrix is a 2x2 matrix. The confusion matrix is defined as follows:
 
 \begin{equation}
     \begin{bmatrix}
@@ -349,14 +336,31 @@ The confusion matrix allows us to understand which classes are misclassified and
 \section{Sound propagation}
 Sound propagation is the physical process by which sound waves propagate in a given environment. Multiple factors affect the propagation of sound waves, including reverberation, occlusion, doppler effect, and obstruction.
 
-
-The strength of the sound wave depends on various factors, including the frequency, environment, and distance from the sound source. These factors make an accurate identification and localization of a sound source difficult; thus, we need a more accurate and robust sound source localization system.
-
 \subsection{Microsoft Project Acoustics}
 
-Microsoft Project Acoustics is a sound propagation engine that simulates the propagation of sound waves in a given environment. Various applications, including video games, virtual reality, and physics simulation, use this engine. It simulates wave effects like obstruction, reverberation, and occlusion in complex 3D scenes without requiring zone markup or raytracing. It works similarly to a raytracing engine but is precomputed and optimized for real-time performance. 
 
 \subsubsection{Sound Propagation in game-engine}
+
+\section{Dataset generation using simulation}
+\label{sec:dataset_generation_simulation}
+
+Simulating a dataset is a technique used to augment a dataset without recording data from real life \cite{ghilardi2019automatic}. It helps to create a dataset with many samples. 
+
+Since this work aims to generate sounds in an open environment, a 3D-capable engine is necessary. Game engines are increasingly popular for simulation tasks since they are optimized for real-time rendering and can simulate complex 3D scenes \cite{carla}. The game engine must also simulate sound propagation to have a realistic audio representation in the simulation. 
+
+
+Microsoft Project Acoustics\footnote{\url{https://learn.microsoft.com/en-us/gaming/acoustics/what-is-acoustics}} is a plugin based on Microsoft's research\cite{rosen2020interactive}. The plugin simulates sound propagation. Various applications, including video games, virtual reality, and physics simulation, use this engine. It simulates wave effects like obstruction, reverberation, and occlusion in complex 3D scenes without requiring zone markup or raytracing. It works similarly to a raytracing engine but is precomputed and optimized for real-time performance. 
+
+ It is available in the Unity game engine. It simulates sound propagation by using ray-based acoustics methods to check for occlusion, as shown in Figure \ref{fig:microsoft_ray_based_acoustics}:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../Images/microsoft_ray_based_acoustics.png}
+    \caption{Ray-based acoustics method used in Microsoft Project Acoustics to detect occlusion\cite{rosen2020interactive}.}
+    \label{fig:microsoft_ray_based_acoustics}
+\end{figure}
+
+The plugin can be used in any 3D environment by pre-calculating the possible path of the sound. Once the pre-calculation is realized, the plugin can simulate the sound propagation effects in real-time.
 
 \section{Adversarial Attacks}
 \label{sec:adversarial_attacks}
@@ -379,9 +383,3 @@ $X$ is the input, $y$ is the target class, $\epsilon$ is the magnitude of the pe
     \caption{FGSM example in \cite{goodfellow2015explaining} with a neural network classifying a panda as a gibbon because of the attack.}
     \label{fig:fgsm}
 \end{figure}
-
-\subsection{Signal estimation from Short Time Fourier Transform}
-
-The Griffin-Lim algorithm\cite{6701851} is an iterative algorithm that uses a spectrogram to estimate the phase of an audio signal. The algorithm starts with a random phase and iteratively updates the phase until the spectrogram converges to the original spectrogram. The algorithm is defined as follows:
-
-% TODO ajouter l'algo

@@ -5,6 +5,11 @@ Pierre-Amaury Grumiaux, Sr{dj}an Kiti{{c}}, Laurent Girin, and Alexandre Gu{{e}}
 \newblock A survey of sound source localization with deep learning methods.
 \newblock {\em The Journal of the Acoustical Society of America}, 152(1):107--151, jul 2022.
 
+\bibitem{5059525}
+H.~S. Black and J.~O. Edson.
+\newblock Pulse code modulation.
+\newblock {\em Transactions of the American Institute of Electrical Engineers}, 66(1):895--899, 1947.
+
 \bibitem{7952261}
 Jort~F. Gemmeke, Daniel P.~W. Ellis, Dylan Freedman, Aren Jansen, Wade Lawrence, R.~Channing Moore, Manoj Plakal, and Marvin Ritter.
 \newblock Audio set: An ontology and human-labeled dataset for audio events.
@@ -24,6 +29,16 @@ Xiaofei Li, Laurent Girin, Fabien Badeig, and Radu Horaud.
 Amengual Garamp.
 \newblock Spatial analysis and auralization of room acoustics using a tetrahedral microphone, Apr 2017.
 
+\bibitem{5217220}
+E.~O. Brigham and R.~E. Morrow.
+\newblock The fast fourier transform.
+\newblock {\em IEEE Spectrum}, 4(12):63--70, 1967.
+
+\bibitem{6701851}
+Nathanaël Perraudin, Peter Balazs, and Peter~L. Søndergaard.
+\newblock A fast griffin-lim algorithm.
+\newblock In {\em 2013 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics}, pages 1--4, 2013.
+
 \bibitem{Scola2010DirectionOA}
 Carlos~Fern{\'a}ndez Scola and Mar{\'i}a Dolores~Bola{\~n}os Ortega.
 \newblock Direction of arrival estimation : A two microphones approach.
@@ -37,14 +52,23 @@ Ruoyu Sun.
 Jiawei Zhang.
 \newblock Gradient descent based optimization algorithms for deep learning models training, 2019.
 
+\bibitem{dubey2022activation}
+Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
+\newblock Activation functions in deep learning: A comprehensive survey and benchmark, 2022.
+
+\bibitem{8264077}
+Sarit Khirirat, Hamid~Reza Feyzmahdavian, and Mikael Johansson.
+\newblock Mini-batch gradient descent: Faster convergence under data sparsity.
+\newblock In {\em 2017 IEEE 56th Annual Conference on Decision and Control (CDC)}, pages 2880--2887, 2017.
+
 \bibitem{Sekhar}
 Ch~Sekhar and P~Meghana.
 \newblock A study on backpropagation in artificial neural networks.
 \newblock {\em Asia-Pacific Journal of Neural Networks and Its Applications}, 4:21--28, 08 2020.
 
-\bibitem{dubey2022activation}
-Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
-\newblock Activation functions in deep learning: A comprehensive survey and benchmark, 2022.
+\bibitem{yu2020hyperparameter}
+Tong Yu and Hong Zhu.
+\newblock Hyper-parameter optimization: A review of algorithms and applications, 2020.
 
 \bibitem{hao2021adaptive}
 Zhiyong Hao, Yixuan Jiang, Huihua Yu, and Hsiao-Dong Chiang.
@@ -78,6 +102,10 @@ Mariam Yiwere and Eun~Joo Rhee.
 \newblock Sound source distance estimation using deep learning: An image classification approach.
 \newblock {\em Sensors}, 20(1), 2020.
 
+\bibitem{hinton2012improving}
+Geoffrey~E. Hinton, Nitish Srivastava, Alex Krizhevsky, Ilya Sutskever, and Ruslan~R. Salakhutdinov.
+\newblock Improving neural networks by preventing co-adaptation of feature detectors, 2012.
+
 \bibitem{Adavanne2019_DCASE}
 Sharath Adavanne, Archontis Politis, and Tuomas Virtanen.
 \newblock A multi-room reverberant dataset for sound event localization and detection.
@@ -88,13 +116,30 @@ Archontis Politis, Sharath Adavanne, and Tuomas Virtanen.
 \newblock A dataset of reverberant spatial sound scenes with moving sources for sound event localization and detection.
 \newblock In {\em Proceedings of the Detection and Classification of Acoustic Scenes and Events 2020 Workshop (DCASE2020)}, pages 165--169, Tokyo, Japan, November 2020.
 
+\bibitem{yang2022image}
+Suorong Yang, Weikang Xiao, Mengcheng Zhang, Suhan Guo, Jian Zhao, and Furao Shen.
+\newblock Image data augmentation for deep learning: A survey, 2022.
+
+\bibitem{ghilardi2019automatic}
+Marcelo~C. Ghilardi, Leandro Dihl, Estevão Testa, Pedro Braga, João~P. Pianta, Isabel~H. Manssour, and Soraia~R. Musse.
+\newblock Automatic dataset augmentation using virtual human simulation, 2019.
+
+\bibitem{carla}
+Christopher, Antonia Breuer, Silviu Homoceanu, and Henryk Michalewski.
+\newblock Carla real traffic scenarios -- novel training ground and benchmark for autonomous driving.
+\newblock 12 2020.
+
+\bibitem{rosen2020interactive}
+Matthew Rosen, Keith Godin, and Nikunj Raghuvanshi.
+\newblock Interactive sound propagation for dynamic scenes using 2d wave simulation.
+\newblock {\em Computer Graphics Forum (Symposium on Computer Animation)}, 39(8), September 2020.
+
 \bibitem{goodfellow2015explaining}
 Ian~J. Goodfellow, Jonathon Shlens, and Christian Szegedy.
 \newblock Explaining and harnessing adversarial examples, 2015.
 
-\bibitem{6701851}
-Nathanaël Perraudin, Peter Balazs, and Peter~L. Søndergaard.
-\newblock A fast griffin-lim algorithm.
-\newblock In {\em 2013 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics}, pages 1--4, 2013.
+\bibitem{li2021generative}
+Xiang Li and Shihao Ji.
+\newblock Generative dynamic patch attack, 2021.
 
 \end{thebibliography}
